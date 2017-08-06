@@ -1,0 +1,31 @@
+PODS:
+  - PromiseKit (4.2.2):
+    - PromiseKit/Foundation (= 4.2.2)
+    - PromiseKit/QuartzCore (= 4.2.2)
+    - PromiseKit/UIKit (= 4.2.2)
+  - PromiseKit/CorePromise (4.2.2)
+  - PromiseKit/Foundation (4.2.2):
+    - PromiseKit/CorePromise
+  - PromiseKit/QuartzCore (4.2.2):
+    - PromiseKit/CorePromise
+  - PromiseKit/UIKit (4.2.2):
+    - PromiseKit/CorePromise
+  - SwiftyJSON (3.1.4)
+  - TwitterCore (3.0.0)
+  - TwitterKit (3.0.3):
+    - TwitterCore (>= 3.0.0)
+
+DEPENDENCIES:
+  - PromiseKit (~> 4.0)
+  - SwiftyJSON
+  - TwitterKit
+
+SPEC CHECKSUMS:
+  PromiseKit: 00e8886881f151c7e573d06b437915b0bb2970ec
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+  TwitterCore: 8ce250be1eb34633a0e6acc89520d4165ec52c10
+  TwitterKit: 202404be71aadd81d19f677b34579fe77d9cb67e
+
+PODFILE CHECKSUM: 003b3cacbbefb06b641b4dc8b38d862069825d22
+
+COCOAPODS: 1.2.1

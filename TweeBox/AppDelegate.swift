@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import TwitterKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,10 +16,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
+    // Twitter Kit
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        Twitter.sharedInstance().start(withConsumerKey:"yuo33GhvlWXA465CE1wrIhvss", consumerSecret:"ji2rPh5sMDjR4vj4HC24ZGDpZ0miGVJagCCiIkJsoZsMmTKYcF")
+        
         return true
     }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        return Twitter.sharedInstance().application(app, open: url, options: options)
+    }
+    
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -88,6 +96,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-
 }
 

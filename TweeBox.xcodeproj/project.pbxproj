@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B230F5DCBCAADB2F8B3CD0F2 /* Pods_TweeBox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8E3A1C5C0DABB6C344B4147 /* Pods_TweeBox.framework */; };
 		B42985A01F29E8E700AFFB97 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B429859F1F29E8E700AFFB97 /* AppDelegate.swift */; };
 		B42985A21F29E8E700AFFB97 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42985A11F29E8E700AFFB97 /* ViewController.swift */; };
 		B42985A51F29E8E700AFFB97 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B42985A31F29E8E700AFFB97 /* Main.storyboard */; };
@@ -15,6 +16,18 @@
 		B42985AD1F29E8E700AFFB97 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B42985AB1F29E8E700AFFB97 /* LaunchScreen.storyboard */; };
 		B42985B81F29E8E700AFFB97 /* TweeBoxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42985B71F29E8E700AFFB97 /* TweeBoxTests.swift */; };
 		B42985C31F29E8E700AFFB97 /* TweeBoxUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42985C21F29E8E700AFFB97 /* TweeBoxUITests.swift */; };
+		B43BB8B91F359F9A0011A301 /* Coordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43BB8B81F359F9A0011A301 /* Coordinates.swift */; };
+		B43BB8BB1F35A2300011A301 /* Entities.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43BB8BA1F35A2300011A301 /* Entities.swift */; };
+		B43BB8BD1F35A4A40011A301 /* Places.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43BB8BC1F35A4A40011A301 /* Places.swift */; };
+		B443A0ED1F2B36520021BB65 /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = B443A0EC1F2B36520021BB65 /* Timeline.swift */; };
+		B443A0F01F2B371A0021BB65 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B443A0EF1F2B371A0021BB65 /* Tweet.swift */; };
+		B443A0F21F2B38050021BB65 /* TwitterUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B443A0F11F2B38050021BB65 /* TwitterUsers.swift */; };
+		B443A0F41F2B39C30021BB65 /* TweetMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = B443A0F31F2B39C30021BB65 /* TweetMedia.swift */; };
+		B443A0F61F2B43EB0021BB65 /* ResourceURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = B443A0F51F2B43EB0021BB65 /* ResourceURL.swift */; };
+		B443A0F81F2B44FD0021BB65 /* RESTfulClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B443A0F71F2B44FD0021BB65 /* RESTfulClient.swift */; };
+		B443A0FA1F2B46370021BB65 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B443A0F91F2B46370021BB65 /* Constants.swift */; };
+		B443A0FC1F2B70D40021BB65 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = B443A0FB1F2B70D40021BB65 /* Error.swift */; };
+		B4EC26231F2F810700011DA0 /* UserTimelineParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EC26221F2F810700011DA0 /* UserTimelineParams.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +48,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		27A3D1FDBA0152D8A2C9DA41 /* Pods-TweeBox.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TweeBox.release.xcconfig"; path = "Pods/Target Support Files/Pods-TweeBox/Pods-TweeBox.release.xcconfig"; sourceTree = "<group>"; };
+		9FACEDC042CE0399F01969AB /* Pods-TweeBox.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TweeBox.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TweeBox/Pods-TweeBox.debug.xcconfig"; sourceTree = "<group>"; };
 		B429859C1F29E8E700AFFB97 /* TweeBox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TweeBox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B429859F1F29E8E700AFFB97 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B42985A11F29E8E700AFFB97 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +64,19 @@
 		B42985BE1F29E8E700AFFB97 /* TweeBoxUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TweeBoxUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B42985C21F29E8E700AFFB97 /* TweeBoxUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweeBoxUITests.swift; sourceTree = "<group>"; };
 		B42985C41F29E8E700AFFB97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B43BB8B81F359F9A0011A301 /* Coordinates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinates.swift; sourceTree = "<group>"; };
+		B43BB8BA1F35A2300011A301 /* Entities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entities.swift; sourceTree = "<group>"; };
+		B43BB8BC1F35A4A40011A301 /* Places.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Places.swift; sourceTree = "<group>"; };
+		B443A0EC1F2B36520021BB65 /* Timeline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timeline.swift; sourceTree = "<group>"; };
+		B443A0EF1F2B371A0021BB65 /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
+		B443A0F11F2B38050021BB65 /* TwitterUsers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterUsers.swift; sourceTree = "<group>"; };
+		B443A0F31F2B39C30021BB65 /* TweetMedia.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetMedia.swift; sourceTree = "<group>"; };
+		B443A0F51F2B43EB0021BB65 /* ResourceURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceURL.swift; sourceTree = "<group>"; };
+		B443A0F71F2B44FD0021BB65 /* RESTfulClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RESTfulClient.swift; sourceTree = "<group>"; };
+		B443A0F91F2B46370021BB65 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		B443A0FB1F2B70D40021BB65 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		B4EC26221F2F810700011DA0 /* UserTimelineParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTimelineParams.swift; sourceTree = "<group>"; };
+		E8E3A1C5C0DABB6C344B4147 /* Pods_TweeBox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TweeBox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B230F5DCBCAADB2F8B3CD0F2 /* Pods_TweeBox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +105,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		38ED08F3A9EC4898F46645E4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9FACEDC042CE0399F01969AB /* Pods-TweeBox.debug.xcconfig */,
+				27A3D1FDBA0152D8A2C9DA41 /* Pods-TweeBox.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		B42985931F29E8E600AFFB97 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +121,8 @@
 				B42985B61F29E8E700AFFB97 /* TweeBoxTests */,
 				B42985C11F29E8E700AFFB97 /* TweeBoxUITests */,
 				B429859D1F29E8E700AFFB97 /* Products */,
+				38ED08F3A9EC4898F46645E4 /* Pods */,
+				F236D003DD7F3DF8F5F69B99 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,9 +139,17 @@
 		B429859E1F29E8E700AFFB97 /* TweeBox */ = {
 			isa = PBXGroup;
 			children = (
-				B429859F1F29E8E700AFFB97 /* AppDelegate.swift */,
-				B42985A11F29E8E700AFFB97 /* ViewController.swift */,
 				B42985A31F29E8E700AFFB97 /* Main.storyboard */,
+				B443A0EE1F2B36A50021BB65 /* Model */,
+				B46A53861F32147F00F0D66E /* ViewController */,
+				B443A0EF1F2B371A0021BB65 /* Tweet.swift */,
+				B43BB8BC1F35A4A40011A301 /* Places.swift */,
+				B43BB8BA1F35A2300011A301 /* Entities.swift */,
+				B43BB8B81F359F9A0011A301 /* Coordinates.swift */,
+				B443A0F31F2B39C30021BB65 /* TweetMedia.swift */,
+				B443A0F11F2B38050021BB65 /* TwitterUsers.swift */,
+				B443A0FB1F2B70D40021BB65 /* Error.swift */,
+				B429859F1F29E8E700AFFB97 /* AppDelegate.swift */,
 				B42985A91F29E8E700AFFB97 /* Assets.xcassets */,
 				B42985AB1F29E8E700AFFB97 /* LaunchScreen.storyboard */,
 				B42985AE1F29E8E700AFFB97 /* Info.plist */,
@@ -128,6 +176,34 @@
 			path = TweeBoxUITests;
 			sourceTree = "<group>";
 		};
+		B443A0EE1F2B36A50021BB65 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B443A0EC1F2B36520021BB65 /* Timeline.swift */,
+				B443A0F51F2B43EB0021BB65 /* ResourceURL.swift */,
+				B443A0F71F2B44FD0021BB65 /* RESTfulClient.swift */,
+				B4EC26221F2F810700011DA0 /* UserTimelineParams.swift */,
+				B443A0F91F2B46370021BB65 /* Constants.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		B46A53861F32147F00F0D66E /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B42985A11F29E8E700AFFB97 /* ViewController.swift */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		F236D003DD7F3DF8F5F69B99 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E8E3A1C5C0DABB6C344B4147 /* Pods_TweeBox.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +211,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B42985C71F29E8E700AFFB97 /* Build configuration list for PBXNativeTarget "TweeBox" */;
 			buildPhases = (
+				AC43473CB3CF46957A0A52C2 /* [CP] Check Pods Manifest.lock */,
 				B42985981F29E8E600AFFB97 /* Sources */,
 				B42985991F29E8E600AFFB97 /* Frameworks */,
 				B429859A1F29E8E600AFFB97 /* Resources */,
+				431C1F722E20285CCEE30E57 /* [CP] Embed Pods Frameworks */,
+				E26B7E4E4464EBC7B9EE44BC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -260,14 +339,74 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		431C1F722E20285CCEE30E57 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TweeBox/Pods-TweeBox-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AC43473CB3CF46957A0A52C2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E26B7E4E4464EBC7B9EE44BC /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TweeBox/Pods-TweeBox-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		B42985981F29E8E600AFFB97 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				B42985A81F29E8E700AFFB97 /* TweeBox.xcdatamodeld in Sources */,
+				B4EC26231F2F810700011DA0 /* UserTimelineParams.swift in Sources */,
+				B443A0F01F2B371A0021BB65 /* Tweet.swift in Sources */,
+				B443A0F41F2B39C30021BB65 /* TweetMedia.swift in Sources */,
+				B43BB8BB1F35A2300011A301 /* Entities.swift in Sources */,
+				B43BB8BD1F35A4A40011A301 /* Places.swift in Sources */,
+				B443A0F21F2B38050021BB65 /* TwitterUsers.swift in Sources */,
 				B42985A21F29E8E700AFFB97 /* ViewController.swift in Sources */,
+				B443A0FA1F2B46370021BB65 /* Constants.swift in Sources */,
+				B443A0ED1F2B36520021BB65 /* Timeline.swift in Sources */,
+				B443A0FC1F2B70D40021BB65 /* Error.swift in Sources */,
+				B43BB8B91F359F9A0011A301 /* Coordinates.swift in Sources */,
 				B42985A01F29E8E700AFFB97 /* AppDelegate.swift in Sources */,
+				B443A0F61F2B43EB0021BB65 /* ResourceURL.swift in Sources */,
+				B443A0F81F2B44FD0021BB65 /* RESTfulClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,6 +556,7 @@
 		};
 		B42985C81F29E8E700AFFB97 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9FACEDC042CE0399F01969AB /* Pods-TweeBox.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = QGE9B9WP7D;
@@ -430,6 +570,7 @@
 		};
 		B42985C91F29E8E700AFFB97 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27A3D1FDBA0152D8A2C9DA41 /* Pods-TweeBox.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = QGE9B9WP7D;
@@ -518,6 +659,7 @@
 				B42985C91F29E8E700AFFB97 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B42985CA1F29E8E700AFFB97 /* Build configuration list for PBXNativeTarget "TweeBoxTests" */ = {
 			isa = XCConfigurationList;
@@ -526,6 +668,7 @@
 				B42985CC1F29E8E700AFFB97 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B42985CD1F29E8E700AFFB97 /* Build configuration list for PBXNativeTarget "TweeBoxUITests" */ = {
 			isa = XCConfigurationList;
@@ -534,6 +677,7 @@
 				B42985CF1F29E8E700AFFB97 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

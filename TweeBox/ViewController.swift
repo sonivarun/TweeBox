@@ -7,19 +7,54 @@
 //
 
 import UIKit
+import SafariServices
+import TwitterKit
+import SwiftyJSON
+//import PromiseKit
 
-class ViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+class ViewController: UIViewController, SFSafariViewControllerDelegate {
+    
+    public var maxID: String? {
+        didSet {
+            print("outer max: \(maxID)")
+        }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    public var sinceID: String? {
+        didSet {
+            print("outer min: \(sinceID)")
+        }
     }
-
-
+    public var fetchNewer = true
+    public var fetchOlder = false
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        addLoginButton()
+    }
+    
+    private func addLoginButton() {
+        let logInButton = TWTRLogInButton(logInCompletion: { session, error in
+            if session != nil {
+                print("signed in as \(session!.userName)")
+            } else if error != nil {
+                print("error: \(error!.localizedDescription)")
+            }
+        })
+        
+        logInButton.center = self.view.center
+        self.view.addSubview(logInButton)
+    }
+    
+    @IBAction func createClient(_ sender: UIButton) {
+        print("CLICKED")
+        let timeline = Timeline(maxID: maxID, sinceID: sinceID, fetchNewer: fetchNewer, fetchOlder: fetchOlder)
+        timeline.fetchData { (maxID, sinceID) in
+            if maxID != nil {
+                self.maxID = maxID
+            }
+            if sinceID != nil {
+                self.sinceID = sinceID
+            }
+        }
+    }
 }
-
