@@ -19,28 +19,32 @@ class Timeline {
     public var maxID: String?
     public var sinceID: String?
     public var fetchNewer = true
-    public var fetchOlder = false
     
-    init(maxID: String?, sinceID: String?, fetchNewer: Bool, fetchOlder: Bool) {
+    init(maxID: String?, sinceID: String?, fetchNewer: Bool) {
         self.maxID = maxID
         self.sinceID = sinceID
-        self.fetchOlder = fetchOlder
         self.fetchNewer = fetchNewer
     }
     
     public func fetchData(_ handler: @escaping (String?, String?, [Tweet]?) -> Void) {
+        
         if let userID = Twitter.sharedInstance().sessionStore.session()?.userID {
-            var userTimelineParams: UserTimelineParams
-            userTimelineParams = UserTimelineParams(of: userID)
+            
+            let userTimelineParams = UserTimelineParams(of: userID)
+            
             if fetchNewer, sinceID != nil {
                 userTimelineParams.sinceID = String(Int(sinceID!)! + 1)
             }
-            if fetchOlder, maxID != nil {
+            
+            if !fetchNewer, maxID != nil {
                 userTimelineParams.maxID = String(Int(maxID!)! - 1)
             }
+            
             let client = RESTfulClient(resource: ResourceURL.user_timeline, params: userTimelineParams.params)
+            
             client.getData() { data in
                 let json = JSON(data: data)
+                
                 for (_, tweetJSON) in json {
                     let tweet = Tweet(
                         coordinates: nil,
@@ -74,6 +78,7 @@ class Timeline {
                 }
                 self.maxID = self.timeline.last?.id  // if fetch tweets below this batch, the earliest one in this batch would be the max one for the next batch
                 self.sinceID = self.timeline.first?.id  // vice versa
+                
                 handler(self.maxID, self.sinceID, self.timeline)
             }
         }

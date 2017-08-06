@@ -14,28 +14,16 @@ import SwiftyJSON
 
 class ViewController: UIViewController, SFSafariViewControllerDelegate {
     
-    public var maxID: String? {
-        didSet {
-            print("outer max: \(maxID)")
-        }
-    }
-    public var sinceID: String? {
-        didSet {
-            print("outer min: \(sinceID)")
-        }
-    }
-    public var fetchNewer = true
-    public var fetchOlder = false
-    
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         addLoginButton()
     }
     
     private func addLoginButton() {
-        let logInButton = TWTRLogInButton(logInCompletion: { session, error in
+        let logInButton = TWTRLogInButton(logInCompletion: { [weak self] session, error in
             if session != nil {
                 print("signed in as \(session!.userName)")
+                self?.performSegue(withIdentifier: "login", sender: nil)
             } else if error != nil {
                 print("error: \(error!.localizedDescription)")
             }
@@ -44,17 +32,18 @@ class ViewController: UIViewController, SFSafariViewControllerDelegate {
         logInButton.center = self.view.center
         self.view.addSubview(logInButton)
     }
-    
-    @IBAction func createClient(_ sender: UIButton) {
-        print("CLICKED")
-        let timeline = Timeline(maxID: maxID, sinceID: sinceID, fetchNewer: fetchNewer, fetchOlder: fetchOlder)
-        timeline.fetchData { (maxID, sinceID) in
-            if maxID != nil {
-                self.maxID = maxID
-            }
-            if sinceID != nil {
-                self.sinceID = sinceID
-            }
-        }
-    }
+
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "To Timeline" {
+//            
+//            var destinationViewController = segue.destination
+//            if let navigationController = destinationViewController as? UINavigationController {
+//                destinationViewController = navigationController.visibleViewController ?? destinationViewController
+//            }
+//            
+//            if let timelineViewController = destinationViewController as? TimelineTableViewController {
+//                print("Segue")
+//            }
+//        }
+//    }
 }
