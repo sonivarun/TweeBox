@@ -91,13 +91,13 @@ class Tweet {
     init(with tweetJSON: JSON
         ) {
         coordinates         = ((tweetJSON["coordinates"].null == nil) ? (Coordinates(with: tweetJSON["coordinates"])) : nil)
-        createdTime         = tweetJSON["created_at"].string ?? ""
+        createdTime         = tweetJSON["created_at"].stringValue
         currenUserRetweet   = tweetJSON["current_user_retweet"].string
         entities            = Entity(with: tweetJSON["entities"], and: tweetJSON["extended_entities"])  // ((tweetJSON["entities"].null == nil) ? (Entity(with: tweetJSON["entities"])) : nil)
         favoriteCount       = tweetJSON["favorite_count"].int
         favorited           = tweetJSON["favorited"].bool ?? false
         filterLevel         = tweetJSON["filter_level"].string
-        id                  = tweetJSON["id_str"].string ?? ""
+        id                  = tweetJSON["id_str"].stringValue
         inReplyToScreenName = tweetJSON["in_reply_to_screen_name"].string
         inReplyToStatusID   = tweetJSON["in_reply_to_status_id_str"].string
         inReplyToUserID     = tweetJSON["in_reply_to_user_id_str"].string
@@ -109,8 +109,8 @@ class Tweet {
         retweetCount        = tweetJSON["retweet_count"].int ?? 0
         retweeted           = tweetJSON["retweeted"].bool ?? false
         retweetedStatus     = ((tweetJSON["retweeted_status"].null == nil) ? (Tweet(with: tweetJSON["retweeted_status"])) : nil)
-        source              = tweetJSON["source"].string ?? ""
-        text                = tweetJSON["text"].string ?? ""
+        source              = tweetJSON["source"].stringValue
+        text                = tweetJSON["text"].stringValue
         truncated           = tweetJSON["truncated"].bool ?? false
         user                = TwitterUser(with: tweetJSON["user"])  // ((tweetJSON["user"].null == nil) ? (TwitterUser(with: tweetJSON["user"])) : nil)
         //        withheldCopyright: tweetJSON["withheld_copyright"].bool

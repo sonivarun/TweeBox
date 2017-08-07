@@ -25,13 +25,13 @@ struct Place {
         
         attributes  = PlaceAttributes(with: json["attributes"])
         boundingBox = Coordinates(with: json["bounding_box"])
-        country     = json["country"].string ?? ""
-        countryCode = json["country_code"].string ?? ""
-        fullName    = json["full_name"].string ?? ""
-        id          = json["id"].string ?? ""
-        name        = json["name"].string ?? ""
-        placeType   = json["place_type"].string ?? ""
-        url         = json["url"].string ?? ""
+        country     = json["country"].stringValue
+        countryCode = json["country_code"].stringValue
+        fullName    = json["full_name"].stringValue
+        id          = json["id"].stringValue
+        name        = json["name"].stringValue
+        placeType   = json["place_type"].stringValue
+        url         = json["url"].stringValue
     }
     
     

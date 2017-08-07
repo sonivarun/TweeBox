@@ -89,16 +89,16 @@ struct TwitterUser {
 //    public var withheld_scope: String?
     
     init(with userJSON: JSON) {
-        id                            = userJSON["id_str"].string ?? ""
+        id                            = userJSON["id_str"].stringValue
         location                      = userJSON["location"].string
-        name                          = userJSON["name"].string ?? ""
-        screenName                    = userJSON["screen_name"].string ?? ""
+        name                          = userJSON["name"].stringValue
+        screenName                    = userJSON["screen_name"].stringValue
         url                           = userJSON["url"].string
-        createdAt                     = userJSON["created_at"].string ?? ""
+        createdAt                     = userJSON["created_at"].stringValue
         defaultProfile                = userJSON["default_profile"].bool ?? true
         defaultProfileImage           = userJSON["default_profile_image"].bool ?? true
         description                   = userJSON["description"].string
-        entities                      = Entity(with: userJSON["entities"], and: nil)  // ((userJSON["entities"].null == nil) ? (Entity(with: userJSON["entities"])) : nil)
+        entities                      = Entity(with: userJSON["entities"], and: JSON.null)  // ((userJSON["entities"].null == nil) ? (Entity(with: userJSON["entities"])) : nil)
         verified                      = userJSON["verified"].bool ?? false
         favouritesCount               = userJSON["favourites_count"].int ?? 0
         followRequestSent             = userJSON["follow_request_sent"].bool
@@ -107,16 +107,16 @@ struct TwitterUser {
         followingCount                = userJSON["friends_count"].int ?? 0
         geoEnabled                    = userJSON["geo_enabled"].bool ?? false
         isTranslator                  = userJSON["is_translator"].bool ?? false
-        lang                          = userJSON["lang"].string ?? ""
+        lang                          = userJSON["lang"].stringValue
         listedCount                   = userJSON["listed_count"].int ?? 0
         notifications                 = userJSON["notifications"].bool
-        profileBackgroundColor        = userJSON["profile_background_color"].string ?? ""
-        profileBackgroundImageURLHTTP = userJSON["profile_background_image_url"].string ?? ""
-        profileBackgroundImageURL     = userJSON["profile_background_image_url_https"].string ?? ""
+        profileBackgroundColor        = userJSON["profile_background_color"].stringValue
+        profileBackgroundImageURLHTTP = userJSON["profile_background_image_url"].stringValue
+        profileBackgroundImageURL     = userJSON["profile_background_image_url_https"].stringValue
         profileBackgroundTile         = userJSON["profile_background_tile"].bool ?? false
-        profileBannerURL              = userJSON["profile_banner_url"].string ?? ""
-        profileImageURLHTTP           = userJSON["profile_image_url"].string ?? ""
-        profileImageURL               = userJSON["profile_image_url_https"].string ?? ""
+        profileBannerURL              = userJSON["profile_banner_url"].stringValue
+        profileImageURLHTTP           = userJSON["profile_image_url"].stringValue
+        profileImageURL               = userJSON["profile_image_url_https"].stringValue
         profileUseBackgroundImage     = userJSON["profile_use_background_image"].bool ?? true
         protected                     = userJSON["protected"].bool ?? false
         status                        = ((userJSON["status"].null == nil) ? (Tweet(with: userJSON["status"])) : nil)
