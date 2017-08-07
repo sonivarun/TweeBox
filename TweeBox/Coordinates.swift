@@ -9,10 +9,11 @@
 //  The inner coordinates array is formatted as geoJSON (longitude first, then latitude)
 
 import Foundation
+import SwiftyJSON
 
 struct Coordinates {
     
-    public var coordinates: (Float, Float)
-    
-    public var type: String = "Point"
+    init(with json: JSON) {
+        
+    }
 }

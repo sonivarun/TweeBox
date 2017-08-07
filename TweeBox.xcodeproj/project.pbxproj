@@ -17,12 +17,12 @@
 		B42985B81F29E8E700AFFB97 /* TweeBoxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42985B71F29E8E700AFFB97 /* TweeBoxTests.swift */; };
 		B42985C31F29E8E700AFFB97 /* TweeBoxUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B42985C21F29E8E700AFFB97 /* TweeBoxUITests.swift */; };
 		B43BB8B91F359F9A0011A301 /* Coordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43BB8B81F359F9A0011A301 /* Coordinates.swift */; };
-		B43BB8BB1F35A2300011A301 /* Entities.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43BB8BA1F35A2300011A301 /* Entities.swift */; };
-		B43BB8BD1F35A4A40011A301 /* Places.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43BB8BC1F35A4A40011A301 /* Places.swift */; };
+		B43BB8BB1F35A2300011A301 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43BB8BA1F35A2300011A301 /* Entity.swift */; };
+		B43BB8BD1F35A4A40011A301 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43BB8BC1F35A4A40011A301 /* Place.swift */; };
 		B43BBCAA1F3716F2002D0AE0 /* TimelineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43BBCA91F3716F2002D0AE0 /* TimelineTableViewController.swift */; };
 		B443A0ED1F2B36520021BB65 /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = B443A0EC1F2B36520021BB65 /* Timeline.swift */; };
 		B443A0F01F2B371A0021BB65 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B443A0EF1F2B371A0021BB65 /* Tweet.swift */; };
-		B443A0F21F2B38050021BB65 /* TwitterUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B443A0F11F2B38050021BB65 /* TwitterUsers.swift */; };
+		B443A0F21F2B38050021BB65 /* TwitterUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B443A0F11F2B38050021BB65 /* TwitterUser.swift */; };
 		B443A0F41F2B39C30021BB65 /* TweetMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = B443A0F31F2B39C30021BB65 /* TweetMedia.swift */; };
 		B443A0F61F2B43EB0021BB65 /* ResourceURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = B443A0F51F2B43EB0021BB65 /* ResourceURL.swift */; };
 		B443A0F81F2B44FD0021BB65 /* RESTfulClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B443A0F71F2B44FD0021BB65 /* RESTfulClient.swift */; };
@@ -66,12 +66,12 @@
 		B42985C21F29E8E700AFFB97 /* TweeBoxUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweeBoxUITests.swift; sourceTree = "<group>"; };
 		B42985C41F29E8E700AFFB97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B43BB8B81F359F9A0011A301 /* Coordinates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinates.swift; sourceTree = "<group>"; };
-		B43BB8BA1F35A2300011A301 /* Entities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entities.swift; sourceTree = "<group>"; };
-		B43BB8BC1F35A4A40011A301 /* Places.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Places.swift; sourceTree = "<group>"; };
+		B43BB8BA1F35A2300011A301 /* Entity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entity.swift; sourceTree = "<group>"; };
+		B43BB8BC1F35A4A40011A301 /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		B43BBCA91F3716F2002D0AE0 /* TimelineTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineTableViewController.swift; sourceTree = "<group>"; };
 		B443A0EC1F2B36520021BB65 /* Timeline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timeline.swift; sourceTree = "<group>"; };
 		B443A0EF1F2B371A0021BB65 /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
-		B443A0F11F2B38050021BB65 /* TwitterUsers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterUsers.swift; sourceTree = "<group>"; };
+		B443A0F11F2B38050021BB65 /* TwitterUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterUser.swift; sourceTree = "<group>"; };
 		B443A0F31F2B39C30021BB65 /* TweetMedia.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetMedia.swift; sourceTree = "<group>"; };
 		B443A0F51F2B43EB0021BB65 /* ResourceURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceURL.swift; sourceTree = "<group>"; };
 		B443A0F71F2B44FD0021BB65 /* RESTfulClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RESTfulClient.swift; sourceTree = "<group>"; };
@@ -175,11 +175,11 @@
 			isa = PBXGroup;
 			children = (
 				B443A0EF1F2B371A0021BB65 /* Tweet.swift */,
-				B43BB8BC1F35A4A40011A301 /* Places.swift */,
-				B43BB8BA1F35A2300011A301 /* Entities.swift */,
+				B43BB8BC1F35A4A40011A301 /* Place.swift */,
+				B43BB8BA1F35A2300011A301 /* Entity.swift */,
 				B43BB8B81F359F9A0011A301 /* Coordinates.swift */,
 				B443A0F31F2B39C30021BB65 /* TweetMedia.swift */,
-				B443A0F11F2B38050021BB65 /* TwitterUsers.swift */,
+				B443A0F11F2B38050021BB65 /* TwitterUser.swift */,
 				B443A0FB1F2B70D40021BB65 /* Error.swift */,
 				B443A0EC1F2B36520021BB65 /* Timeline.swift */,
 				B443A0F51F2B43EB0021BB65 /* ResourceURL.swift */,
@@ -399,9 +399,9 @@
 				B4EC26231F2F810700011DA0 /* UserTimelineParams.swift in Sources */,
 				B443A0F01F2B371A0021BB65 /* Tweet.swift in Sources */,
 				B443A0F41F2B39C30021BB65 /* TweetMedia.swift in Sources */,
-				B43BB8BB1F35A2300011A301 /* Entities.swift in Sources */,
-				B43BB8BD1F35A4A40011A301 /* Places.swift in Sources */,
-				B443A0F21F2B38050021BB65 /* TwitterUsers.swift in Sources */,
+				B43BB8BB1F35A2300011A301 /* Entity.swift in Sources */,
+				B43BB8BD1F35A4A40011A301 /* Place.swift in Sources */,
+				B443A0F21F2B38050021BB65 /* TwitterUser.swift in Sources */,
 				B42985A21F29E8E700AFFB97 /* ViewController.swift in Sources */,
 				B443A0FA1F2B46370021BB65 /* Constants.swift in Sources */,
 				B443A0ED1F2B36520021BB65 /* Timeline.swift in Sources */,

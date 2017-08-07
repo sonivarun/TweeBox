@@ -1,5 +1,5 @@
 //
-//  Entities.swift
+//  Entity.swift
 //  TweeBox
 //
 //  Created by 4faramita on 2017/8/5.
@@ -7,7 +7,11 @@
 //
 
 import Foundation
+import SwiftyJSON
 
-struct Entities {
+struct Entity {
     
+    init(with json: JSON) {
+        
+    }
 }

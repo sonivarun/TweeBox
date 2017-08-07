@@ -14,10 +14,10 @@ class TimelineTableViewController: UITableViewController {
     { didSet { print(timeline.count) } }
     
     public var maxID: String?
-    { didSet { print("max: \(maxID)") } }
+    { didSet { print("max: \(maxID ?? "maxID NOT EXIST")") } }
     
     public var sinceID: String?
-    { didSet { print("since: \(sinceID)") } }
+    { didSet { print("since: \(sinceID ?? "sinceID NOT EXIST")") } }
     
     public var fetchNewer = true
     /*

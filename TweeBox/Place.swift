@@ -1,5 +1,5 @@
 //
-//  Places.swift
+//  Place.swift
 //  TweeBox
 //
 //  Created by 4faramita on 2017/8/5.
@@ -7,7 +7,11 @@
 //
 
 import Foundation
+import SwiftyJSON
 
-struct Places {
+struct Place {
     
+    init(with json: JSON) {
+        
+    }
 }
