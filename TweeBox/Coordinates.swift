@@ -13,7 +13,21 @@ import SwiftyJSON
 
 struct Coordinates {
     
+    public var type: String
+    
+    public var coordinates: [Any]
+    
     init(with json: JSON) {
         
+        type = json["type"].string ?? "Point"
+        
+        switch type {
+        case "Point":
+            coordinates = json["coordinates"].arrayValue.map({ $0.floatValue })
+        case "Polygon":
+            coordinates = [json["coordinates"][0].arrayValue.map({ [$0[0].floatValue, $0[1].floatValue] })]
+        default:
+            coordinates = [0.0, 0.0]
+        }
     }
 }
