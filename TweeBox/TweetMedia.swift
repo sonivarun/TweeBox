@@ -7,9 +7,8 @@
 //
 
 import Foundation
+import SwiftyJSON
 
-enum TweetMedia {
-    case picture
-    case video
-    // TODO: check the right inplement
+class TweetMedia {
+
 }

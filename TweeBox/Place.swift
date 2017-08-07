@@ -22,7 +22,7 @@ struct Place {
     public var url: String
     
     init(with json: JSON) {
-        print(json)
+        
         attributes  = PlaceAttributes(with: json["attributes"])
         boundingBox = Coordinates(with: json["bounding_box"])
         country     = json["country"].string ?? ""

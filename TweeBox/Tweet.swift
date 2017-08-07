@@ -89,11 +89,11 @@ class Tweet {
     // When present, indicates whether the content being withheld is the “status” or a “user.”
     
     init(with tweetJSON: JSON
-        ) {        
+        ) {
         coordinates         = ((tweetJSON["coordinates"].null == nil) ? (Coordinates(with: tweetJSON["coordinates"])) : nil)
         createdTime         = tweetJSON["created_at"].string ?? ""
         currenUserRetweet   = tweetJSON["current_user_retweet"].string
-        entities            = ((tweetJSON["entities"].null == nil) ? (Entity(with: tweetJSON["entities"])) : nil)
+        entities            = Entity(with: tweetJSON["entities"], and: tweetJSON["extended_entities"])  // ((tweetJSON["entities"].null == nil) ? (Entity(with: tweetJSON["entities"])) : nil)
         favoriteCount       = tweetJSON["favorite_count"].int
         favorited           = tweetJSON["favorited"].bool ?? false
         filterLevel         = tweetJSON["filter_level"].string

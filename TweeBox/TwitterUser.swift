@@ -98,7 +98,7 @@ struct TwitterUser {
         defaultProfile                = userJSON["default_profile"].bool ?? true
         defaultProfileImage           = userJSON["default_profile_image"].bool ?? true
         description                   = userJSON["description"].string
-        entities                      = Entity(with: userJSON["entities"])  // ((userJSON["entities"].null == nil) ? (Entity(with: userJSON["entities"])) : nil)
+        entities                      = Entity(with: userJSON["entities"], and: nil)  // ((userJSON["entities"].null == nil) ? (Entity(with: userJSON["entities"])) : nil)
         verified                      = userJSON["verified"].bool ?? false
         favouritesCount               = userJSON["favourites_count"].int ?? 0
         followRequestSent             = userJSON["follow_request_sent"].bool
