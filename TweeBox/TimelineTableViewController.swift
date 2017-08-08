@@ -37,6 +37,12 @@ class TimelineTableViewController: UITableViewController {
         refreshTimeline()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        self.refreshControl?.endRefreshing()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -61,10 +67,15 @@ class TimelineTableViewController: UITableViewController {
             }
             if tweets != nil {
                 self?.insertNewTweets(with: tweets!)
-                //                self?.tableView.reloadData()
+//                self?.tableView.reloadData()
+            }
+            
+            Timer.scheduledTimer(
+                withTimeInterval: TimeInterval(0.1),
+                repeats: false) { (timer) in
+                    self?.refreshControl?.endRefreshing()
             }
         }
-        self.refreshControl?.endRefreshing()
     }
     
     @IBAction func refresh(_ sender: UIRefreshControl) {
@@ -86,26 +97,64 @@ class TimelineTableViewController: UITableViewController {
         
         let cell: UITableViewCell
         let tweet = timeline[indexPath.section][indexPath.row]
-        if tweet.entities?.firstPic == nil {
-            cell = tableView.dequeueReusableCell(withIdentifier: "Tweet with Text", for: indexPath)
-            if let tweetCell = cell as? TweetWithTextTableViewCell {
-                tweetCell.tweet = tweet
-            }
-        } else {
-            if tweet.text == "" {
-                cell = tableView.dequeueReusableCell(withIdentifier: "Tweet with Pic", for: indexPath)
-                if let tweetCell = cell as? TweetWithPicTableViewCell {
+        
+        if let media = tweet.entities?.media {
+            switch media.count {
+            case 0:
+                cell = tableView.dequeueReusableCell(withIdentifier: "Tweet with Text", for: indexPath)
+                if let tweetCell = cell as? TweetWithTextTableViewCell {
                     tweetCell.tweet = tweet
                 }
-            } else {
+            case 1:
                 cell = tableView.dequeueReusableCell(withIdentifier: "Tweet with Pic and Text", for: indexPath)
                 if let tweetCell = cell as? TweetTableViewCell {
                     tweetCell.tweet = tweet
                 }
+            case 2:
+                cell = tableView.dequeueReusableCell(withIdentifier: "Tweet with Two Pics and Text", for: indexPath)
+                if let tweetCell = cell as? TweetTableViewCell {
+                    tweetCell.tweet = tweet
+                }
+            case 3:
+                cell = tableView.dequeueReusableCell(withIdentifier: "Tweet with Three Pics and Text", for: indexPath)
+                if let tweetCell = cell as? TweetTableViewCell {
+                    tweetCell.tweet = tweet
+                }
+            case 4:
+                cell = tableView.dequeueReusableCell(withIdentifier: "Tweet with Four Pics and Text", for: indexPath)
+                if let tweetCell = cell as? TweetTableViewCell {
+                    tweetCell.tweet = tweet
+                }
+            default:
+                cell = tableView.dequeueReusableCell(withIdentifier: "Tweet with Text", for: indexPath)
+                if let tweetCell = cell as? TweetWithTextTableViewCell {
+                    tweetCell.tweet = tweet
+                }
+            }
+        } else {
+            cell = tableView.dequeueReusableCell(withIdentifier: "Tweet with Text", for: indexPath)
+            if let tweetCell = cell as? TweetWithTextTableViewCell {
+                tweetCell.tweet = tweet
             }
         }
+//        if tweet.entities?.firstPic == nil {
+//            cell = tableView.dequeueReusableCell(withIdentifier: "Tweet with Text", for: indexPath)
+//            if let tweetCell = cell as? TweetWithTextTableViewCell {
+//                tweetCell.tweet = tweet
+//            }
+//        } else {
+//            if tweet.text == "" {
+//                cell = tableView.dequeueReusableCell(withIdentifier: "Tweet with Pic", for: indexPath)
+//                if let tweetCell = cell as? TweetWithPicTableViewCell {
+//                    tweetCell.tweet = tweet
+//                }
+//            } else {
+//                cell = tableView.dequeueReusableCell(withIdentifier: "Tweet with Pic and Text", for: indexPath)
+//                if let tweetCell = cell as? TweetTableViewCell {
+//                    tweetCell.tweet = tweet
+//                }
+//            }
+//        }
         return cell
     }
-    
-    
 }

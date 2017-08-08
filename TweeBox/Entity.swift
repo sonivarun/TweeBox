@@ -16,11 +16,7 @@ struct Entity {
     public var userMentions: [Mention]
     public var symbols: [TweetSymbol]
     
-    public var firstPic: TweetMedia? {
-        didSet {
-            print("first: \(firstPic)")
-        }
-    }
+    public var realMedia: [TweetMedia]?
     public var media: [TweetMedia]?
     
     class Hashtag: TweetEntity {
@@ -79,8 +75,9 @@ struct Entity {
                 
         if extendedJson.null == nil {
             // there exists extended_json
-            firstPic     = TweetMedia(with: extendedJson["media"][0], quality: MediaSize.thumb)
-            media = extendedJson["media"].arrayValue.map { TweetMedia(with: $0, quality: Constants.picQuality) }  // media in extended_entities
+            media = extendedJson["media"].arrayValue.map { TweetMedia(with: $0, quality: MediaSize.small) }
+            realMedia = extendedJson["media"].arrayValue.map { TweetMedia(with: $0, quality: Constants.picQuality) }
+            // media in extended_entities
         }
     }
 }

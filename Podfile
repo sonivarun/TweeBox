@@ -9,5 +9,6 @@ target 'TweeBox' do
 	# pod 'SDWebImage', '~> 4.0'
 	# pod 'YYWebImage'
 	pod 'Kingfisher', '~> 3.0'
-	pod 'DateToolsSwift'
+	# pod 'DateToolsSwift'
+	# pod 'ImageViewer'
 end
