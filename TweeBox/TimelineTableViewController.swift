@@ -60,7 +60,7 @@ class TimelineTableViewController: UITableViewController {
             }
             if tweets != nil {
                 self?.insertNewTweets(with: tweets!)
-//                self?.tableView.reloadData()
+                //                self?.tableView.reloadData()
             }
         }
         self.refreshControl?.endRefreshing()
@@ -82,21 +82,27 @@ class TimelineTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell: UITableViewCell
         let tweet = timeline[indexPath.section][indexPath.row]
-        //        if tweet.media.count != 0 {
-        //            cell = tableView.dequeueReusableCell(withIdentifier: "tweetWithPic", for: indexPath)
-        //            if let tweetCell = cell as? TweetWithPicTableViewCell {
-        //                tweetCell.tweet = tweet
-        //            }
-        //        } else {
-        cell = tableView.dequeueReusableCell(withIdentifier: "tweet", for: indexPath)
-        cell.textLabel?.text = tweet.text
-//        if let tweetCell = cell as? TweetTableViewCell {
-//            tweetCell.tweet = tweet
-//        }
-        //        }
-        
+        if tweet.entities?.firstPic == nil {
+            cell = tableView.dequeueReusableCell(withIdentifier: "Tweet with Text", for: indexPath)
+            if let tweetCell = cell as? TweetWithTextTableViewCell {
+                tweetCell.tweet = tweet
+            }
+        } else {
+            if tweet.text == "" {
+                cell = tableView.dequeueReusableCell(withIdentifier: "Tweet with Pic", for: indexPath)
+                if let tweetCell = cell as? TweetWithPicTableViewCell {
+                    tweetCell.tweet = tweet
+                }
+            } else {
+                cell = tableView.dequeueReusableCell(withIdentifier: "Tweet with Pic and Text", for: indexPath)
+                if let tweetCell = cell as? TweetTableViewCell {
+                    tweetCell.tweet = tweet
+                }
+            }
+        }
         return cell
     }
     

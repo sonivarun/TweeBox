@@ -10,4 +10,5 @@ import Foundation
 
 struct Constants {
     static let tweetLimitPerRefresh = "50"
+    static let picQuality = MediaSize.large
 }

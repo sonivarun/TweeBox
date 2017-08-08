@@ -16,7 +16,11 @@ struct Entity {
     public var userMentions: [Mention]
     public var symbols: [TweetSymbol]
     
-    public var firstPic: TweetMedia?
+    public var firstPic: TweetMedia? {
+        didSet {
+            print("first: \(firstPic)")
+        }
+    }
     public var media: [TweetMedia]?
     
     class Hashtag: TweetEntity {
@@ -35,17 +39,17 @@ struct Entity {
     
     class TweetURL: TweetEntity {
         
-        var url: String
+        var url: URL?
         // The t.co URL that was extracted from the Tweet text
-        var displayURL: String
-        var expandedURL: String
+        var displayURL: URL?
+        var expandedURL: URL?
         // The resolved URL
         
         override init(with json: JSON) {
             
-            url = json["url"].stringValue
-            displayURL = json["display_url"].stringValue
-            expandedURL = json["expanded_url"].stringValue
+            url = URL(string: json["url"].stringValue)
+            displayURL = URL(string: json["display_url"].stringValue)
+            expandedURL = URL(string: json["expanded_url"].stringValue)
             
             super.init(with: json)
         }
@@ -72,11 +76,11 @@ struct Entity {
         urls         = json["urls"].arrayValue.map { TweetURL(with: $0) }
         userMentions = json["user_mentions"].arrayValue.map { Mention(with: $0) }
         symbols      = json["symbols"].arrayValue.map { TweetSymbol(with: $0) }
-        firstPic     = ((json["media"].null == nil) ? TweetMedia(with: json["media"]) : nil)  // media in entities
                 
         if extendedJson.null == nil {
             // there exists extended_json
-            media = extendedJson["media"].arrayValue.map { TweetMedia(with: $0) }  // media in extended_entities
+            firstPic     = TweetMedia(with: extendedJson["media"][0], quality: MediaSize.thumb)
+            media = extendedJson["media"].arrayValue.map { TweetMedia(with: $0, quality: Constants.picQuality) }  // media in extended_entities
         }
     }
 }

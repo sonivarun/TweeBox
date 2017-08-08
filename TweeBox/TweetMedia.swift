@@ -13,13 +13,13 @@ class TweetMedia: TweetEntity {
     
     public var id: String  // id_str
     
-    public var mediaURLHTTP: String  // media_url
-    public var mediaURL: String  // media_url_https
-    public var url: String
+    public var mediaURLHTTP: URL?  // media_url
+    public var mediaURL: URL?  // media_url_https
+    public var url: URL?
     // The media URL that was extracted
     public var displayURL: String
     // Not a URL but a string to display instead of the media URL
-    public var expandedURL: String
+    public var expandedURL: URL?
     // The fully resolved media URL
     
     public var sizes: TweetPhotoSize
@@ -45,14 +45,14 @@ class TweetMedia: TweetEntity {
     public var videoInfo: TweetVideoInfo?
     
     
-    override init(with json: JSON) {
+    init(with json: JSON, quality: MediaSize) {
         
         id = json["id_str"].stringValue
-        mediaURLHTTP = json["media_url"].stringValue
-        mediaURL = json["media_url_https"].stringValue
-        url = json["url"].stringValue
+        mediaURLHTTP = URL(string: json["media_url"].stringValue, quality: quality)
+        mediaURL = URL(string: json["media_url_https"].stringValue, quality: quality)
+        url = URL(string: json["url"].stringValue)
         displayURL = json["display_url"].stringValue
-        expandedURL = json["expanded_url"].stringValue
+        expandedURL = URL(string: json["expanded_url"].stringValue)
         sizes = TweetPhotoSize(with: json["sizes"])
         type = json["type"].stringValue
         extAltText = json["ext_alt_text"].string

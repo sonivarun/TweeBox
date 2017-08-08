@@ -18,7 +18,7 @@ struct TwitterUser {
     public var name: String  // not the @ one, that's the "screen_name"
     public var screenName: String
     
-    public var url: String?
+    public var url: URL?
     // A URL provided by the user in association with their profile.
     
     public var createdAt: String
@@ -59,15 +59,15 @@ struct TwitterUser {
     public var profileBackgroundColor: String
     // The hexadecimal color chosen by the user for their background.
     
-    public var profileBackgroundImageURLHTTP: String  // profile_background_image_url
-    public var profileBackgroundImageURL: String  // profile_background_image_url_https
+    public var profileBackgroundImageURLHTTP: URL?  // profile_background_image_url
+    public var profileBackgroundImageURL: URL?  // profile_background_image_url_https
     public var profileBackgroundTile: Bool
     // When true, indicates that the user’s profile_background_image_url should be tiled when displayed.
-    public var profileBannerURL: String
+    public var profileBannerURL: URL?
     // By adding a final path element of the URL, 
     // it is possible to obtain different image sizes optimized for specific displays.
-    public var profileImageURLHTTP: String  // profile_image_url
-    public var profileImageURL: String  // profile_image_url_https
+    public var profileImageURLHTTP: URL?  // profile_image_url
+    public var profileImageURL: URL?  // profile_image_url_https
     public var profileUseBackgroundImage: Bool
     
 //    public var profile_link_color: String
@@ -93,7 +93,7 @@ struct TwitterUser {
         location                      = userJSON["location"].string
         name                          = userJSON["name"].stringValue
         screenName                    = userJSON["screen_name"].stringValue
-        url                           = userJSON["url"].string
+        url                           = URL(string: userJSON["url"].stringValue)
         createdAt                     = userJSON["created_at"].stringValue
         defaultProfile                = userJSON["default_profile"].bool ?? true
         defaultProfileImage           = userJSON["default_profile_image"].bool ?? true
@@ -111,12 +111,12 @@ struct TwitterUser {
         listedCount                   = userJSON["listed_count"].int ?? 0
         notifications                 = userJSON["notifications"].bool
         profileBackgroundColor        = userJSON["profile_background_color"].stringValue
-        profileBackgroundImageURLHTTP = userJSON["profile_background_image_url"].stringValue
-        profileBackgroundImageURL     = userJSON["profile_background_image_url_https"].stringValue
+        profileBackgroundImageURLHTTP = URL(string: userJSON["profile_background_image_url"].stringValue)
+        profileBackgroundImageURL     = URL(string: userJSON["profile_background_image_url_https"].stringValue)
         profileBackgroundTile         = userJSON["profile_background_tile"].bool ?? false
-        profileBannerURL              = userJSON["profile_banner_url"].stringValue
-        profileImageURLHTTP           = userJSON["profile_image_url"].stringValue
-        profileImageURL               = userJSON["profile_image_url_https"].stringValue
+        profileBannerURL              = URL(string: userJSON["profile_banner_url"].stringValue)
+        profileImageURLHTTP           = URL(string: userJSON["profile_image_url"].stringValue)
+        profileImageURL               = URL(string: userJSON["profile_image_url_https"].stringValue)
         profileUseBackgroundImage     = userJSON["profile_use_background_image"].bool ?? true
         protected                     = userJSON["protected"].bool ?? false
         status                        = ((userJSON["status"].null == nil) ? (Tweet(with: userJSON["status"])) : nil)

@@ -19,7 +19,7 @@ struct Place {
     public var id: String
     public var name: String
     public var placeType: String
-    public var url: String
+    public var url: URL?
     
     init(with json: JSON) {
         
@@ -31,7 +31,7 @@ struct Place {
         id          = json["id"].stringValue
         name        = json["name"].stringValue
         placeType   = json["place_type"].stringValue
-        url         = json["url"].stringValue
+        url         = URL(string: json["url"].stringValue)
     }
     
     
@@ -50,7 +50,7 @@ struct Place {
         // in the preferred local format for the place, include long distance code
         public var twitter: String?
         // twitter screen-name, without @
-        public var url: String?
+        public var url: URL?
         // official/canonical URL for place
 //        public var appID: String?
         // An ID or comma separated list of IDs representing the place in the applications place database.
@@ -64,8 +64,8 @@ struct Place {
             postalCode = json["postal_code"].string
             phone = json["phone"].string
             twitter = json["twitter"].string
-            url = json["url"].string
-//            appID = json["app:id"].string
+            url = URL(string: json["url"].stringValue)
+            //            appID = json["app:id"].string
         }
     }
 }

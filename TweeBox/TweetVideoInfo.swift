@@ -30,12 +30,12 @@ struct TweetVideoInfo {
         
         public var bitrate: String
         public var contentType: String
-        public var url: String
+        public var url: URL?
         
         init(with json: JSON) {
             bitrate = json["bitrate"].stringValue
             contentType = json["content_type"].stringValue
-            url = json["url"].stringValue
+            url = URL(string: json["url"].stringValue)
             
         }
     }
