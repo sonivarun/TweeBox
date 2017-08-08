@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Kingfisher
+//import SDWebImage
 
 class TweetTableViewCell: UITableViewCell {
 
@@ -24,15 +26,15 @@ class TweetTableViewCell: UITableViewCell {
     func updateUI() {
         
         if let userProfileImageURL = tweet?.user.profileImageURL {
-            DispatchQueue.global(qos: .userInitiated).async {
-                let userProfileImageData = try? Data(contentsOf: userProfileImageURL)
-                if let imageData = userProfileImageData,
-                    let image = UIImage(data: imageData) {
-                    DispatchQueue.main.sync { [weak self] in
-                        self?.tweetUserProfilePic?.image = image
-                    }
-                }
-            }
+            
+            // Kingfisher
+            self.tweetUserProfilePic?.kf.indicatorType = .activity
+            self.tweetUserProfilePic?.kf.setImage(with: userProfileImageURL, options: [.transition(.fade(0.2))])
+            
+            // SDWebImage
+//            self.tweetUserProfilePic?.sd_setShowActivityIndicatorView(true)
+//            self.tweetUserProfilePic?.sd_setIndicatorStyle(.gray)
+//            self.self.tweetUserProfilePic?.sd_setImage(with: userProfileImageURL)
         } else {
             tweetUserProfilePic?.image = nil
         }

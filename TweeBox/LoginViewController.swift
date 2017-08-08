@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  LoginViewController.swift
 //  TweeBox
 //
 //  Created by 4faramita on 2017/7/27.
@@ -10,9 +10,8 @@ import UIKit
 import SafariServices
 import TwitterKit
 import SwiftyJSON
-//import PromiseKit
 
-class ViewController: UIViewController, SFSafariViewControllerDelegate {
+class LoginViewController: UIViewController, SFSafariViewControllerDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -32,18 +31,4 @@ class ViewController: UIViewController, SFSafariViewControllerDelegate {
         logInButton.center = self.view.center
         self.view.addSubview(logInButton)
     }
-
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "To Timeline" {
-//            
-//            var destinationViewController = segue.destination
-//            if let navigationController = destinationViewController as? UINavigationController {
-//                destinationViewController = navigationController.visibleViewController ?? destinationViewController
-//            }
-//            
-//            if let timelineViewController = destinationViewController as? TimelineTableViewController {
-//                print("Segue")
-//            }
-//        }
-//    }
 }

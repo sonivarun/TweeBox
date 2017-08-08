@@ -1,31 +1,24 @@
 PODS:
-  - PromiseKit (4.2.2):
-    - PromiseKit/Foundation (= 4.2.2)
-    - PromiseKit/QuartzCore (= 4.2.2)
-    - PromiseKit/UIKit (= 4.2.2)
-  - PromiseKit/CorePromise (4.2.2)
-  - PromiseKit/Foundation (4.2.2):
-    - PromiseKit/CorePromise
-  - PromiseKit/QuartzCore (4.2.2):
-    - PromiseKit/CorePromise
-  - PromiseKit/UIKit (4.2.2):
-    - PromiseKit/CorePromise
+  - DateToolsSwift (2.0.3)
+  - Kingfisher (3.10.4)
   - SwiftyJSON (3.1.4)
   - TwitterCore (3.0.0)
-  - TwitterKit (3.0.3):
+  - TwitterKit (3.0.4):
     - TwitterCore (>= 3.0.0)
 
 DEPENDENCIES:
-  - PromiseKit (~> 4.0)
+  - DateToolsSwift
+  - Kingfisher (~> 3.0)
   - SwiftyJSON
   - TwitterKit
 
 SPEC CHECKSUMS:
-  PromiseKit: 00e8886881f151c7e573d06b437915b0bb2970ec
+  DateToolsSwift: bf69bf9056d9e53c5c03f06e51f219b9b8b02f9e
+  Kingfisher: dc3a4983e86d2dfa89513664983a82340c11a289
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   TwitterCore: 8ce250be1eb34633a0e6acc89520d4165ec52c10
-  TwitterKit: 202404be71aadd81d19f677b34579fe77d9cb67e
+  TwitterKit: 5064d99632a8d6e5f1364e6e8f7b211d196c0840
 
-PODFILE CHECKSUM: 003b3cacbbefb06b641b4dc8b38d862069825d22
+PODFILE CHECKSUM: 31a08d14e1340ddd2cf714d09d84da75f3a7e016
 
 COCOAPODS: 1.2.1

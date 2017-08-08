@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="TweeBox" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="TweeBox" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -38,7 +38,7 @@
             </objects>
             <point key="canvasLocation" x="57" y="124"/>
         </scene>
-        <!--Timeline Table View Controller-->
+        <!--Timeline-->
         <scene sceneID="I0z-cp-Zvb">
             <objects>
                 <tableViewController id="i8A-W9-rEQ" customClass="TimelineTableViewController" customModule="TweeBox" customModuleProvider="target" sceneMemberID="viewController">
@@ -160,7 +160,7 @@
                                                     </constraints>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="NLC-t3-iRz">
-                                                    <rect key="frame" x="58" y="0.0" width="301" height="126"/>
+                                                    <rect key="frame" x="58" y="0.0" width="301" height="201"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="300" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Yg7-Z6-uWG">
                                                             <rect key="frame" x="0.0" y="0.0" width="73.5" height="20.5"/>
@@ -186,10 +186,10 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XoN-nm-Eyq">
-                                                            <rect key="frame" x="0.0" y="51" width="75" height="75"/>
+                                                            <rect key="frame" x="0.0" y="51" width="150" height="150"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="75" id="NuH-zx-jPn"/>
-                                                                <constraint firstAttribute="width" constant="75" id="YC3-YA-o4i"/>
+                                                                <constraint firstAttribute="height" constant="150" id="NuH-zx-jPn"/>
+                                                                <constraint firstAttribute="width" constant="150" id="YC3-YA-o4i"/>
                                                             </constraints>
                                                         </imageView>
                                                     </subviews>
@@ -247,7 +247,7 @@
                                                     </constraints>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="1R0-hu-4Vt">
-                                                    <rect key="frame" x="58" y="0.0" width="301" height="100.5"/>
+                                                    <rect key="frame" x="58" y="0.0" width="301" height="175.5"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="300" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="htU-ON-y9D">
                                                             <rect key="frame" x="0.0" y="0.0" width="73.5" height="20.5"/>
@@ -267,10 +267,10 @@
                                                             </subviews>
                                                         </stackView>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WJQ-Xq-CvK">
-                                                            <rect key="frame" x="0.0" y="25.5" width="75" height="75"/>
+                                                            <rect key="frame" x="0.0" y="25.5" width="150" height="150"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="75" id="gIy-R1-azU"/>
-                                                                <constraint firstAttribute="height" constant="75" id="uXT-ID-4iX"/>
+                                                                <constraint firstAttribute="width" constant="150" id="gIy-R1-azU"/>
+                                                                <constraint firstAttribute="height" constant="150" id="uXT-ID-4iX"/>
                                                             </constraints>
                                                         </imageView>
                                                     </subviews>
@@ -299,7 +299,13 @@
                             <outlet property="delegate" destination="i8A-W9-rEQ" id="ncv-RZ-nKu"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="bFo-1U-pWo"/>
+                    <navigationItem key="navigationItem" title="Timeline" id="bFo-1U-pWo">
+                        <barButtonItem key="rightBarButtonItem" title="Log Out" id="jPa-6O-mOi">
+                            <connections>
+                                <segue destination="BYZ-38-t0r" kind="showDetail" identifier="Log Out" id="Uut-Uh-YyU"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="PTx-hE-hXC">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -310,7 +316,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oQt-Fg-ncE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1533.5999999999999" y="123.68815592203899"/>
+            <point key="canvasLocation" x="801" y="1060"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="1uf-C6-ebH">
