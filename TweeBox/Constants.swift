@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 struct Constants {
-    static let tweetLimitPerRefresh = "50"
+    static let tweetLimitPerRefresh = "100"
     static let picQuality = MediaSize.large
     
     static let aspectRatioWidth: CGFloat = 16
@@ -22,6 +22,8 @@ struct Constants {
     static let picCornerRadius: CGFloat = 7.5
 
     static let defaultProfileRadius = ProfileRadius.round.rawValue
+    
+    static let picFadeInDuration = 0.2
 }
 
 enum ProfileRadius: CGFloat {

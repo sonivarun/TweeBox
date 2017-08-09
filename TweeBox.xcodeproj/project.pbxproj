@@ -38,6 +38,7 @@
 		B443A0FA1F2B46370021BB65 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B443A0F91F2B46370021BB65 /* Constants.swift */; };
 		B443A0FC1F2B70D40021BB65 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = B443A0FB1F2B70D40021BB65 /* Error.swift */; };
 		B4CE12161F3ACCDF002D341E /* HomeTimelineParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CE12151F3ACCDF002D341E /* HomeTimelineParams.swift */; };
+		B4CE12181F3AD60A002D341E /* TimelineParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CE12171F3AD60A002D341E /* TimelineParams.swift */; };
 		B4EC26231F2F810700011DA0 /* UserTimelineParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EC26221F2F810700011DA0 /* UserTimelineParams.swift */; };
 /* End PBXBuildFile section */
 
@@ -97,6 +98,7 @@
 		B443A0F91F2B46370021BB65 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B443A0FB1F2B70D40021BB65 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		B4CE12151F3ACCDF002D341E /* HomeTimelineParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTimelineParams.swift; sourceTree = "<group>"; };
+		B4CE12171F3AD60A002D341E /* TimelineParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineParams.swift; sourceTree = "<group>"; };
 		B4EC26221F2F810700011DA0 /* UserTimelineParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTimelineParams.swift; sourceTree = "<group>"; };
 		E8E3A1C5C0DABB6C344B4147 /* Pods_TweeBox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TweeBox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -160,7 +162,7 @@
 			name = TwitterBasic;
 			sourceTree = "<group>";
 		};
-		B40930021F39600C00CAB109 /* View */ = {
+		B40930021F39600C00CAB109 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
 				B40930031F3965B600CAB109 /* TweetTableViewCell.swift */,
@@ -168,7 +170,7 @@
 				B40930051F3966A000CAB109 /* TweetWithPicTableViewCell.swift */,
 				B4092FFF1F395FFD00CAB109 /* TweetWithPicAndTextTableViewCell.swift */,
 			);
-			name = View;
+			name = Cell;
 			sourceTree = "<group>";
 		};
 		B42985931F29E8E600AFFB97 = {
@@ -200,7 +202,7 @@
 				B443A0EE1F2B36A50021BB65 /* Model */,
 				B46A53861F32147F00F0D66E /* ViewController */,
 				B429859F1F29E8E700AFFB97 /* AppDelegate.swift */,
-				B40930021F39600C00CAB109 /* View */,
+				B40930021F39600C00CAB109 /* Cell */,
 				B42985A91F29E8E700AFFB97 /* Assets.xcassets */,
 				B42985AB1F29E8E700AFFB97 /* LaunchScreen.storyboard */,
 				B42985AE1F29E8E700AFFB97 /* Info.plist */,
@@ -234,11 +236,9 @@
 			children = (
 				B4092FFD1F38C29A00CAB109 /* TwitterBasic */,
 				B443A0FB1F2B70D40021BB65 /* Error.swift */,
-				B443A0EC1F2B36520021BB65 /* Timeline.swift */,
+				B4CE12191F3AD675002D341E /* Timeline */,
 				B443A0F51F2B43EB0021BB65 /* ResourceURL.swift */,
 				B443A0F71F2B44FD0021BB65 /* RESTfulClient.swift */,
-				B4EC26221F2F810700011DA0 /* UserTimelineParams.swift */,
-				B4CE12151F3ACCDF002D341E /* HomeTimelineParams.swift */,
 				B443A0F91F2B46370021BB65 /* Constants.swift */,
 			);
 			name = Model;
@@ -251,6 +251,17 @@
 				B42985A11F29E8E700AFFB97 /* LoginViewController.swift */,
 			);
 			name = ViewController;
+			sourceTree = "<group>";
+		};
+		B4CE12191F3AD675002D341E /* Timeline */ = {
+			isa = PBXGroup;
+			children = (
+				B443A0EC1F2B36520021BB65 /* Timeline.swift */,
+				B4EC26221F2F810700011DA0 /* UserTimelineParams.swift */,
+				B4CE12151F3ACCDF002D341E /* HomeTimelineParams.swift */,
+				B4CE12171F3AD60A002D341E /* TimelineParams.swift */,
+			);
+			name = Timeline;
 			sourceTree = "<group>";
 		};
 		F236D003DD7F3DF8F5F69B99 /* Frameworks */ = {
@@ -404,12 +415,16 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-TweeBox/Pods-TweeBox-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/DateToolsSwift/DateToolsSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/SKPhotoBrowser/SKPhotoBrowser.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DateToolsSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SKPhotoBrowser.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -475,6 +490,7 @@
 				B42985A21F29E8E700AFFB97 /* LoginViewController.swift in Sources */,
 				B443A0FA1F2B46370021BB65 /* Constants.swift in Sources */,
 				B4092FF91F38BECF00CAB109 /* TweetPhotoSize.swift in Sources */,
+				B4CE12181F3AD60A002D341E /* TimelineParams.swift in Sources */,
 				B4092FF71F38BD6D00CAB109 /* TweetEntity.swift in Sources */,
 				B4092FFB1F38C22000CAB109 /* TweetVideoInfo.swift in Sources */,
 				B443A0ED1F2B36520021BB65 /* Timeline.swift in Sources */,

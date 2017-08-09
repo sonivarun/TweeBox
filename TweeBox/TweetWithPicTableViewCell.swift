@@ -8,9 +8,10 @@
 
 import UIKit
 import Kingfisher
+import SKPhotoBrowser
 //import SDWebImage
 
-class TweetWithPicTableViewCell: TweetTableViewCell {
+class TweetWithPicTableViewCell: TweetTableViewCell, SKPhotoBrowserDelegate {
     
     @IBOutlet weak var tweetPicContent: UIImageView!
     
@@ -19,8 +20,7 @@ class TweetWithPicTableViewCell: TweetTableViewCell {
     @IBOutlet weak var thirdPic: UIImageView!
     
     @IBOutlet weak var fourthPic: UIImageView!
-    
-    
+        
     private func setPic(at position: Int, of total: Int) {
         
         let media = tweet!.entities!.media!
@@ -43,26 +43,31 @@ class TweetWithPicTableViewCell: TweetTableViewCell {
         let cutPointX: CGFloat
         let cutPointY: CGFloat
         
-        if CGFloat(pic.sizes.small.h / pic.sizes.small.w) >= aspect {
-            picWidth = CGFloat(pic.sizes.small.w)
+        let actualHeight = CGFloat(pic.sizes.small.h)
+        let actualWidth = CGFloat(pic.sizes.small.w)
+        
+        if  actualHeight / actualWidth >= aspect {
+            picWidth = actualWidth
             picHeight = picWidth * aspect
             cutPointX = 0
-            cutPointY = (CGFloat(pic.sizes.small.h) / 2) - (picHeight / 2)
+            cutPointY = (actualHeight / 2) - (picHeight / 2)
         } else {
-            picHeight = CGFloat(pic.sizes.small.h)
+            picHeight = actualHeight
             picWidth = picHeight / aspect
             cutPointY = 0
-            cutPointX = (CGFloat(pic.sizes.small.w) / 2) - (picWidth / 2)
+            cutPointX = (actualWidth / 2) - (picWidth / 2)
         }
         
         // Kingfisher
+        let placeholder = UIImage(named: "picPlaceholder")
         let processor = CroppingImageProcessor(size: CGSize(width: picWidth, height: picHeight), anchor: CGPoint(x: cutPointX, y: cutPointY)) >> RoundCornerImageProcessor(cornerRadius: Constants.picCornerRadius)
         
         if let picView = pics[position] {
-            picView.kf.indicatorType = .activity
+//            picView.kf.indicatorType = .activity
             picView.kf.setImage(
                 with: tweetPicURL,
-                options: [.transition(.fade(0.1)), .processor(processor)]
+                placeholder: placeholder,
+                options: [.transition(.fade(Constants.picFadeInDuration)), .processor(processor)]
             )
         }
     }

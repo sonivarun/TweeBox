@@ -15,10 +15,10 @@ class TimelineTableViewController: UITableViewController {
     { didSet { print(timeline.count) } }
     
     public var maxID: String?
-    { didSet { print("max: \(maxID ?? "maxID NOT EXIST")") } }
+//    { didSet { print("max: \(maxID ?? "maxID NOT EXIST")") } }
     
     public var sinceID: String?
-    { didSet { print("since: \(sinceID ?? "sinceID NOT EXIST")") } }
+//    { didSet { print("since: \(sinceID ?? "sinceID NOT EXIST")") } }
     
     public var fetchNewer = true
     /*
@@ -37,11 +37,13 @@ class TimelineTableViewController: UITableViewController {
         refreshTimeline()
     }
     
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         self.refreshControl?.endRefreshing()
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,8 +58,17 @@ class TimelineTableViewController: UITableViewController {
         self.tableView.insertSections([0], with: .automatic)
     }
     
+    
     private func refreshTimeline() {
-        let timeline = Timeline(maxID: maxID, sinceID: sinceID, fetchNewer: fetchNewer, resourceURL: ResourceURL.home_timeline, params: HomeTimelineParams().getParams())
+        
+        let homeTimelineParams = HomeTimelineParams()
+        let timeline = Timeline(
+            maxID: maxID,
+            sinceID: sinceID,
+            fetchNewer: fetchNewer,
+            resourceURL: homeTimelineParams.resourceURL,
+            params: homeTimelineParams.getParams()
+        )
         timeline.fetchData { [weak self] (maxID, sinceID, tweets) in
             if maxID != nil {
                 self?.maxID = maxID!
@@ -89,9 +100,11 @@ class TimelineTableViewController: UITableViewController {
         return timeline.count
     }
     
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return timeline[section].count
     }
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -137,24 +150,7 @@ class TimelineTableViewController: UITableViewController {
                 tweetCell.tweet = tweet
             }
         }
-//        if tweet.entities?.firstPic == nil {
-//            cell = tableView.dequeueReusableCell(withIdentifier: "Tweet with Text", for: indexPath)
-//            if let tweetCell = cell as? TweetWithTextTableViewCell {
-//                tweetCell.tweet = tweet
-//            }
-//        } else {
-//            if tweet.text == "" {
-//                cell = tableView.dequeueReusableCell(withIdentifier: "Tweet with Pic", for: indexPath)
-//                if let tweetCell = cell as? TweetWithPicTableViewCell {
-//                    tweetCell.tweet = tweet
-//                }
-//            } else {
-//                cell = tableView.dequeueReusableCell(withIdentifier: "Tweet with Pic and Text", for: indexPath)
-//                if let tweetCell = cell as? TweetTableViewCell {
-//                    tweetCell.tweet = tweet
-//                }
-//            }
-//        }
+        
         return cell
     }
 }

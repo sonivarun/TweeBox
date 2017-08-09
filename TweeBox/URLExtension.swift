@@ -32,6 +32,6 @@ extension URL {
             }
         }
         self.init(string: typedString)
-        print(self.absoluteString)
+//        print(self.absoluteString)
     }
 }

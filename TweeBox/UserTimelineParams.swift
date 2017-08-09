@@ -8,7 +8,9 @@
 
 import Foundation
 
-class UserTimelineParams: HomeTimelineParams {
+class UserTimelineParams: TimelineParams {
+    
+    public var resourceURL = ResourceURL.user_timeline
     
     public var userID: String?
     

@@ -134,7 +134,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="232"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="mUH-wk-uu8">
+                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="o1W-hx-M3d">
                                             <rect key="frame" x="8" y="8" width="359" height="215.5"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="U4f-Rn-h8a">
@@ -160,7 +160,7 @@
                                                         <constraint firstAttribute="width" constant="48" id="qWY-pQ-JBJ"/>
                                                     </constraints>
                                                 </stackView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="NLC-t3-iRz">
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Tn4-rW-fqj">
                                                     <rect key="frame" x="58" y="0.0" width="301" height="209"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="300" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Yg7-Z6-uWG">
@@ -186,31 +186,30 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XoN-nm-Eyq">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VVg-3h-lvo">
                                                             <rect key="frame" x="0.0" y="51" width="281" height="158"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" secondItem="XoN-nm-Eyq" secondAttribute="height" multiplier="16:9" id="FFv-9L-4gG"/>
+                                                                <constraint firstAttribute="width" secondItem="VVg-3h-lvo" secondAttribute="height" multiplier="16:9" id="x4W-yJ-zGf"/>
                                                             </constraints>
                                                         </imageView>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="trailing" secondItem="XoN-nm-Eyq" secondAttribute="trailing" constant="20" symbolic="YES" id="502-LO-gfT"/>
+                                                        <constraint firstAttribute="trailing" secondItem="VVg-3h-lvo" secondAttribute="trailing" constant="20" symbolic="YES" id="QlG-m1-uKT"/>
                                                     </constraints>
                                                 </stackView>
                                             </subviews>
                                         </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="mUH-wk-uu8" firstAttribute="top" secondItem="e1y-LF-UN5" secondAttribute="topMargin" id="E4F-VQ-qTu"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="mUH-wk-uu8" secondAttribute="bottom" id="MpP-4T-04L"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="NLC-t3-iRz" secondAttribute="trailing" id="ZvK-fx-HID"/>
-                                        <constraint firstItem="mUH-wk-uu8" firstAttribute="trailing" secondItem="e1y-LF-UN5" secondAttribute="trailingMargin" id="kbi-bo-iKT"/>
-                                        <constraint firstItem="mUH-wk-uu8" firstAttribute="leading" secondItem="e1y-LF-UN5" secondAttribute="leadingMargin" id="sm3-Rg-1Aq"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="o1W-hx-M3d" secondAttribute="trailing" id="4kX-u2-Mpf"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="o1W-hx-M3d" secondAttribute="bottom" id="mRQ-S6-TVy"/>
+                                        <constraint firstItem="o1W-hx-M3d" firstAttribute="top" secondItem="e1y-LF-UN5" secondAttribute="topMargin" id="o7E-bl-bz9"/>
+                                        <constraint firstItem="o1W-hx-M3d" firstAttribute="leading" secondItem="e1y-LF-UN5" secondAttribute="leadingMargin" id="zh4-RX-Ws4"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="tweetCreatedTime" destination="TBX-KS-dW3" id="bkH-t4-ggU"/>
-                                    <outlet property="tweetPicContent" destination="XoN-nm-Eyq" id="Yoj-fe-kDH"/>
+                                    <outlet property="tweetPicContent" destination="VVg-3h-lvo" id="cTU-Ip-kUL"/>
                                     <outlet property="tweetTextContent" destination="02b-YC-7yl" id="HUW-YZ-285"/>
                                     <outlet property="tweetUserID" destination="R8f-Yf-dBZ" id="TAD-Lf-ELV"/>
                                     <outlet property="tweetUserName" destination="DtO-ce-hTq" id="rz3-YA-PiK"/>

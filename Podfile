@@ -7,8 +7,7 @@ target 'TweeBox' do
 	pod 'TwitterKit'
 	pod 'SwiftyJSON'
 	# pod 'SDWebImage', '~> 4.0'
-	# pod 'YYWebImage'
 	pod 'Kingfisher', '~> 3.0'
-	# pod 'DateToolsSwift'
-	# pod 'ImageViewer'
+	pod 'SKPhotoBrowser'
+	pod 'DateToolsSwift'
 end
