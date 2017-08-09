@@ -16,12 +16,17 @@ class Timeline {
     
     public var maxID: String?
     public var sinceID: String?
-    public var fetchNewer = true
+    public var fetchNewer: Bool
+    public var resourceURL: (String, String)
+    public var params: [String: String]
     
-    init(maxID: String?, sinceID: String?, fetchNewer: Bool) {
+    init(maxID: String?, sinceID: String?, fetchNewer: Bool = true, resourceURL: (String, String), params: [String: String]) {
         self.maxID = maxID
         self.sinceID = sinceID
         self.fetchNewer = fetchNewer
+        
+        self.resourceURL = resourceURL
+        self.params = params
     }
     
     public func fetchData(_ handler: @escaping (String?, String?, [Tweet]?) -> Void) {
@@ -38,7 +43,7 @@ class Timeline {
                 userTimelineParams.maxID = String(Int(maxID!)! - 1)
             }
             
-            let client = RESTfulClient(resource: ResourceURL.user_timeline, params: userTimelineParams.params)
+            let client = RESTfulClient(resource: resourceURL, params: userTimelineParams.params)
             
             client.getData() { data in
                 let json = JSON(data: data)

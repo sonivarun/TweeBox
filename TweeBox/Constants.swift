@@ -19,5 +19,12 @@ struct Constants {
     static let normalAspect = aspectRatioHeight / aspectRatioWidth
     static let thinAspect = normalAspect * 2
     
-    static let picCornerRadius: CGFloat = 5
+    static let picCornerRadius: CGFloat = 7.5
+
+    static let defaultProfileRadius = ProfileRadius.round.rawValue
+}
+
+enum ProfileRadius: CGFloat {
+    case round = 200
+    case square = 20
 }

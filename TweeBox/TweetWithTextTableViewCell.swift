@@ -17,7 +17,7 @@ class TweetWithTextTableViewCell: TweetTableViewCell {
         
         super.updateUI()
         
-        tweetTextContent.text = tweet?.text
+        tweetTextContent?.text = tweet?.text
     }
 
 }

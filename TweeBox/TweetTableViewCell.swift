@@ -28,8 +28,11 @@ class TweetTableViewCell: UITableViewCell {
         if let userProfileImageURL = tweet?.user.profileImageURL {
             
             // Kingfisher
+            let processor = RoundCornerImageProcessor(cornerRadius: Constants.defaultProfileRadius)
             self.tweetUserProfilePic?.kf.indicatorType = .activity
-            self.tweetUserProfilePic?.kf.setImage(with: userProfileImageURL, options: [.transition(.fade(0.2))])
+            self.tweetUserProfilePic?.kf.setImage(
+                with: userProfileImageURL,
+                options: [.transition(.fade(0.2)), .processor(processor)])
             
             // SDWebImage
 //            self.tweetUserProfilePic?.sd_setShowActivityIndicatorView(true)

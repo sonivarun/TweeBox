@@ -23,6 +23,12 @@ extension URL {
                 typedString += MediaSize.medium.rawValue
             case .large:
                 typedString += MediaSize.large.rawValue
+            case .nonNormal:
+                typedString = typedString.replacingOccurrences(of: "_normal", with: MediaSize.nonNormal.rawValue)
+            case .bigger:
+                typedString = typedString.replacingOccurrences(of: "_normal", with: MediaSize.bigger.rawValue)
+            case .max:
+                typedString = typedString.replacingOccurrences(of: "_normal", with: MediaSize.max.rawValue)
             }
         }
         self.init(string: typedString)

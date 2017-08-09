@@ -116,7 +116,7 @@ struct TwitterUser {
         profileBackgroundTile         = userJSON["profile_background_tile"].bool ?? false
         profileBannerURL              = URL(string: userJSON["profile_banner_url"].stringValue)
         profileImageURLHTTP           = URL(string: userJSON["profile_image_url"].stringValue)
-        profileImageURL               = URL(string: userJSON["profile_image_url_https"].stringValue)
+        profileImageURL               = URL(string: userJSON["profile_image_url_https"].stringValue, quality: .max)
         profileUseBackgroundImage     = userJSON["profile_use_background_image"].bool ?? true
         protected                     = userJSON["protected"].bool ?? false
         status                        = ((userJSON["status"].null == nil) ? (Tweet(with: userJSON["status"])) : nil)

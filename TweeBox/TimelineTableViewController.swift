@@ -57,7 +57,7 @@ class TimelineTableViewController: UITableViewController {
     }
     
     private func refreshTimeline() {
-        let timeline = Timeline(maxID: maxID, sinceID: sinceID, fetchNewer: fetchNewer)
+        let timeline = Timeline(maxID: maxID, sinceID: sinceID, fetchNewer: fetchNewer, resourceURL: ResourceURL.home_timeline, params: HomeTimelineParams().getParams())
         timeline.fetchData { [weak self] (maxID, sinceID, tweets) in
             if maxID != nil {
                 self?.maxID = maxID!

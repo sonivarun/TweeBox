@@ -40,23 +40,29 @@ class TweetWithPicTableViewCell: TweetTableViewCell {
         
         let picWidth: CGFloat
         let picHeight: CGFloat
+        let cutPointX: CGFloat
+        let cutPointY: CGFloat
         
-        if CGFloat(pic.sizes.small.w / pic.sizes.small.h) <= aspect {
+        if CGFloat(pic.sizes.small.h / pic.sizes.small.w) >= aspect {
             picWidth = CGFloat(pic.sizes.small.w)
             picHeight = picWidth * aspect
+            cutPointX = 0
+            cutPointY = (CGFloat(pic.sizes.small.h) / 2) - (picHeight / 2)
         } else {
             picHeight = CGFloat(pic.sizes.small.h)
             picWidth = picHeight / aspect
+            cutPointY = 0
+            cutPointX = (CGFloat(pic.sizes.small.w) / 2) - (picWidth / 2)
         }
         
         // Kingfisher
-        let processor = CroppingImageProcessor(size: CGSize(width: picWidth, height: picHeight), anchor: CGPoint(x: 0.0, y: 0.0)) >> RoundCornerImageProcessor(cornerRadius: Constants.picCornerRadius)
+        let processor = CroppingImageProcessor(size: CGSize(width: picWidth, height: picHeight), anchor: CGPoint(x: cutPointX, y: cutPointY)) >> RoundCornerImageProcessor(cornerRadius: Constants.picCornerRadius)
         
         if let picView = pics[position] {
             picView.kf.indicatorType = .activity
             picView.kf.setImage(
                 with: tweetPicURL,
-                options: [.transition(.fade(0.2)), .processor(processor)]
+                options: [.transition(.fade(0.1)), .processor(processor)]
             )
         }
     }

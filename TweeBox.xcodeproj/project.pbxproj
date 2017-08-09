@@ -37,6 +37,7 @@
 		B443A0F81F2B44FD0021BB65 /* RESTfulClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B443A0F71F2B44FD0021BB65 /* RESTfulClient.swift */; };
 		B443A0FA1F2B46370021BB65 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B443A0F91F2B46370021BB65 /* Constants.swift */; };
 		B443A0FC1F2B70D40021BB65 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = B443A0FB1F2B70D40021BB65 /* Error.swift */; };
+		B4CE12161F3ACCDF002D341E /* HomeTimelineParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CE12151F3ACCDF002D341E /* HomeTimelineParams.swift */; };
 		B4EC26231F2F810700011DA0 /* UserTimelineParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EC26221F2F810700011DA0 /* UserTimelineParams.swift */; };
 /* End PBXBuildFile section */
 
@@ -95,6 +96,7 @@
 		B443A0F71F2B44FD0021BB65 /* RESTfulClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RESTfulClient.swift; sourceTree = "<group>"; };
 		B443A0F91F2B46370021BB65 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B443A0FB1F2B70D40021BB65 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		B4CE12151F3ACCDF002D341E /* HomeTimelineParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTimelineParams.swift; sourceTree = "<group>"; };
 		B4EC26221F2F810700011DA0 /* UserTimelineParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTimelineParams.swift; sourceTree = "<group>"; };
 		E8E3A1C5C0DABB6C344B4147 /* Pods_TweeBox.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TweeBox.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -236,6 +238,7 @@
 				B443A0F51F2B43EB0021BB65 /* ResourceURL.swift */,
 				B443A0F71F2B44FD0021BB65 /* RESTfulClient.swift */,
 				B4EC26221F2F810700011DA0 /* UserTimelineParams.swift */,
+				B4CE12151F3ACCDF002D341E /* HomeTimelineParams.swift */,
 				B443A0F91F2B46370021BB65 /* Constants.swift */,
 			);
 			name = Model;
@@ -475,6 +478,7 @@
 				B4092FF71F38BD6D00CAB109 /* TweetEntity.swift in Sources */,
 				B4092FFB1F38C22000CAB109 /* TweetVideoInfo.swift in Sources */,
 				B443A0ED1F2B36520021BB65 /* Timeline.swift in Sources */,
+				B4CE12161F3ACCDF002D341E /* HomeTimelineParams.swift in Sources */,
 				B443A0FC1F2B70D40021BB65 /* Error.swift in Sources */,
 				B43BB8B91F359F9A0011A301 /* Coordinates.swift in Sources */,
 				B40930041F3965B600CAB109 /* TweetTableViewCell.swift in Sources */,

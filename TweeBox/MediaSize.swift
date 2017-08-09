@@ -13,4 +13,8 @@ enum MediaSize: String {
     case small = ":small"
     case medium = ":medium"
     case large = ":large"
+    
+    case nonNormal = ""
+    case bigger = "_bigger"
+    case max = "_400x400"
 }
