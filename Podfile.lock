@@ -1,4 +1,5 @@
 PODS:
+  - AMScrollingNavbar (3.4.0)
   - DateToolsSwift (2.0.3)
   - Kingfisher (3.10.4)
   - SKPhotoBrowser (4.0.1)
@@ -8,6 +9,7 @@ PODS:
     - TwitterCore (>= 3.0.0)
 
 DEPENDENCIES:
+  - AMScrollingNavbar
   - DateToolsSwift
   - Kingfisher (~> 3.0)
   - SKPhotoBrowser
@@ -15,6 +17,7 @@ DEPENDENCIES:
   - TwitterKit
 
 SPEC CHECKSUMS:
+  AMScrollingNavbar: 64b3626ebd557cbe4ddf7fdd31c652f02c9b8888
   DateToolsSwift: bf69bf9056d9e53c5c03f06e51f219b9b8b02f9e
   Kingfisher: dc3a4983e86d2dfa89513664983a82340c11a289
   SKPhotoBrowser: 3a7c6fc02aa1620ab17253a47a49fafda46536e8
@@ -22,6 +25,6 @@ SPEC CHECKSUMS:
   TwitterCore: 8ce250be1eb34633a0e6acc89520d4165ec52c10
   TwitterKit: 5064d99632a8d6e5f1364e6e8f7b211d196c0840
 
-PODFILE CHECKSUM: 592c00bbe2c8b8a05cbd380bf61e9accbb847214
+PODFILE CHECKSUM: 3cb577aa22bad36a1673f6ea4810a16900aec071
 
 COCOAPODS: 1.3.1

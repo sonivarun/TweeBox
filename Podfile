@@ -10,4 +10,5 @@ target 'TweeBox' do
 	pod 'Kingfisher', '~> 3.0'
 	pod 'SKPhotoBrowser'
 	pod 'DateToolsSwift'
+	pod 'AMScrollingNavbar'
 end

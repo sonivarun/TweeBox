@@ -24,6 +24,8 @@ struct Constants {
     static let defaultProfileRadius = ProfileRadius.round.rawValue
     
     static let picFadeInDuration = 0.2
+    
+    static let naturalReading = true
 }
 
 enum ProfileRadius: CGFloat {

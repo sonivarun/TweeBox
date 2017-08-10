@@ -8,8 +8,9 @@
 
 import UIKit
 import TwitterKit
+import AMScrollingNavbar
 
-class TimelineTableViewController: UITableViewController {
+class TimelineTableViewController: UITableViewController, ScrollingNavigationControllerDelegate {
     
     private var timeline = [Array<Tweet>]()
     { didSet { print(timeline.count) } }
@@ -32,8 +33,31 @@ class TimelineTableViewController: UITableViewController {
     
     // MARK: - Life cycle
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        tableView.estimatedRowHeight = tableView.rowHeight
+        tableView.rowHeight = UITableViewAutomaticDimension
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let navigationController = navigationController as? ScrollingNavigationController, let tabBarController = tabBarController {
+            navigationController.followScrollView(tableView,
+                                                  delay: 50.0,
+                                                  scrollSpeedFactor: (Constants.naturalReading ? -1 : 1),
+                                                  followers: [tabBarController.tabBar]
+            )
+//            navigationController.followScrollView(tableView, delay: 50.0)
+        }
+    }
+    
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
         refreshTimeline()
     }
     
@@ -45,11 +69,12 @@ class TimelineTableViewController: UITableViewController {
     }
     
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
         
-        tableView.estimatedRowHeight = tableView.rowHeight
-        tableView.rowHeight = UITableViewAutomaticDimension
+        if let navigationController = navigationController as? ScrollingNavigationController {
+            navigationController.stopFollowingScrollView()
+        }
     }
     
     
@@ -152,5 +177,13 @@ class TimelineTableViewController: UITableViewController {
         }
         
         return cell
+    }
+    
+    
+    override func scrollViewShouldScrollToTop(_ scrollView: UIScrollView) -> Bool {
+        if let navigationController = navigationController as? ScrollingNavigationController {
+            navigationController.showNavbar(animated: true)
+        }
+        return true
     }
 }
