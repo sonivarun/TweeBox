@@ -19,13 +19,13 @@ struct Constants {
     static let normalAspect = aspectRatioHeight / aspectRatioWidth
     static let thinAspect = normalAspect * 2
     
-    static let picCornerRadius: CGFloat = 7.5
+    static let picCornerRadius: CGFloat = 3
 
     static let defaultProfileRadius = ProfileRadius.round.rawValue
     
     static let picFadeInDuration = 0.2
     
-    static let naturalReading = true
+    static let naturalReading = false
 }
 
 enum ProfileRadius: CGFloat {

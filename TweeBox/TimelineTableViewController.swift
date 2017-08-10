@@ -45,12 +45,12 @@ class TimelineTableViewController: UITableViewController, ScrollingNavigationCon
         super.viewWillAppear(animated)
         
         if let navigationController = navigationController as? ScrollingNavigationController, let tabBarController = tabBarController {
-            navigationController.followScrollView(tableView,
-                                                  delay: 50.0,
-                                                  scrollSpeedFactor: (Constants.naturalReading ? -1 : 1),
-                                                  followers: [tabBarController.tabBar]
+            navigationController.followScrollView(
+                tableView,
+                delay: 50.0,
+                scrollSpeedFactor: (Constants.naturalReading ? -1 : 1),
+                followers: [tabBarController.tabBar]
             )
-//            navigationController.followScrollView(tableView, delay: 50.0)
         }
     }
     
@@ -84,9 +84,10 @@ class TimelineTableViewController: UITableViewController, ScrollingNavigationCon
     }
     
     
-    private func refreshTimeline() {
+    func refreshTimeline() {
         
         let homeTimelineParams = HomeTimelineParams()
+        
         let timeline = Timeline(
             maxID: maxID,
             sinceID: sinceID,
@@ -94,6 +95,7 @@ class TimelineTableViewController: UITableViewController, ScrollingNavigationCon
             resourceURL: homeTimelineParams.resourceURL,
             params: homeTimelineParams.getParams()
         )
+        
         timeline.fetchData { [weak self] (maxID, sinceID, tweets) in
             if maxID != nil {
                 self?.maxID = maxID!
@@ -118,6 +120,10 @@ class TimelineTableViewController: UITableViewController, ScrollingNavigationCon
         refreshTimeline()
     }
     
+    @objc private func tapToPresentMediaViewer(byReactingTo tapGesture: UITapGestureRecognizer) {
+        print(">>> tap")
+        performSegue(withIdentifier: "To Media", sender: nil)
+    }
     
     // MARK: - Table view data source
     
@@ -145,23 +151,39 @@ class TimelineTableViewController: UITableViewController, ScrollingNavigationCon
                 }
             case 1:
                 cell = tableView.dequeueReusableCell(withIdentifier: "Tweet with Pic and Text", for: indexPath)
-                if let tweetCell = cell as? TweetTableViewCell {
+                if let tweetCell = cell as? TweetWithPicAndTextTableViewCell {
                     tweetCell.tweet = tweet
+                    
+                    // tap to segue
+                    tweetCell.delegate = self
+                    tweetCell.row = indexPath.row
                 }
             case 2:
                 cell = tableView.dequeueReusableCell(withIdentifier: "Tweet with Two Pics and Text", for: indexPath)
-                if let tweetCell = cell as? TweetTableViewCell {
+                if let tweetCell = cell as? TweetWithPicAndTextTableViewCell {
                     tweetCell.tweet = tweet
+                    
+                    // tap to segue
+                    tweetCell.delegate = self
+                    tweetCell.row = indexPath.row
                 }
             case 3:
                 cell = tableView.dequeueReusableCell(withIdentifier: "Tweet with Three Pics and Text", for: indexPath)
-                if let tweetCell = cell as? TweetTableViewCell {
+                if let tweetCell = cell as? TweetWithPicAndTextTableViewCell {
                     tweetCell.tweet = tweet
+                    
+                    // tap to segue
+                    tweetCell.delegate = self
+                    tweetCell.row = indexPath.row
                 }
             case 4:
                 cell = tableView.dequeueReusableCell(withIdentifier: "Tweet with Four Pics and Text", for: indexPath)
-                if let tweetCell = cell as? TweetTableViewCell {
+                if let tweetCell = cell as? TweetWithPicAndTextTableViewCell {
                     tweetCell.tweet = tweet
+                    
+                    // tap to segue
+                    tweetCell.delegate = self
+                    tweetCell.row = indexPath.row
                 }
             default:
                 cell = tableView.dequeueReusableCell(withIdentifier: "Tweet with Text", for: indexPath)
@@ -175,7 +197,7 @@ class TimelineTableViewController: UITableViewController, ScrollingNavigationCon
                 tweetCell.tweet = tweet
             }
         }
-        
+//        print(cell.bounds.size.height)
         return cell
     }
     
@@ -185,5 +207,18 @@ class TimelineTableViewController: UITableViewController, ScrollingNavigationCon
             navigationController.showNavbar(animated: true)
         }
         return true
+    }
+}
+
+// tap to segue
+extension TimelineTableViewController: TweetWithPicTableViewCellProtocol {
+    
+    func imageTapped(row: Int) {
+        
+        print("tap")
+        
+//        let imageViewerViewController = UIViewController()
+//        imageViewerViewController.view.backgroundColor = .gray
+//        present(imageViewerViewController, animated: true) { }
     }
 }

@@ -37,6 +37,8 @@
 		B443A0F81F2B44FD0021BB65 /* RESTfulClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B443A0F71F2B44FD0021BB65 /* RESTfulClient.swift */; };
 		B443A0FA1F2B46370021BB65 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B443A0F91F2B46370021BB65 /* Constants.swift */; };
 		B443A0FC1F2B70D40021BB65 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = B443A0FB1F2B70D40021BB65 /* Error.swift */; };
+		B47E58691F3C889800CA0C0A /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47E58681F3C889800CA0C0A /* UserProfileViewController.swift */; };
+		B47E586B1F3C959900CA0C0A /* UserTimelineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47E586A1F3C959900CA0C0A /* UserTimelineTableViewController.swift */; };
 		B4CE12161F3ACCDF002D341E /* HomeTimelineParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CE12151F3ACCDF002D341E /* HomeTimelineParams.swift */; };
 		B4CE12181F3AD60A002D341E /* TimelineParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CE12171F3AD60A002D341E /* TimelineParams.swift */; };
 		B4EC26231F2F810700011DA0 /* UserTimelineParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EC26221F2F810700011DA0 /* UserTimelineParams.swift */; };
@@ -97,6 +99,8 @@
 		B443A0F71F2B44FD0021BB65 /* RESTfulClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RESTfulClient.swift; sourceTree = "<group>"; };
 		B443A0F91F2B46370021BB65 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B443A0FB1F2B70D40021BB65 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		B47E58681F3C889800CA0C0A /* UserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		B47E586A1F3C959900CA0C0A /* UserTimelineTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTimelineTableViewController.swift; sourceTree = "<group>"; };
 		B4CE12151F3ACCDF002D341E /* HomeTimelineParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTimelineParams.swift; sourceTree = "<group>"; };
 		B4CE12171F3AD60A002D341E /* TimelineParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineParams.swift; sourceTree = "<group>"; };
 		B4EC26221F2F810700011DA0 /* UserTimelineParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTimelineParams.swift; sourceTree = "<group>"; };
@@ -248,7 +252,9 @@
 			isa = PBXGroup;
 			children = (
 				B43BBCA91F3716F2002D0AE0 /* TimelineTableViewController.swift */,
+				B47E586A1F3C959900CA0C0A /* UserTimelineTableViewController.swift */,
 				B42985A11F29E8E700AFFB97 /* LoginViewController.swift */,
+				B47E58681F3C889800CA0C0A /* UserProfileViewController.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -487,6 +493,7 @@
 				B409300A1F39763E00CAB109 /* MediaSize.swift in Sources */,
 				B43BB8BB1F35A2300011A301 /* Entity.swift in Sources */,
 				B43BB8BD1F35A4A40011A301 /* Place.swift in Sources */,
+				B47E58691F3C889800CA0C0A /* UserProfileViewController.swift in Sources */,
 				B443A0F21F2B38050021BB65 /* TwitterUser.swift in Sources */,
 				B40930011F395FFD00CAB109 /* TweetWithPicAndTextTableViewCell.swift in Sources */,
 				B42985A21F29E8E700AFFB97 /* LoginViewController.swift in Sources */,
@@ -503,6 +510,7 @@
 				B42985A01F29E8E700AFFB97 /* AppDelegate.swift in Sources */,
 				B443A0F61F2B43EB0021BB65 /* ResourceURL.swift in Sources */,
 				B43BBCAA1F3716F2002D0AE0 /* TimelineTableViewController.swift in Sources */,
+				B47E586B1F3C959900CA0C0A /* UserTimelineTableViewController.swift in Sources */,
 				B40930061F3966A000CAB109 /* TweetWithPicTableViewCell.swift in Sources */,
 				B443A0F81F2B44FD0021BB65 /* RESTfulClient.swift in Sources */,
 			);

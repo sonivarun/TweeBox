@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class TweetWithPicAndTextTableViewCell: TweetWithPicTableViewCell {
     
     @IBOutlet weak var tweetTextContent: UILabel!

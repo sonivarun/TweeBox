@@ -22,6 +22,9 @@ class TimelineParams {
     
     public var includeRetweets: Bool
     
+    public var resourceURL: (String, String)!
+    
+    
     public var params: [String: String] {
         return getParams()
     }

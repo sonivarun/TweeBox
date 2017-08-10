@@ -9,9 +9,7 @@
 import Foundation
 
 class UserTimelineParams: TimelineParams {
-    
-    public var resourceURL = ResourceURL.user_timeline
-    
+        
     public var userID: String?
     
 //    screenName
@@ -21,6 +19,7 @@ class UserTimelineParams: TimelineParams {
         self.userID = userID
         
         super.init()
+        resourceURL = ResourceURL.user_timeline
     }
     
     override public func getParams() -> [String: String] {

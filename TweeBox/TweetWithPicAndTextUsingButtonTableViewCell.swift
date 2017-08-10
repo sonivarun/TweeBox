@@ -1,34 +1,17 @@
 //
-//  TweetWithPicTableViewCell.swift
+//  TweetWithPicAndTextUsingButtonTableViewCell.swift
 //  TweeBox
 //
-//  Created by 4faramita on 2017/8/8.
+//  Created by 4faramita on 2017/8/10.
 //  Copyright © 2017年 4faramita. All rights reserved.
 //
 
 import UIKit
 import Kingfisher
 import SKPhotoBrowser
-//import SDWebImage
 
+class TweetWithPicAndTextUsingButtonTableViewCell: TweetTableViewCell {
 
-protocol TweetWithPicTableViewCellProtocol: class {
-    func imageTapped(row: Int)
-}
-
-
-class TweetWithPicTableViewCell: TweetTableViewCell, SKPhotoBrowserDelegate {
-    
-    // tap to segue
-    weak var delegate: TweetWithPicTableViewCellProtocol?
-    var row: Int?
-    
-    @IBAction func imageTapped() {
-        guard let row = row else { return }
-        delegate?.imageTapped(row: row)
-    }
-    
-    
     @IBOutlet weak var tweetPicContent: UIImageView!
     
     @IBOutlet weak var secondPic: UIImageView!
@@ -36,7 +19,7 @@ class TweetWithPicTableViewCell: TweetTableViewCell, SKPhotoBrowserDelegate {
     @IBOutlet weak var thirdPic: UIImageView!
     
     @IBOutlet weak var fourthPic: UIImageView!
-        
+    
     private func setPic(at position: Int, of total: Int) {
         
         let media = tweet!.entities!.media!
@@ -75,24 +58,15 @@ class TweetWithPicTableViewCell: TweetTableViewCell, SKPhotoBrowserDelegate {
         // Kingfisher
         let placeholder = UIImage(named: "picPlaceholder")!.kf.image(withRoundRadius: Constants.picCornerRadius, fit: CGSize(width: picWidth, height: picHeight))
         
-        let processor = CroppingImageProcessor(size: CGSize(width: picWidth, height: picHeight), anchor: cutPoint)
-            // >> RoundCornerImageProcessor(cornerRadius: Constants.picCornerRadius)
+        let processor = CroppingImageProcessor(size: CGSize(width: picWidth, height: picHeight), anchor: cutPoint) >> RoundCornerImageProcessor(cornerRadius: Constants.picCornerRadius)
         
         if let picView = pics[position] {
-//            picView.kf.indicatorType = .activity
+            //            picView.kf.indicatorType = .activity
             picView.kf.setImage(
                 with: tweetPicURL,
                 placeholder: placeholder,
-                options: [
-                    .transition(.fade(Constants.picFadeInDuration)),
-                    .processor(processor)
-                ]
+                options: [.transition(.fade(Constants.picFadeInDuration)), .processor(processor)]
             )
-            picView.layer.borderWidth = 1
-            picView.layer.borderColor = UIColor.white.cgColor
-            picView.layer.cornerRadius = Constants.picCornerRadius
-            picView.clipsToBounds = true
-            
         }
     }
     

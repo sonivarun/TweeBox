@@ -25,16 +25,26 @@ class TweetTableViewCell: UITableViewCell {
     
     func updateUI() {
         
-        if let userProfileImageURL = tweet?.user.profileImageURL {
+        if let userProfileImageURL = tweet?.user.profileImageURL, let picView = self.tweetUserProfilePic {
             
             // Kingfisher
 //            let placeholder = UIImage(named: "placeholder")
-            let processor = RoundCornerImageProcessor(cornerRadius: Constants.defaultProfileRadius)
+//            let processor = RoundCornerImageProcessor(cornerRadius: Constants.defaultProfileRadius)
 //            self.tweetUserProfilePic?.kf.indicatorType = .activity
-            self.tweetUserProfilePic?.kf.setImage(
+            picView.kf.setImage(
                 with: userProfileImageURL,
 //                placeholder: placeholder,
-                options: [.transition(.fade(Constants.picFadeInDuration)), .processor(processor)])
+                options: [
+                    .transition(.fade(Constants.picFadeInDuration)),
+//                    .processor(processor)
+                ]
+            )
+            
+//            picView.layer.borderWidth = 3.0
+//            picView.layer.borderColor = UIColor.lightGray.cgColor
+            
+            picView.layer.cornerRadius = picView.frame.size.width / 2
+            picView.clipsToBounds = true
             
             // SDWebImage
 //            self.tweetUserProfilePic?.sd_setShowActivityIndicatorView(true)
