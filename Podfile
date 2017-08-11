@@ -8,7 +8,7 @@ target 'TweeBox' do
 	pod 'SwiftyJSON'
 	# pod 'SDWebImage', '~> 4.0'
 	pod 'Kingfisher', '~> 3.0'
-	pod 'SKPhotoBrowser'
+	# pod 'SKPhotoBrowser'
 	pod 'DateToolsSwift'
 	pod 'AMScrollingNavbar'
 	# pod 'Eureka'

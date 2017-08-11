@@ -8,7 +8,6 @@
 
 import UIKit
 import Kingfisher
-import SKPhotoBrowser
 //import SDWebImage
 
 
@@ -17,15 +16,16 @@ protocol TweetWithPicTableViewCellProtocol: class {
 }
 
 
-class TweetWithPicTableViewCell: TweetTableViewCell, SKPhotoBrowserDelegate {
+class TweetWithPicTableViewCell: TweetTableViewCell {
     
     // tap to segue
     weak var delegate: TweetWithPicTableViewCellProtocol?
     var row: Int?
     
-    @IBAction func imageTapped() {
+    @IBAction func imageTapped(byReactingTo: UIGestureRecognizer) {
         guard let row = row else { return }
         delegate?.imageTapped(row: row)
+        print("image tapped func")
     }
     
     
@@ -93,6 +93,15 @@ class TweetWithPicTableViewCell: TweetTableViewCell, SKPhotoBrowserDelegate {
             picView.layer.cornerRadius = Constants.picCornerRadius
             picView.clipsToBounds = true
             
+            
+            // tap to segue
+            let ptap = UITapGestureRecognizer(
+                target: self,
+                action: #selector(imageTapped(byReactingTo:))
+            )
+            ptap.numberOfTapsRequired = 1
+            picView.addGestureRecognizer(ptap)
+            picView.isUserInteractionEnabled = true
         }
     }
     

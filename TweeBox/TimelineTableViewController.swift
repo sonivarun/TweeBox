@@ -30,6 +30,8 @@ class TimelineTableViewController: UITableViewController, ScrollingNavigationCon
      if last panning gesture is downward, fetchNewer is false.
      */
     
+    // tap to segue
+    weak var delegate:TweetWithPicTableViewCell?
     
     // MARK: - Life cycle
     
@@ -214,11 +216,7 @@ class TimelineTableViewController: UITableViewController, ScrollingNavigationCon
 extension TimelineTableViewController: TweetWithPicTableViewCellProtocol {
     
     func imageTapped(row: Int) {
-        
-        print("tap")
-        
-//        let imageViewerViewController = UIViewController()
-//        imageViewerViewController.view.backgroundColor = .gray
-//        present(imageViewerViewController, animated: true) { }
+        performSegue(withIdentifier: "imageTapped", sender: nil)
+        print("ext func")
     }
 }
