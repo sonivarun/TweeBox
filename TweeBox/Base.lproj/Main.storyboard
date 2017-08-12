@@ -603,6 +603,10 @@
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ccA-fZ-SSr">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="rgx-yA-Z0Y" appends="YES" id="k6t-ip-SNT"/>
+                                </connections>
                             </scrollView>
                         </subviews>
                         <constraints>
@@ -625,6 +629,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FTL-U0-WW4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer numberOfTapsRequired="2" id="rgx-yA-Z0Y">
+                    <connections>
+                        <action selector="doubleTapToZoom:" destination="YmO-B7-dd1" id="0xm-ZE-fwr"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3825" y="124"/>
         </scene>

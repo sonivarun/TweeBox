@@ -9,6 +9,7 @@
 import UIKit
 import TwitterKit
 import AMScrollingNavbar
+import Kingfisher
 
 class TimelineTableViewController: UITableViewController
 //    , ScrollingNavigationControllerDelegate
@@ -40,7 +41,9 @@ class TimelineTableViewController: UITableViewController
     // tap to segue
     weak var delegate:TweetWithPicTableViewCell?
     
-    fileprivate var clickedImage: UIImage?
+    fileprivate var clickedTweet: Tweet?
+    fileprivate var clickedImageIndex: Int?
+    fileprivate var clickMedia: UIImage?
     
     private var warningTextLabel: UILabel!
     
@@ -141,6 +144,7 @@ class TimelineTableViewController: UITableViewController
             }
         }
         
+        // FIX THIS: FOR REFRESH DOWNWORD
         let cells = self.tableView.visibleCells
         
         for cell in cells {
@@ -255,7 +259,7 @@ extension TimelineTableViewController: TweetWithPicTableViewCellProtocol {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "imageTapped" {
             if let imageViewer = segue.destination.content as? ImageViewerViewController {
-                imageViewer.image = clickedImage
+                imageViewer.image = clickMedia
             }
         }
     }
@@ -264,14 +268,17 @@ extension TimelineTableViewController: TweetWithPicTableViewCellProtocol {
         
         print("image index: \(section, picIndex)")
         
-        let clickedTweet = timeline[section][row]
-        if let mediaURL = clickedTweet.entities?.realMedia?[picIndex].mediaURL {
+        clickedTweet = timeline[section][row]
+        self.clickedImageIndex = picIndex
+        
+        if let clickedMediaURL = clickedTweet?.entities?.realMedia?[clickedImageIndex ?? 0].mediaURL {
+            KingfisherManager.shared.retrieveImage(with: clickedMediaURL, options: nil, progressBlock: nil) { [weak self] (image, error, cacheType, url) in
+                if let image = image {
+                    self?.clickMedia = image
+                    self?.performSegue(withIdentifier: "imageTapped", sender: nil)
+                }
+            }
             
-//            DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            let imageData = try? Data(contentsOf: mediaURL)  // FIX THIS
-            self.clickedImage = UIImage(data: imageData!)
-//            }
         }
-        performSegue(withIdentifier: "imageTapped", sender: nil)
     }
 }

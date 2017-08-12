@@ -10,7 +10,7 @@ import UIKit
 
 class ImageViewerViewController: PannableViewController {
     
-    fileprivate var imageView = UIImageView()
+    public var imageView = UIImageView()
     
     public var image: UIImage? {
         get {
@@ -35,6 +35,14 @@ class ImageViewerViewController: PannableViewController {
                 imageView.frame.size.width = screenHeight * imageFactor
             }
             imageView.center = view.center
+            scrollView.setZoomScale(1.0, animated: true)
+            /*
+             the line above is because
+             when the image is set by Kingfisher,
+             it seems hard to dismiss the image viewer by swipe
+             unless zoom it first.
+             So this is a simple yet valid workaround
+             */
         }
     }
     
@@ -47,6 +55,16 @@ class ImageViewerViewController: PannableViewController {
             scrollView.addSubview(imageView)
         }
     }
+    
+    @IBAction func doubleTapToZoom(_ sender: UITapGestureRecognizer) {
+        
+        if scrollView.zoomScale > 1.0 {
+            scrollView.setZoomScale(1.0, animated: true)
+        } else {
+            scrollView.setZoomScale(scrollView.maximumZoomScale, animated: true)
+        }
+    }
+    
 
     
     // MARK - Life Cycle
