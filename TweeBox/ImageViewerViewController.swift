@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Photos
 
 class ImageViewerViewController: PannableViewController {
     
@@ -78,7 +79,9 @@ class ImageViewerViewController: PannableViewController {
             preferredStyle: .actionSheet
         )
         
-        alert.addAction(UIAlertAction(title: "Save To Camera Roll", style: .default) { (alertAction) in })
+        alert.addAction(UIAlertAction(title: "Save To Camera Roll", style: .default) { [weak self] (alertAction) in
+            self?.saveToCameraRoll()
+        })
         alert.addAction(UIAlertAction(title: "Copy Link", style: .default) { (alertAction) in })
         alert.addAction(UIAlertAction(title: "Copy Image", style: .default) { (alertAction) in })
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { (alertAction) in })
@@ -134,5 +137,25 @@ extension ImageViewerViewController: UIScrollViewDelegate {
         
         imageView.frame = frameToCenter
 
+    }
+}
+
+extension ImageViewerViewController {
+    func saveToCameraRoll() {
+        if let image = image {
+            PHPhotoLibrary.shared().performChanges({
+                PHAssetChangeRequest.creationRequestForAsset(from: image)
+            }, completionHandler: { success, error in
+                if success {
+                    // Saved successfully!
+                }
+                else if let error = error {
+                    // Save photo failed with error
+                }
+                else {
+                    // Save photo failed with no error
+                }
+            })
+        }
     }
 }
