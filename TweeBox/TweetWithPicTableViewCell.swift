@@ -20,12 +20,6 @@ class TweetWithPicTableViewCell: TweetTableViewCell {
     
     private var totalPic: Int!
     
-    // tap to segue
-    weak var delegate: TweetWithPicTableViewCellProtocol?
-    var section: Int?
-    var row: Int?
-    var picIndex: Int?
-    
     @IBAction func imageTapped(byReactingTo: UIGestureRecognizer) {
         
         let index = byReactingTo.location(in: self.tweetPicContent)
@@ -44,6 +38,8 @@ class TweetWithPicTableViewCell: TweetTableViewCell {
         case (false, false):  // down right
             picIndex = totalPic == 4 ? 3 : (totalPic == 3 ? 2 : (totalPic == 2 ? 1 : 0))
         }
+        
+        print(">>> image index: \(picIndex!)")
                 
         guard let section = section, let row = row, let picIndex = picIndex else { return }
         delegate?.imageTapped(section: section, row: row, picIndex: picIndex)

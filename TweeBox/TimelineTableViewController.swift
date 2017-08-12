@@ -10,10 +10,17 @@ import UIKit
 import TwitterKit
 import AMScrollingNavbar
 
-class TimelineTableViewController: UITableViewController, ScrollingNavigationControllerDelegate {
+class TimelineTableViewController: UITableViewController
+//    , ScrollingNavigationControllerDelegate
+{
     
-    fileprivate var timeline = [Array<Tweet>]()
-    { didSet { print(timeline.count) } }
+    fileprivate var timeline = [Array<Tweet>]() {
+        didSet {
+            print(timeline.count)
+            warningTextLabel.isHidden = true
+            tableView.separatorStyle = .singleLine
+        }
+    }
     
     public var maxID: String?
 //    { didSet { print("max: \(maxID ?? "maxID NOT EXIST")") } }
@@ -35,6 +42,8 @@ class TimelineTableViewController: UITableViewController, ScrollingNavigationCon
     
     fileprivate var clickedImage: UIImage?
     
+    private var warningTextLabel: UILabel!
+    
     // MARK: - Life cycle
     
     override func viewDidLoad() {
@@ -44,25 +53,39 @@ class TimelineTableViewController: UITableViewController, ScrollingNavigationCon
         tableView.rowHeight = UITableViewAutomaticDimension
     }
     
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let navigationController = navigationController as? ScrollingNavigationController, let tabBarController = tabBarController {
-            navigationController.followScrollView(
-                tableView,
-                delay: 50.0,
-                scrollSpeedFactor: (Constants.naturalReading ? -1 : 1),
-                followers: [tabBarController.tabBar]
-            )
-        }
-    }
-    
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         
-        refreshTimeline()
+        
+        //  Warning text when table is empty
+        
+        if timeline.flatMap({ $0 }).count == 0 {
+            
+            print("nothing")
+            warningTextLabel = UILabel(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width, height: view.bounds.size.height))
+            warningTextLabel.text = "Pull Down To Refresh"
+            warningTextLabel.textAlignment = .center
+            warningTextLabel.center = view.center
+//            warningTextLabel.backgroundColor = .white
+            warningTextLabel.textColor = .gray
+            
+            view.addSubview(warningTextLabel)
+            
+            tableView.separatorStyle = .none
+            warningTextLabel.isHidden = false
+        }
+
+        
+        // hide bars on scrolling
+//        if let navigationController = navigationController as? ScrollingNavigationController, let tabBarController = tabBarController {
+//            navigationController.followScrollView(
+//                tableView,
+//                delay: 50.0,
+//                scrollSpeedFactor: (Constants.naturalReading ? -1 : 1),
+//                followers: [tabBarController.tabBar]
+//            )
+//        }
     }
     
     
@@ -72,16 +95,15 @@ class TimelineTableViewController: UITableViewController, ScrollingNavigationCon
         self.refreshControl?.endRefreshing()
     }
     
-    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
-        if let navigationController = navigationController as? ScrollingNavigationController {
-            navigationController.stopFollowingScrollView()
-        }
+//        if let navigationController = navigationController as? ScrollingNavigationController {
+//            navigationController.stopFollowingScrollView()
+//        }
     }
     
-    
+        
     func insertNewTweets(with newTweets: [Tweet]) {
         self.timeline.insert(newTweets, at: 0)
         self.tableView.insertSections([0], with: .automatic)
@@ -116,6 +138,14 @@ class TimelineTableViewController: UITableViewController, ScrollingNavigationCon
                 withTimeInterval: TimeInterval(0.1),
                 repeats: false) { (timer) in
                     self?.refreshControl?.endRefreshing()
+            }
+        }
+        
+        let cells = self.tableView.visibleCells
+        
+        for cell in cells {
+            if let tweetCell = cell as? TweetTableViewCell {
+                tweetCell.section? += 1
             }
         }
     }
@@ -231,6 +261,8 @@ extension TimelineTableViewController: TweetWithPicTableViewCellProtocol {
     }
     
     func imageTapped(section: Int, row: Int, picIndex: Int) {
+        
+        print("image index: \(section, picIndex)")
         
         let clickedTweet = timeline[section][row]
         if let mediaURL = clickedTweet.entities?.realMedia?[picIndex].mediaURL {

@@ -46,7 +46,7 @@ class PannableViewController: UIViewController {
                         )
                 }, completion: { (isCompleted) in
                     if isCompleted {
-                        self.dismiss(animated: false, completion: nil)
+                        self.dismiss(animated: true, completion: nil)
                     }
                 })
             } else if velocity.y <= -1000 {
@@ -58,7 +58,7 @@ class PannableViewController: UIViewController {
                         )
                 }, completion: { (isCompleted) in
                     if isCompleted {
-                        self.dismiss(animated: false, completion: nil)
+                        self.dismiss(animated: true, completion: nil)
                     }
                 })
             } else {

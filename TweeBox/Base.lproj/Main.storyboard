@@ -582,7 +582,7 @@
                         </connections>
                     </refreshControl>
                     <connections>
-                        <segue destination="ZTW-gF-KbD" kind="showDetail" identifier="imageTapped" id="45q-YP-8OY"/>
+                        <segue destination="YmO-B7-dd1" kind="presentation" identifier="imageTapped" id="XIS-oG-OFH"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oQt-Fg-ncE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -592,7 +592,7 @@
         <!--Image Viewer View Controller-->
         <scene sceneID="fkh-Vn-WoT">
             <objects>
-                <viewController id="YmO-B7-dd1" customClass="ImageViewerViewController" customModule="TweeBox" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="crossDissolve" id="YmO-B7-dd1" customClass="ImageViewerViewController" customModule="TweeBox" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2OL-FF-os7"/>
                         <viewControllerLayoutGuide type="bottom" id="dc3-1R-gaS"/>
@@ -600,7 +600,17 @@
                     <view key="view" opaque="NO" contentMode="scaleToFill" id="zta-ax-Vn3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ccA-fZ-SSr">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </scrollView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="ccA-fZ-SSr" secondAttribute="trailing" id="38z-ch-GIr"/>
+                            <constraint firstItem="ccA-fZ-SSr" firstAttribute="leading" secondItem="zta-ax-Vn3" secondAttribute="leading" id="AqS-Di-qkn"/>
+                            <constraint firstItem="ccA-fZ-SSr" firstAttribute="top" secondItem="zta-ax-Vn3" secondAttribute="top" id="BgJ-a2-6Yo"/>
+                            <constraint firstItem="ccA-fZ-SSr" firstAttribute="bottom" secondItem="dc3-1R-gaS" secondAttribute="top" id="bnc-vI-ptm"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="AhD-7D-ya3">
                         <barButtonItem key="leftBarButtonItem" systemItem="done" id="SQU-yt-xgH">
@@ -610,15 +620,18 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="By7-t0-plX"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="scrollView" destination="ccA-fZ-SSr" id="ctU-Ht-Vwa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FTL-U0-WW4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4764" y="124"/>
+            <point key="canvasLocation" x="3825" y="124"/>
         </scene>
         <!--Timeline-->
         <scene sceneID="1uf-C6-ebH">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="c0G-tD-z40" customClass="ScrollingNavigationController" customModule="AMScrollingNavbar" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="c0G-tD-z40" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Timeline" image="twitter" selectedImage="twitter_selected" id="w4k-m8-5Yz"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Xgu-3p-NuR">
@@ -1208,7 +1221,7 @@
                         </connections>
                     </refreshControl>
                     <connections>
-                        <segue destination="ZTW-gF-KbD" kind="showDetail" identifier="imageTapped" id="ERn-wv-Y2l"/>
+                        <segue destination="YmO-B7-dd1" kind="presentation" identifier="imageTapped" id="UPj-0o-4po"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5f6-CM-xzV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1218,7 +1231,7 @@
         <!--Profile-->
         <scene sceneID="4ig-H2-qBt">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="K43-fS-edq" customClass="ScrollingNavigationController" customModule="AMScrollingNavbar" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="K43-fS-edq" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Profile" image="profile" selectedImage="profile_selected" id="0JU-qi-dzG"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="0br-TP-0sC">
@@ -1288,28 +1301,6 @@
             </objects>
             <point key="canvasLocation" x="3500" y="1061"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="kuo-Sm-IRf">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fk8-MM-3y0" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" hidesBottomBarWhenPushed="YES" hidesBarsOnTap="YES" id="ZTW-gF-KbD" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="G0p-ja-QB0">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="oWE-VB-hd8">
-                        <rect key="frame" x="0.0" y="623" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </toolbar>
-                    <connections>
-                        <segue destination="YmO-B7-dd1" kind="relationship" relationship="rootViewController" id="Zm8-TP-EuS"/>
-                    </connections>
-                </navigationController>
-            </objects>
-            <point key="canvasLocation" x="3825" y="124"/>
-        </scene>
     </scenes>
     <resources>
         <image name="profile" width="16" height="16"/>
@@ -1318,6 +1309,6 @@
         <image name="twitter_selected" width="16" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ERn-wv-Y2l"/>
+        <segue reference="XIS-oG-OFH"/>
     </inferredMetricsTieBreakers>
 </document>

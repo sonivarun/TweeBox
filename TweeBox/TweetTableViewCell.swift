@@ -11,6 +11,12 @@ import Kingfisher
 //import SDWebImage
 
 class TweetTableViewCell: UITableViewCell {
+    
+    // tap to segue
+    weak var delegate: TweetWithPicTableViewCellProtocol?
+    var section: Int?
+    var row: Int?
+    var picIndex: Int?
 
     var tweet: Tweet? {
         didSet {
