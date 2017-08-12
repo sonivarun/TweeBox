@@ -8,15 +8,11 @@
 
 import UIKit
 import TwitterKit
+import AMScrollingNavbar
 
 class UserTimelineTableViewController: TimelineTableViewController {
 
     public var userID = (Twitter.sharedInstance().sessionStore.session()?.userID)!
-//    {
-//        didSet {
-//            refreshTimeline()
-//        }
-//    }
     
     override func refreshTimeline() {
         

@@ -8,7 +8,22 @@
 
 import UIKit
 
-class PhotoViewController: UIViewController {
+class PhotoViewController: PannableViewController {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+//        navigationController?.hidesBarsOnTap = true
+//        tabBarController?.tabBar.isHidden = true
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return navigationController?.isNavigationBarHidden == true
+    }
+    
+    override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
+        return UIStatusBarAnimation.slide
+    }
 
     @IBAction func cancel(_ sender: UIBarButtonItem) {
         presentingViewController?.dismiss(animated: true)

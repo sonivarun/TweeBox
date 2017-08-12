@@ -217,6 +217,5 @@ extension TimelineTableViewController: TweetWithPicTableViewCellProtocol {
     
     func imageTapped(row: Int) {
         performSegue(withIdentifier: "imageTapped", sender: nil)
-        print("ext func")
     }
 }

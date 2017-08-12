@@ -25,7 +25,6 @@ class TweetWithPicTableViewCell: TweetTableViewCell {
     @IBAction func imageTapped(byReactingTo: UIGestureRecognizer) {
         guard let row = row else { return }
         delegate?.imageTapped(row: row)
-        print("image tapped func")
     }
     
     

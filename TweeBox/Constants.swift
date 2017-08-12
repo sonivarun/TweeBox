@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 struct Constants {
-    static let tweetLimitPerRefresh = "100"
+    static let tweetLimitPerRefresh = "10"
     static let picQuality = MediaSize.large
     
     static let aspectRatioWidth: CGFloat = 16
