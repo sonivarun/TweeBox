@@ -39,8 +39,9 @@
 		B443A0FC1F2B70D40021BB65 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = B443A0FB1F2B70D40021BB65 /* Error.swift */; };
 		B47E58691F3C889800CA0C0A /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47E58681F3C889800CA0C0A /* UserProfileViewController.swift */; };
 		B47E586B1F3C959900CA0C0A /* UserTimelineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47E586A1F3C959900CA0C0A /* UserTimelineTableViewController.swift */; };
-		B47E586F1F3D8A2F00CA0C0A /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47E586E1F3D8A2F00CA0C0A /* PhotoViewController.swift */; };
+		B47E586F1F3D8A2F00CA0C0A /* ImageViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47E586E1F3D8A2F00CA0C0A /* ImageViewerViewController.swift */; };
 		B47E58711F3DACAC00CA0C0A /* PannableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47E58701F3DACAC00CA0C0A /* PannableViewController.swift */; };
+		B4B7C4C41F3ED26E00F424A0 /* NavigationViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B7C4C31F3ED26E00F424A0 /* NavigationViewControllerExtension.swift */; };
 		B4CE12161F3ACCDF002D341E /* HomeTimelineParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CE12151F3ACCDF002D341E /* HomeTimelineParams.swift */; };
 		B4CE12181F3AD60A002D341E /* TimelineParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CE12171F3AD60A002D341E /* TimelineParams.swift */; };
 		B4EC26231F2F810700011DA0 /* UserTimelineParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EC26221F2F810700011DA0 /* UserTimelineParams.swift */; };
@@ -103,8 +104,9 @@
 		B443A0FB1F2B70D40021BB65 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		B47E58681F3C889800CA0C0A /* UserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		B47E586A1F3C959900CA0C0A /* UserTimelineTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTimelineTableViewController.swift; sourceTree = "<group>"; };
-		B47E586E1F3D8A2F00CA0C0A /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
+		B47E586E1F3D8A2F00CA0C0A /* ImageViewerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewerViewController.swift; sourceTree = "<group>"; };
 		B47E58701F3DACAC00CA0C0A /* PannableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PannableViewController.swift; sourceTree = "<group>"; };
+		B4B7C4C31F3ED26E00F424A0 /* NavigationViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationViewControllerExtension.swift; sourceTree = "<group>"; };
 		B4CE12151F3ACCDF002D341E /* HomeTimelineParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTimelineParams.swift; sourceTree = "<group>"; };
 		B4CE12171F3AD60A002D341E /* TimelineParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineParams.swift; sourceTree = "<group>"; };
 		B4EC26221F2F810700011DA0 /* UserTimelineParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTimelineParams.swift; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 				B42985A61F29E8E700AFFB97 /* TweeBox.xcdatamodeld */,
 				B40930071F3970FF00CAB109 /* URLExtension.swift */,
 				B40930091F39763E00CAB109 /* MediaSize.swift */,
+				B4B7C4C31F3ED26E00F424A0 /* NavigationViewControllerExtension.swift */,
 			);
 			path = TweeBox;
 			sourceTree = "<group>";
@@ -259,7 +262,7 @@
 				B47E586A1F3C959900CA0C0A /* UserTimelineTableViewController.swift */,
 				B42985A11F29E8E700AFFB97 /* LoginViewController.swift */,
 				B47E58681F3C889800CA0C0A /* UserProfileViewController.swift */,
-				B47E586E1F3D8A2F00CA0C0A /* PhotoViewController.swift */,
+				B47E586E1F3D8A2F00CA0C0A /* ImageViewerViewController.swift */,
 				B47E58701F3DACAC00CA0C0A /* PannableViewController.swift */,
 			);
 			name = ViewController;
@@ -502,6 +505,7 @@
 				B443A0F21F2B38050021BB65 /* TwitterUser.swift in Sources */,
 				B40930011F395FFD00CAB109 /* TweetWithPicAndTextTableViewCell.swift in Sources */,
 				B42985A21F29E8E700AFFB97 /* LoginViewController.swift in Sources */,
+				B4B7C4C41F3ED26E00F424A0 /* NavigationViewControllerExtension.swift in Sources */,
 				B443A0FA1F2B46370021BB65 /* Constants.swift in Sources */,
 				B4092FF91F38BECF00CAB109 /* TweetPhotoSize.swift in Sources */,
 				B4CE12181F3AD60A002D341E /* TimelineParams.swift in Sources */,
@@ -512,7 +516,7 @@
 				B443A0FC1F2B70D40021BB65 /* Error.swift in Sources */,
 				B43BB8B91F359F9A0011A301 /* Coordinates.swift in Sources */,
 				B40930041F3965B600CAB109 /* TweetTableViewCell.swift in Sources */,
-				B47E586F1F3D8A2F00CA0C0A /* PhotoViewController.swift in Sources */,
+				B47E586F1F3D8A2F00CA0C0A /* ImageViewerViewController.swift in Sources */,
 				B42985A01F29E8E700AFFB97 /* AppDelegate.swift in Sources */,
 				B443A0F61F2B43EB0021BB65 /* ResourceURL.swift in Sources */,
 				B43BBCAA1F3716F2002D0AE0 /* TimelineTableViewController.swift in Sources */,

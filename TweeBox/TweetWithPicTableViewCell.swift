@@ -12,19 +12,41 @@ import Kingfisher
 
 
 protocol TweetWithPicTableViewCellProtocol: class {
-    func imageTapped(row: Int)
+    func imageTapped(section: Int, row: Int, picIndex: Int)
 }
 
 
 class TweetWithPicTableViewCell: TweetTableViewCell {
     
+    private var totalPic: Int!
+    
     // tap to segue
     weak var delegate: TweetWithPicTableViewCellProtocol?
+    var section: Int?
     var row: Int?
+    var picIndex: Int?
     
     @IBAction func imageTapped(byReactingTo: UIGestureRecognizer) {
-        guard let row = row else { return }
-        delegate?.imageTapped(row: row)
+        
+        let index = byReactingTo.location(in: self.tweetPicContent)
+        let xBound = self.tweetPicContent.bounds.maxX
+        let yBound = self.tweetPicContent.bounds.maxY
+        
+        let whichPic = (index.x <= xBound, index.y <= yBound)
+        
+        switch whichPic {
+        case (true, true):  // up left
+            picIndex = 0
+        case (false, true):  // up right
+            picIndex = totalPic >= 2 ? 1 : 0
+        case (true, false):  // down left
+            picIndex = totalPic == 4 ? 2 : 0
+        case (false, false):  // down right
+            picIndex = totalPic == 4 ? 3 : (totalPic == 3 ? 2 : (totalPic == 2 ? 1 : 0))
+        }
+                
+        guard let section = section, let row = row, let picIndex = picIndex else { return }
+        delegate?.imageTapped(section: section, row: row, picIndex: picIndex)
     }
     
     
@@ -37,6 +59,8 @@ class TweetWithPicTableViewCell: TweetTableViewCell {
     @IBOutlet weak var fourthPic: UIImageView!
         
     private func setPic(at position: Int, of total: Int) {
+        
+        totalPic = total
         
         let media = tweet!.entities!.media!
         

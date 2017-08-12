@@ -12,7 +12,7 @@ import AMScrollingNavbar
 
 class TimelineTableViewController: UITableViewController, ScrollingNavigationControllerDelegate {
     
-    private var timeline = [Array<Tweet>]()
+    fileprivate var timeline = [Array<Tweet>]()
     { didSet { print(timeline.count) } }
     
     public var maxID: String?
@@ -32,6 +32,8 @@ class TimelineTableViewController: UITableViewController, ScrollingNavigationCon
     
     // tap to segue
     weak var delegate:TweetWithPicTableViewCell?
+    
+    fileprivate var clickedImage: UIImage?
     
     // MARK: - Life cycle
     
@@ -158,7 +160,9 @@ class TimelineTableViewController: UITableViewController, ScrollingNavigationCon
                     
                     // tap to segue
                     tweetCell.delegate = self
+                    tweetCell.section = indexPath.section
                     tweetCell.row = indexPath.row
+                    tweetCell.picIndex = 0
                 }
             case 2:
                 cell = tableView.dequeueReusableCell(withIdentifier: "Tweet with Two Pics and Text", for: indexPath)
@@ -167,6 +171,7 @@ class TimelineTableViewController: UITableViewController, ScrollingNavigationCon
                     
                     // tap to segue
                     tweetCell.delegate = self
+                    tweetCell.section = indexPath.section
                     tweetCell.row = indexPath.row
                 }
             case 3:
@@ -176,6 +181,7 @@ class TimelineTableViewController: UITableViewController, ScrollingNavigationCon
                     
                     // tap to segue
                     tweetCell.delegate = self
+                    tweetCell.section = indexPath.section
                     tweetCell.row = indexPath.row
                 }
             case 4:
@@ -185,6 +191,7 @@ class TimelineTableViewController: UITableViewController, ScrollingNavigationCon
                     
                     // tap to segue
                     tweetCell.delegate = self
+                    tweetCell.section = indexPath.section
                     tweetCell.row = indexPath.row
                 }
             default:
@@ -215,7 +222,24 @@ class TimelineTableViewController: UITableViewController, ScrollingNavigationCon
 // tap to segue
 extension TimelineTableViewController: TweetWithPicTableViewCellProtocol {
     
-    func imageTapped(row: Int) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "imageTapped" {
+            if let imageViewer = segue.destination.content as? ImageViewerViewController {
+                imageViewer.image = clickedImage
+            }
+        }
+    }
+    
+    func imageTapped(section: Int, row: Int, picIndex: Int) {
+        
+        let clickedTweet = timeline[section][row]
+        if let mediaURL = clickedTweet.entities?.realMedia?[picIndex].mediaURL {
+            
+//            DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            let imageData = try? Data(contentsOf: mediaURL)  // FIX THIS
+            self.clickedImage = UIImage(data: imageData!)
+//            }
+        }
         performSegue(withIdentifier: "imageTapped", sender: nil)
     }
 }

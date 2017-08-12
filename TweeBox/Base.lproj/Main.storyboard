@@ -589,18 +589,18 @@
             </objects>
             <point key="canvasLocation" x="2773.5999999999999" y="-296.40179910044981"/>
         </scene>
-        <!--Photo View Controller-->
+        <!--Image Viewer View Controller-->
         <scene sceneID="fkh-Vn-WoT">
             <objects>
-                <viewController id="YmO-B7-dd1" customClass="PhotoViewController" customModule="TweeBox" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="YmO-B7-dd1" customClass="ImageViewerViewController" customModule="TweeBox" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2OL-FF-os7"/>
                         <viewControllerLayoutGuide type="bottom" id="dc3-1R-gaS"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="zta-ax-Vn3">
+                    <view key="view" opaque="NO" contentMode="scaleToFill" id="zta-ax-Vn3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="AhD-7D-ya3">
                         <barButtonItem key="leftBarButtonItem" systemItem="done" id="SQU-yt-xgH">
