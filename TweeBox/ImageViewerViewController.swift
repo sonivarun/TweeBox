@@ -43,6 +43,9 @@ class ImageViewerViewController: PannableViewController {
              unless zoom it first.
              So this is a simple yet valid workaround
              */
+            
+            let longPress = UILongPressGestureRecognizer(target: self, action: #selector(longPressToCallActionSheet(_:)))
+            scrollView.addGestureRecognizer(longPress)
         }
     }
     
@@ -65,6 +68,24 @@ class ImageViewerViewController: PannableViewController {
         }
     }
     
+    @IBAction func longPressToCallActionSheet(_ sender: UITapGestureRecognizer) {
+        
+        print("long press")
+        
+        let alert = UIAlertController(
+            title: "Image",
+            message: "An Image",
+            preferredStyle: .actionSheet
+        )
+        
+        alert.addAction(UIAlertAction(title: "Save To Camera Roll", style: .default) { (alertAction) in })
+        alert.addAction(UIAlertAction(title: "Copy Link", style: .default) { (alertAction) in })
+        alert.addAction(UIAlertAction(title: "Copy Image", style: .default) { (alertAction) in })
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { (alertAction) in })
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
 
     
     // MARK - Life Cycle
@@ -82,13 +103,15 @@ class ImageViewerViewController: PannableViewController {
         presentingViewController?.dismiss(animated: true)
     }
     
-//    private func blur() {
-//        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.extraLight)
-//        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-//        blurEffectView.frame = view.bounds
-//        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-//        view.addSubview(blurEffectView)
-//    }
+    private func blur() {
+        // not using it
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.extraLight)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = view.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.addSubview(blurEffectView)
+    }
+    
 }
 
 extension ImageViewerViewController: UIScrollViewDelegate {
