@@ -11,6 +11,8 @@ import Photos
 import Whisper
 
 class ImageViewerViewController: PannableViewController {
+        
+    public var imageURL: URL!
     
     public var imageView = UIImageView()
     
@@ -46,7 +48,7 @@ class ImageViewerViewController: PannableViewController {
              So this is a simple yet valid workaround
              */
             
-            let longPress = UILongPressGestureRecognizer(target: self, action: #selector(longPressToCallActionSheet(_:)))
+            let longPress = UILongPressGestureRecognizer(target: self, action: #selector(longPressToCallShareSheet(_:)))
             scrollView.addGestureRecognizer(longPress)
         }
     }
@@ -74,19 +76,47 @@ class ImageViewerViewController: PannableViewController {
         }
     }
     
-    @IBAction func longPressToCallActionSheet(_ sender: UITapGestureRecognizer) {
+    @IBAction func longPressToCallShareSheet(_ sender: UITapGestureRecognizer) {
+        
+//        let imageURLString = tweet?.entities?.mediaToShare?[imageIndex!].mediaURL?.absoluteString ?? ""
+//        let tweetURL = ""
+        func popShareSheet() {
+            
+            let image = self.image ?? UIImage()
+            
+            let activityViewController = UIActivityViewController(activityItems: [image, imageURL], applicationActivities: nil)
+            
+            if presentedViewController == nil {
+                present(activityViewController, animated: true, completion: nil)
+            } else {
+                self.dismiss(animated: false) { [weak self] () -> Void in
+                    self?.present(activityViewController, animated: true, completion: nil)
+                }
+            }
+        }
         
         let alert = UIAlertController(
-            title: "Image",
-            message: "An Image",
+            title: nil,
+            message: nil,
             preferredStyle: .actionSheet
         )
         
         alert.addAction(UIAlertAction(title: "Save To Camera Roll", style: .default) { [weak self] (alertAction) in
             self?.saveToCameraRoll()
         })
-        alert.addAction(UIAlertAction(title: "Copy Link", style: .default) { (alertAction) in })
-        alert.addAction(UIAlertAction(title: "Copy Image", style: .default) { (alertAction) in })
+        alert.addAction(UIAlertAction(title: "Copy Link", style: .default) { [weak self] (alertAction) in
+            UIPasteboard.general.string = self?.imageURL.absoluteString
+            
+            var successMessage = Murmur(title: "Image Link Copied to Clipboard.")
+            successMessage.backgroundColor = .green
+            successMessage.titleColor = .black
+            
+            Whisper.show(whistle: successMessage, action: .show(1.5))
+
+        })
+        alert.addAction(UIAlertAction(title: "More…", style: .default) { (alertAction) in
+            popShareSheet()
+        })
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { (alertAction) in })
         
         if (sender.state == .began) {
@@ -159,44 +189,54 @@ extension ImageViewerViewController {
             var savingMessage = Murmur(title: "Saving to Camera Roll…")
             savingMessage.backgroundColor = .orange
             savingMessage.titleColor = .white
+            
             Whisper.show(whistle: savingMessage, action: .present)
             
-            DispatchQueue.global(qos: .userInitiated).async {
-                PHPhotoLibrary.shared().performChanges({
-                    PHAssetChangeRequest.creationRequestForAsset(from: image)
-                }, completionHandler: { success, error in
-                    if success {
-                        print("saved successfully")
+            Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false, block: { (timer) in
+                
+                DispatchQueue.global(qos: .userInitiated).async {
+                    
+                    PHPhotoLibrary.shared().performChanges({
                         
-                        Whisper.hide()
+                        PHAssetChangeRequest.creationRequestForAsset(from: image)
                         
-                        var successMessage = Murmur(title: "Saved To Camera Roll Successfully.")
-                        successMessage.backgroundColor = .green
-                        successMessage.titleColor = .black
+                    }, completionHandler: { success, error in
                         
-                        DispatchQueue.main.async {
-                            Whisper.show(whistle: successMessage, action: .show(1.0))
+                        if success {
+                            
+                            print("saved successfully")
+                            
+                            Whisper.hide()
+                            
+                            var successMessage = Murmur(title: "Saved To Camera Roll Successfully.")
+                            successMessage.backgroundColor = .green
+                            successMessage.titleColor = .black
+                            
+                            DispatchQueue.main.async {
+                                Whisper.show(whistle: successMessage, action: .show(1.5))
+                            }
+                        } else if let error = error {
+                            
+                            var errorMessage = Murmur(title: "Failed to Saved: \(error.localizedDescription)")
+                            errorMessage.backgroundColor = .red
+                            errorMessage.titleColor = .black
+                            
+                            DispatchQueue.main.async {
+                                Whisper.show(whistle: errorMessage, action: .show(1.0))
+                            }
+                        } else {
+                            
+                            var errorMessage = Murmur(title: "Failed to Saved.")
+                            errorMessage.backgroundColor = .red
+                            errorMessage.titleColor = .black
+                            
+                            DispatchQueue.main.async {
+                                Whisper.show(whistle: errorMessage, action: .show(1.0))
+                            }
                         }
-                    }
-                    else if let error = error {
-                        var errorMessage = Murmur(title: "Failed to Saved: \(error.localizedDescription)")
-                        errorMessage.backgroundColor = .red
-                        errorMessage.titleColor = .black
-                        
-                        DispatchQueue.main.async {
-                            Whisper.show(whistle: errorMessage, action: .show(1.0))
-                        }                    }
-                    else {
-                        var errorMessage = Murmur(title: "Failed to Saved.")
-                        errorMessage.backgroundColor = .red
-                        errorMessage.titleColor = .black
-                        
-                        DispatchQueue.main.async {
-                            Whisper.show(whistle: errorMessage, action: .show(1.0))
-                        }
-                    }
-                })
-            }
+                    })
+                }
+            })
         }
     }
 }

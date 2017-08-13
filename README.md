@@ -10,12 +10,13 @@
 - [ ] Image viewer
   - [x] Gestures, alerts
   - [x] Single Image viewer
+  - [x] Share sheet
   - [ ] Multiple Image viewer
   - [ ] GIF / video viewer
-  - [ ] Share sheet
 
 - [ ] Content filter
 - [ ] User profile page: basic infomation
+- [ ] Save to database
 
 #### Special:
 - [ ] Tweet gesture

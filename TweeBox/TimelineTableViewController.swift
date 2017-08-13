@@ -46,6 +46,7 @@ class TimelineTableViewController: UITableViewController
     fileprivate var clickedTweet: Tweet?
     fileprivate var clickedImageIndex: Int?
     fileprivate var clickMedia: UIImage?
+    fileprivate var imageURLToShare: URL?
     
 //    private var warningTextLabel: UILabel!
     
@@ -267,6 +268,7 @@ extension TimelineTableViewController: TweetWithPicTableViewCellProtocol {
         if segue.identifier == "imageTapped" {
             if let imageViewer = segue.destination.content as? ImageViewerViewController {
                 imageViewer.image = clickMedia
+                imageViewer.imageURL = imageURLToShare
             }
         }
     }
@@ -277,6 +279,7 @@ extension TimelineTableViewController: TweetWithPicTableViewCellProtocol {
         
         clickedTweet = timeline[section][row]
         self.clickedImageIndex = picIndex
+        imageURLToShare = clickedTweet?.entities?.mediaToShare?[clickedImageIndex ?? 0].mediaURL
         
         if let clickedMediaURL = clickedTweet?.entities?.realMedia?[clickedImageIndex ?? 0].mediaURL {
             KingfisherManager.shared.retrieveImage(with: clickedMediaURL, options: nil, progressBlock: nil) { [weak self] (image, error, cacheType, url) in

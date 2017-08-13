@@ -16,8 +16,9 @@ struct Entity {
     public var userMentions: [Mention]
     public var symbols: [TweetSymbol]
     
-    public var realMedia: [TweetMedia]?
     public var media: [TweetMedia]?
+    public var realMedia: [TweetMedia]?
+    public var mediaToShare: [TweetMedia]?
     
     class Hashtag: TweetEntity {
         
@@ -77,6 +78,7 @@ struct Entity {
             // there exists extended_json
             media = extendedJson["media"].arrayValue.map { TweetMedia(with: $0, quality: MediaSize.small) }
             realMedia = extendedJson["media"].arrayValue.map { TweetMedia(with: $0, quality: Constants.picQuality) }
+            mediaToShare = extendedJson["media"].arrayValue.map { TweetMedia(with: $0, quality: .nonNormal) }
             // media in extended_entities
         }
     }
