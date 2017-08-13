@@ -10,6 +10,7 @@ import UIKit
 import TwitterKit
 import AMScrollingNavbar
 import Kingfisher
+import Whisper
 
 class TimelineTableViewController: UITableViewController
 //    , ScrollingNavigationControllerDelegate
@@ -18,8 +19,9 @@ class TimelineTableViewController: UITableViewController
     fileprivate var timeline = [Array<Tweet>]() {
         didSet {
             print(timeline.count)
-            warningTextLabel.isHidden = true
-            tableView.separatorStyle = .singleLine
+//            warningTextLabel.isHidden = true
+//            tableView.separatorStyle = .singleLine
+            Whisper.hide(whisperFrom: navigationController!)
         }
     }
     
@@ -45,7 +47,7 @@ class TimelineTableViewController: UITableViewController
     fileprivate var clickedImageIndex: Int?
     fileprivate var clickMedia: UIImage?
     
-    private var warningTextLabel: UILabel!
+//    private var warningTextLabel: UILabel!
     
     // MARK: - Life cycle
     
@@ -66,17 +68,22 @@ class TimelineTableViewController: UITableViewController
         if timeline.flatMap({ $0 }).count == 0 {
             
             print("nothing")
-            warningTextLabel = UILabel(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width, height: view.bounds.size.height))
-            warningTextLabel.text = "Pull Down To Refresh"
-            warningTextLabel.textAlignment = .center
-            warningTextLabel.center = view.center
-//            warningTextLabel.backgroundColor = .white
-            warningTextLabel.textColor = .gray
             
-            view.addSubview(warningTextLabel)
+            let message = Message(title: "Pull down to refresh.", backgroundColor: .orange)
+            Whisper.show(whisper: message, to: navigationController!, action: .present)
             
-            tableView.separatorStyle = .none
-            warningTextLabel.isHidden = false
+            
+//            warningTextLabel = UILabel(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width, height: view.bounds.size.height))
+//            warningTextLabel.text = "Pull Down To Refresh"
+//            warningTextLabel.textAlignment = .center
+//            warningTextLabel.center = view.center
+////            warningTextLabel.backgroundColor = .white
+//            warningTextLabel.textColor = .gray
+//            
+//            view.addSubview(warningTextLabel)
+//            
+//            tableView.separatorStyle = .none
+//            warningTextLabel.isHidden = false
         }
 
         

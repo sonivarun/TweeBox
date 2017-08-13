@@ -8,6 +8,7 @@
 
 import UIKit
 import Photos
+import Whisper
 
 class ImageViewerViewController: PannableViewController {
     
@@ -71,8 +72,6 @@ class ImageViewerViewController: PannableViewController {
     
     @IBAction func longPressToCallActionSheet(_ sender: UITapGestureRecognizer) {
         
-        print("long press")
-        
         let alert = UIAlertController(
             title: "Image",
             message: "An Image",
@@ -86,7 +85,16 @@ class ImageViewerViewController: PannableViewController {
         alert.addAction(UIAlertAction(title: "Copy Image", style: .default) { (alertAction) in })
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { (alertAction) in })
         
-        present(alert, animated: true, completion: nil)
+        if (sender.state == .began) {
+            if presentedViewController == nil {
+                present(alert, animated: true, completion: nil)
+            } else {
+                self.dismiss(animated: false) { [weak self] () -> Void in
+                    self?.present(alert, animated: true, completion: nil)
+                }
+            }
+        }
+        
     }
     
 
@@ -147,7 +155,11 @@ extension ImageViewerViewController {
                 PHAssetChangeRequest.creationRequestForAsset(from: image)
             }, completionHandler: { success, error in
                 if success {
-                    // Saved successfully!
+                    print("saved successfully")
+                    var successMessage = Murmur(title: "Saved To Camera Roll Successfully.")
+                    successMessage.backgroundColor = .green
+                    successMessage.titleColor = .black
+                    Whisper.show(whistle: successMessage, action: .show(0.5))
                 }
                 else if let error = error {
                     // Save photo failed with error

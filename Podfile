@@ -12,4 +12,5 @@ target 'TweeBox' do
 	pod 'DateToolsSwift'
 	pod 'AMScrollingNavbar'
 	# pod 'Eureka'
+	pod 'Whisper'
 end
