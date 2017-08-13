@@ -2,23 +2,23 @@
 
 ## Roadmap
 ### Basic
- - [x] RESTful client
- - [x] Twitter API wrapper
+- [x] RESTful client
+- [x] Twitter API wrapper
 ### Timeline:
- - [x] Basic timeline information display
- - [ ] Image viewer
-         - [x] Gestures, alerts
-         - [x] Single Image viewer
-         - [ ] Multiple Image viewer
-         - [ ] GIF / video viewer
-         - [ ] Share sheet
- - [ ] Content filter
+- [x] Basic timeline information display
+- [ ] Image viewer
+  - [x] Gestures, alerts
+  - [x] Single Image viewer
+  - [ ] Multiple Image viewer
+  - [ ] GIF / video viewer
+  - [ ] Share sheet
 
- - [ ] User profile page: basic infomation
+- [ ] Content filter
+- [ ] User profile page: basic infomation
 
 ### Composer:
- - [ ] Retweet
- - [ ] Reply
- - [ ] Compose new tweet
+- [ ] Retweet
+- [ ] Reply
+- [ ] Compose new tweet
 
 ### DM:
