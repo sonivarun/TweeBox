@@ -11,7 +11,6 @@ import UIKit
 class TweetWithTextTableViewCell: TweetTableViewCell {
     
     @IBOutlet weak var tweetTextContent: UILabel!
-
     
     override func updateUI() {
         

@@ -13,4 +13,5 @@ target 'TweeBox' do
 	pod 'AMScrollingNavbar'
 	# pod 'Eureka'
 	pod 'Whisper'
+	pod 'BMPlayer'
 end

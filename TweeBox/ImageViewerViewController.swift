@@ -9,12 +9,33 @@
 import UIKit
 import Photos
 import Whisper
+//import BMPlayer
 
 class ImageViewerViewController: PannableViewController {
         
     public var imageURL: URL!
     
+    public var tweetMedia: TweetMedia!
+    
     public var imageView = UIImageView()
+    
+    fileprivate func centerIt() {
+        let imageFactor = imageView.frame.size.width / imageView.frame.size.height
+        
+        let screenWidth = UIScreen.main.bounds.size.width
+        let screenHeight = UIScreen.main.bounds.size.height
+        let screenFactor = screenWidth / screenHeight
+        
+        if imageFactor >= screenFactor {  // image is wider
+            imageView.frame.size.width = screenWidth
+            imageView.frame.size.height = screenWidth / imageFactor
+        } else {
+            imageView.frame.size.height = screenHeight
+            imageView.frame.size.width = screenHeight * imageFactor
+        }
+        imageView.center = view.center
+        scrollView.setZoomScale(1.0, animated: true)
+    }
     
     public var image: UIImage? {
         get {
@@ -25,21 +46,8 @@ class ImageViewerViewController: PannableViewController {
             imageView.sizeToFit()
             scrollView?.contentSize = imageView.frame.size
             
-            let imageFactor = imageView.frame.size.width / imageView.frame.size.height
+            centerIt()
             
-            let screenWidth = UIScreen.main.bounds.size.width
-            let screenHeight = UIScreen.main.bounds.size.height
-            let screenFactor = screenWidth / screenHeight
-            
-            if imageFactor >= screenFactor {  // image is wider
-                imageView.frame.size.width = screenWidth
-                imageView.frame.size.height = screenWidth / imageFactor
-            } else {
-                imageView.frame.size.height = screenHeight
-                imageView.frame.size.width = screenHeight * imageFactor
-            }
-            imageView.center = view.center
-            scrollView.setZoomScale(1.0, animated: true)
             /*
              the line above is because
              when the image is set by Kingfisher,
@@ -63,9 +71,9 @@ class ImageViewerViewController: PannableViewController {
         }
     }
     
-    @IBAction func tapToDismiss(_ sender: UITapGestureRecognizer) {
-        self.dismiss(animated: true, completion: nil)
-    }
+//    @IBAction func tapToDismiss(_ sender: UITapGestureRecognizer) {
+//        self.dismiss(animated: true, completion: nil)
+//    }
     
     @IBAction func doubleTapToZoom(_ sender: UITapGestureRecognizer) {
         
@@ -78,8 +86,6 @@ class ImageViewerViewController: PannableViewController {
     
     @IBAction func longPressToCallShareSheet(_ sender: UITapGestureRecognizer) {
         
-//        let imageURLString = tweet?.entities?.mediaToShare?[imageIndex!].mediaURL?.absoluteString ?? ""
-//        let tweetURL = ""
         func popShareSheet() {
             
             let image = self.image ?? UIImage()
@@ -105,13 +111,19 @@ class ImageViewerViewController: PannableViewController {
             self?.saveToCameraRoll()
         })
         alert.addAction(UIAlertAction(title: "Copy Link", style: .default) { [weak self] (alertAction) in
-            UIPasteboard.general.string = self?.imageURL.absoluteString
             
-            var successMessage = Murmur(title: "Image Link Copied to Clipboard.")
-            successMessage.backgroundColor = .green
-            successMessage.titleColor = .black
+            DispatchQueue.global(qos: .userInitiated).async {
+                
+                UIPasteboard.general.string = self?.imageURL.absoluteString
             
-            Whisper.show(whistle: successMessage, action: .show(1.5))
+                var successMessage = Murmur(title: "Image Link Copied to Clipboard.")
+                successMessage.backgroundColor = .green
+                successMessage.titleColor = .black
+                
+                DispatchQueue.main.async {
+                    Whisper.show(whistle: successMessage, action: .show(1.5))
+                }
+            }
 
         })
         alert.addAction(UIAlertAction(title: "More…", style: .default) { (alertAction) in
@@ -131,31 +143,14 @@ class ImageViewerViewController: PannableViewController {
         
     }
     
-
-    
-    // MARK - Life Cycle
-    
-    override var prefersStatusBarHidden: Bool {
-        return false
-    }
-    
-    override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
-        return UIStatusBarAnimation.slide
-    }
-
-    
-    @IBAction func cancel(_ sender: UIBarButtonItem) {
-        presentingViewController?.dismiss(animated: true)
-    }
-    
-    private func blur() {
-        // not using it
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.extraLight)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = view.bounds
-        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        view.addSubview(blurEffectView)
-    }
+//    private func blur() {
+//        // not using it
+//        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.extraLight)
+//        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+//        blurEffectView.frame = view.bounds
+//        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+//        view.addSubview(blurEffectView)
+//    }
     
 }
 
@@ -166,7 +161,6 @@ extension ImageViewerViewController: UIScrollViewDelegate {
     }
     
     func scrollViewDidZoom(_ scrollView: UIScrollView) {
-        
         // center the image as it becomes smaller than the size of the screen
         let boundsSize = scrollView.bounds.size
         var frameToCenter = imageView.frame
@@ -179,6 +173,10 @@ extension ImageViewerViewController: UIScrollViewDelegate {
         
         imageView.frame = frameToCenter
 
+    }
+    
+    override func viewDidLayoutSubviews() {
+        centerIt()
     }
 }
 

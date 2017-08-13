@@ -583,6 +583,7 @@
                     </refreshControl>
                     <connections>
                         <segue destination="YmO-B7-dd1" kind="presentation" identifier="imageTapped" id="XIS-oG-OFH"/>
+                        <segue destination="tY3-Cn-E0S" kind="presentation" identifier="videoTapped" id="mef-VN-nlC"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oQt-Fg-ncE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -601,15 +602,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ccA-fZ-SSr">
+                            <scrollView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ccA-fZ-SSr">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="rgx-yA-Z0Y" appends="YES" id="k6t-ip-SNT"/>
-                                    <outletCollection property="gestureRecognizers" destination="RHs-v1-5HO" appends="YES" id="TDs-53-NVq"/>
                                 </connections>
                             </scrollView>
                         </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="ccA-fZ-SSr" secondAttribute="trailing" id="38z-ch-GIr"/>
                             <constraint firstItem="ccA-fZ-SSr" firstAttribute="leading" secondItem="zta-ax-Vn3" secondAttribute="leading" id="AqS-Di-qkn"/>
@@ -635,13 +637,26 @@
                         <action selector="doubleTapToZoom:" destination="YmO-B7-dd1" id="0xm-ZE-fwr"/>
                     </connections>
                 </tapGestureRecognizer>
-                <tapGestureRecognizer id="RHs-v1-5HO">
-                    <connections>
-                        <action selector="tapToDismiss:" destination="YmO-B7-dd1" id="38b-T6-aEi"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3825" y="124"/>
+            <point key="canvasLocation" x="3780" y="-296"/>
+        </scene>
+        <!--Video Viewer View Controller-->
+        <scene sceneID="M0u-wU-l4Y">
+            <objects>
+                <viewController modalTransitionStyle="crossDissolve" id="tY3-Cn-E0S" customClass="VideoViewerViewController" customModule="TweeBox" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kDP-em-Bj5"/>
+                        <viewControllerLayoutGuide type="bottom" id="MIc-19-i7F"/>
+                    </layoutGuides>
+                    <view key="view" opaque="NO" contentMode="scaleToFill" id="QKa-Tc-5z6">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5vE-tx-IMM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3780" y="449"/>
         </scene>
         <!--Timeline-->
         <scene sceneID="1uf-C6-ebH">
@@ -1237,6 +1252,7 @@
                     </refreshControl>
                     <connections>
                         <segue destination="YmO-B7-dd1" kind="presentation" identifier="imageTapped" id="UPj-0o-4po"/>
+                        <segue destination="tY3-Cn-E0S" kind="presentation" identifier="videoTapped" id="bjk-Qr-s7r"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5f6-CM-xzV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1324,6 +1340,7 @@
         <image name="twitter_selected" width="16" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="XIS-oG-OFH"/>
+        <segue reference="mef-VN-nlC"/>
+        <segue reference="UPj-0o-4po"/>
     </inferredMetricsTieBreakers>
 </document>

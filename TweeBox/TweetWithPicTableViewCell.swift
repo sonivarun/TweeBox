@@ -12,13 +12,13 @@ import Kingfisher
 
 
 protocol TweetWithPicTableViewCellProtocol: class {
-    func imageTapped(section: Int, row: Int, picIndex: Int)
+    func imageTapped(section: Int, row: Int, mediaIndex: Int, media: [TweetMedia])
 }
 
 
 class TweetWithPicTableViewCell: TweetTableViewCell {
     
-    private var totalPic: Int!
+    private var totalMediaNum: Int!
     
     @IBAction func imageTapped(byReactingTo: UIGestureRecognizer) {
         
@@ -26,23 +26,23 @@ class TweetWithPicTableViewCell: TweetTableViewCell {
         let xBound = self.tweetPicContent.bounds.maxX
         let yBound = self.tweetPicContent.bounds.maxY
         
-        let whichPic = (index.x <= xBound, index.y <= yBound)
+        let whichMedia = (index.x <= xBound, index.y <= yBound)
         
-        switch whichPic {
+        switch whichMedia {
         case (true, true):  // up left
-            picIndex = 0
+            mediaIndex = 0
         case (false, true):  // up right
-            picIndex = totalPic >= 2 ? 1 : 0
+            mediaIndex = totalMediaNum >= 2 ? 1 : 0
         case (true, false):  // down left
-            picIndex = totalPic == 4 ? 2 : 0
+            mediaIndex = totalMediaNum == 4 ? 2 : 0
         case (false, false):  // down right
-            picIndex = totalPic == 4 ? 3 : (totalPic == 3 ? 2 : (totalPic == 2 ? 1 : 0))
+            mediaIndex = totalMediaNum == 4 ? 3 : (totalMediaNum == 3 ? 2 : (totalMediaNum == 2 ? 1 : 0))
         }
         
-        print(">>> image index: \(picIndex!)")
+        print(">>> image index: \(mediaIndex!)")
                 
-        guard let section = section, let row = row, let picIndex = picIndex else { return }
-        delegate?.imageTapped(section: section, row: row, picIndex: picIndex)
+        guard let section = section, let row = row, let mediaIndex = mediaIndex else { return }
+        delegate?.imageTapped(section: section, row: row, mediaIndex: mediaIndex, media: (tweet?.entities?.media)!)
     }
     
     
@@ -56,11 +56,11 @@ class TweetWithPicTableViewCell: TweetTableViewCell {
         
     private func setPic(at position: Int, of total: Int) {
         
-        totalPic = total
+        totalMediaNum = total
         
         let media = tweet!.entities!.media!
         
-        let pics = [tweetPicContent, secondPic, thirdPic, fourthPic]  // pointer or copy?
+        let images = [tweetPicContent, secondPic, thirdPic, fourthPic]  // pointer or copy?
         
         var aspect: CGFloat {
             if (total == 2) || (total == 3 && position == 0) {
@@ -97,7 +97,7 @@ class TweetWithPicTableViewCell: TweetTableViewCell {
         let processor = CroppingImageProcessor(size: CGSize(width: picWidth, height: picHeight), anchor: cutPoint)
             // >> RoundCornerImageProcessor(cornerRadius: Constants.picCornerRadius)
         
-        if let picView = pics[position] {
+        if let picView = images[position] {
 //            picView.kf.indicatorType = .activity
             picView.kf.setImage(
                 with: tweetPicURL,
@@ -121,6 +121,12 @@ class TweetWithPicTableViewCell: TweetTableViewCell {
             ptap.numberOfTapsRequired = 1
             picView.addGestureRecognizer(ptap)
             picView.isUserInteractionEnabled = true
+        }
+        
+        if pic.type == "video" {
+            print("video")
+        } else if pic.type == "animated_gif" {
+            print("gif")
         }
     }
     

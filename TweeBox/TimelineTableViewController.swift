@@ -47,6 +47,7 @@ class TimelineTableViewController: UITableViewController
     fileprivate var clickedImageIndex: Int?
     fileprivate var clickMedia: UIImage?
     fileprivate var imageURLToShare: URL?
+    fileprivate var media: [TweetMedia]!
     
 //    private var warningTextLabel: UILabel!
     
@@ -62,8 +63,6 @@ class TimelineTableViewController: UITableViewController
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        
-        
         //  Warning text when table is empty
         
         if timeline.flatMap({ $0 }).count == 0 {
@@ -73,22 +72,10 @@ class TimelineTableViewController: UITableViewController
             let message = Message(title: "Pull down to refresh.", backgroundColor: .orange)
             tableView.separatorStyle = .none
             Whisper.show(whisper: message, to: navigationController!, action: .present)
-            
-            
-//            warningTextLabel = UILabel(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width, height: view.bounds.size.height))
-//            warningTextLabel.text = "Pull Down To Refresh"
-//            warningTextLabel.textAlignment = .center
-//            warningTextLabel.center = view.center
-////            warningTextLabel.backgroundColor = .white
-//            warningTextLabel.textColor = .gray
-//            
-//            view.addSubview(warningTextLabel)
-
-//            warningTextLabel.isHidden = false
         }
 
         
-        // hide bars on scrolling
+        // Hide bars on scrolling
 //        if let navigationController = navigationController as? ScrollingNavigationController, let tabBarController = tabBarController {
 //            navigationController.followScrollView(
 //                tableView,
@@ -204,7 +191,7 @@ class TimelineTableViewController: UITableViewController
                     tweetCell.delegate = self
                     tweetCell.section = indexPath.section
                     tweetCell.row = indexPath.row
-                    tweetCell.picIndex = 0
+                    tweetCell.mediaIndex = 0
                 }
             case 2:
                 cell = tableView.dequeueReusableCell(withIdentifier: "Tweet with Two Pics and Text", for: indexPath)
@@ -267,28 +254,44 @@ extension TimelineTableViewController: TweetWithPicTableViewCellProtocol {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "imageTapped" {
             if let imageViewer = segue.destination.content as? ImageViewerViewController {
-                imageViewer.image = clickMedia
-                imageViewer.imageURL = imageURLToShare
+                    imageViewer.image = clickMedia
+                    imageViewer.imageURL = imageURLToShare
+            }
+        } else if segue.identifier == "videoTapped" {
+            if let videoViewer = segue.destination.content as? VideoViewerViewController {
+                videoViewer.tweetMedia = media[0]
             }
         }
     }
     
-    func imageTapped(section: Int, row: Int, picIndex: Int) {
+    func imageTapped(section: Int, row: Int, mediaIndex: Int, media: [TweetMedia]) {
         
-        print("image index: \(section, picIndex)")
+        print("image index: \(section, mediaIndex)")
         
-        clickedTweet = timeline[section][row]
-        self.clickedImageIndex = picIndex
-        imageURLToShare = clickedTweet?.entities?.mediaToShare?[clickedImageIndex ?? 0].mediaURL
+        self.clickedTweet = timeline[section][row]
+        self.clickedImageIndex = mediaIndex
+        self.media = media
+        self.imageURLToShare = clickedTweet?.entities?.mediaToShare?[clickedImageIndex ?? 0].mediaURL
         
-        if let clickedMediaURL = clickedTweet?.entities?.realMedia?[clickedImageIndex ?? 0].mediaURL {
-            KingfisherManager.shared.retrieveImage(with: clickedMediaURL, options: nil, progressBlock: nil) { [weak self] (image, error, cacheType, url) in
-                if let image = image {
-                    self?.clickMedia = image
-                    self?.performSegue(withIdentifier: "imageTapped", sender: nil)
+        if media.count == 1, media[0].type != "photo" {
+            performSegue(withIdentifier: "videoTapped", sender: nil)
+        } else {
+            if let clickedMediaURL = clickedTweet?.entities?.realMedia?[clickedImageIndex ?? 0].mediaURL {
+                
+                KingfisherManager.shared.retrieveImage(with: clickedMediaURL, options: nil, progressBlock: {
+                    receivedSize, totalSize in
+                    let percentage = (Float(receivedSize) / Float(totalSize)) * 100.0
+                    print("Loading: \(percentage)%")
+                    // TODO: progress indicator
+                }) { [weak self] (image, error, cacheType, url) in
+                    if let image = image {
+                        self?.clickMedia = image
+                        self?.performSegue(withIdentifier: "imageTapped", sender: nil)
+                    }
                 }
+                
             }
-            
+
         }
     }
 }

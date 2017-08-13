@@ -16,7 +16,7 @@ class TweetTableViewCell: UITableViewCell {
     weak var delegate: TweetWithPicTableViewCellProtocol?
     var section: Int?
     var row: Int?
-    var picIndex: Int?
+    var mediaIndex: Int?
 
     var tweet: Tweet? {
         didSet {
