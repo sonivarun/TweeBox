@@ -20,8 +20,8 @@ class TimelineTableViewController: UITableViewController
         didSet {
             print(timeline.count)
 //            warningTextLabel.isHidden = true
-//            tableView.separatorStyle = .singleLine
             Whisper.hide(whisperFrom: navigationController!)
+            tableView.separatorStyle = .singleLine
         }
     }
     
@@ -70,6 +70,7 @@ class TimelineTableViewController: UITableViewController
             print("nothing")
             
             let message = Message(title: "Pull down to refresh.", backgroundColor: .orange)
+            tableView.separatorStyle = .none
             Whisper.show(whisper: message, to: navigationController!, action: .present)
             
             
@@ -81,8 +82,7 @@ class TimelineTableViewController: UITableViewController
 //            warningTextLabel.textColor = .gray
 //            
 //            view.addSubview(warningTextLabel)
-//            
-//            tableView.separatorStyle = .none
+
 //            warningTextLabel.isHidden = false
         }
 

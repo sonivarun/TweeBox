@@ -606,6 +606,7 @@
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="rgx-yA-Z0Y" appends="YES" id="k6t-ip-SNT"/>
+                                    <outletCollection property="gestureRecognizers" destination="RHs-v1-5HO" appends="YES" id="TDs-53-NVq"/>
                                 </connections>
                             </scrollView>
                         </subviews>
@@ -632,6 +633,11 @@
                 <tapGestureRecognizer numberOfTapsRequired="2" id="rgx-yA-Z0Y">
                     <connections>
                         <action selector="doubleTapToZoom:" destination="YmO-B7-dd1" id="0xm-ZE-fwr"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="RHs-v1-5HO">
+                    <connections>
+                        <action selector="tapToDismiss:" destination="YmO-B7-dd1" id="38b-T6-aEi"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>

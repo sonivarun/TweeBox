@@ -61,6 +61,10 @@ class ImageViewerViewController: PannableViewController {
         }
     }
     
+    @IBAction func tapToDismiss(_ sender: UITapGestureRecognizer) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     @IBAction func doubleTapToZoom(_ sender: UITapGestureRecognizer) {
         
         if scrollView.zoomScale > 1.0 {
@@ -102,7 +106,7 @@ class ImageViewerViewController: PannableViewController {
     // MARK - Life Cycle
     
     override var prefersStatusBarHidden: Bool {
-        return true
+        return false
     }
     
     override var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
@@ -151,23 +155,48 @@ extension ImageViewerViewController: UIScrollViewDelegate {
 extension ImageViewerViewController {
     func saveToCameraRoll() {
         if let image = image {
-            PHPhotoLibrary.shared().performChanges({
-                PHAssetChangeRequest.creationRequestForAsset(from: image)
-            }, completionHandler: { success, error in
-                if success {
-                    print("saved successfully")
-                    var successMessage = Murmur(title: "Saved To Camera Roll Successfully.")
-                    successMessage.backgroundColor = .green
-                    successMessage.titleColor = .black
-                    Whisper.show(whistle: successMessage, action: .show(0.5))
-                }
-                else if let error = error {
-                    // Save photo failed with error
-                }
-                else {
-                    // Save photo failed with no error
-                }
-            })
+            
+            var savingMessage = Murmur(title: "Saving to Camera Roll…")
+            savingMessage.backgroundColor = .orange
+            savingMessage.titleColor = .white
+            Whisper.show(whistle: savingMessage, action: .present)
+            
+            DispatchQueue.global(qos: .userInitiated).async {
+                PHPhotoLibrary.shared().performChanges({
+                    PHAssetChangeRequest.creationRequestForAsset(from: image)
+                }, completionHandler: { success, error in
+                    if success {
+                        print("saved successfully")
+                        
+                        Whisper.hide()
+                        
+                        var successMessage = Murmur(title: "Saved To Camera Roll Successfully.")
+                        successMessage.backgroundColor = .green
+                        successMessage.titleColor = .black
+                        
+                        DispatchQueue.main.async {
+                            Whisper.show(whistle: successMessage, action: .show(1.0))
+                        }
+                    }
+                    else if let error = error {
+                        var errorMessage = Murmur(title: "Failed to Saved: \(error.localizedDescription)")
+                        errorMessage.backgroundColor = .red
+                        errorMessage.titleColor = .black
+                        
+                        DispatchQueue.main.async {
+                            Whisper.show(whistle: errorMessage, action: .show(1.0))
+                        }                    }
+                    else {
+                        var errorMessage = Murmur(title: "Failed to Saved.")
+                        errorMessage.backgroundColor = .red
+                        errorMessage.titleColor = .black
+                        
+                        DispatchQueue.main.async {
+                            Whisper.show(whistle: errorMessage, action: .show(1.0))
+                        }
+                    }
+                })
+            }
         }
     }
 }
