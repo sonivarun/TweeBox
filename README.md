@@ -4,6 +4,7 @@
 ### Basic
 - [x] RESTful client
 - [x] Twitter API wrapper
+
 ### Timeline:
 - [x] Basic timeline information display
 - [ ] Image viewer
@@ -15,6 +16,10 @@
 
 - [ ] Content filter
 - [ ] User profile page: basic infomation
+
+#### Special:
+- [ ] Tweet gesture
+- [ ] Waiting bubble
 
 ### Composer:
 - [ ] Retweet
