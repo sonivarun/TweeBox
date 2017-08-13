@@ -582,8 +582,8 @@
                         </connections>
                     </refreshControl>
                     <connections>
-                        <segue destination="YmO-B7-dd1" kind="presentation" identifier="imageTapped" id="XIS-oG-OFH"/>
                         <segue destination="tY3-Cn-E0S" kind="presentation" identifier="videoTapped" id="mef-VN-nlC"/>
+                        <segue destination="YmO-B7-dd1" kind="presentation" identifier="imageTapped" id="TE5-Ah-PTm"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oQt-Fg-ncE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -593,7 +593,7 @@
         <!--Image Viewer View Controller-->
         <scene sceneID="fkh-Vn-WoT">
             <objects>
-                <viewController modalTransitionStyle="crossDissolve" id="YmO-B7-dd1" customClass="ImageViewerViewController" customModule="TweeBox" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ImageViewer" modalTransitionStyle="crossDissolve" id="YmO-B7-dd1" customClass="ImageViewerViewController" customModule="TweeBox" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2OL-FF-os7"/>
                         <viewControllerLayoutGuide type="bottom" id="dc3-1R-gaS"/>
@@ -638,7 +638,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3780" y="-296"/>
+            <point key="canvasLocation" x="3673" y="-296"/>
         </scene>
         <!--Video Viewer View Controller-->
         <scene sceneID="M0u-wU-l4Y">
@@ -656,7 +656,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5vE-tx-IMM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3780" y="449"/>
+            <point key="canvasLocation" x="3674" y="449"/>
         </scene>
         <!--Timeline-->
         <scene sceneID="1uf-C6-ebH">
@@ -1251,8 +1251,8 @@
                         </connections>
                     </refreshControl>
                     <connections>
-                        <segue destination="YmO-B7-dd1" kind="presentation" identifier="imageTapped" id="UPj-0o-4po"/>
                         <segue destination="tY3-Cn-E0S" kind="presentation" identifier="videoTapped" id="bjk-Qr-s7r"/>
+                        <segue destination="YmO-B7-dd1" kind="presentation" identifier="imageTapped" id="3a5-VP-cl5"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5f6-CM-xzV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1340,7 +1340,7 @@
         <image name="twitter_selected" width="16" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mef-VN-nlC"/>
-        <segue reference="UPj-0o-4po"/>
+        <segue reference="bjk-Qr-s7r"/>
+        <segue reference="3a5-VP-cl5"/>
     </inferredMetricsTieBreakers>
 </document>

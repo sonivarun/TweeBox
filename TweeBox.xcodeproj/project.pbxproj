@@ -42,6 +42,8 @@
 		B47E586B1F3C959900CA0C0A /* UserTimelineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47E586A1F3C959900CA0C0A /* UserTimelineTableViewController.swift */; };
 		B47E586F1F3D8A2F00CA0C0A /* ImageViewerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47E586E1F3D8A2F00CA0C0A /* ImageViewerViewController.swift */; };
 		B47E58711F3DACAC00CA0C0A /* PannableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47E58701F3DACAC00CA0C0A /* PannableViewController.swift */; };
+		B4B406321F40A0A500683124 /* EmbededPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B406311F40A0A500683124 /* EmbededPageViewController.swift */; };
+		B4B406341F40B2EA00683124 /* PageManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B406331F40B2EA00683124 /* PageManagerViewController.swift */; };
 		B4B7C4C41F3ED26E00F424A0 /* NavigationViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B7C4C31F3ED26E00F424A0 /* NavigationViewControllerExtension.swift */; };
 		B4CE12161F3ACCDF002D341E /* HomeTimelineParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CE12151F3ACCDF002D341E /* HomeTimelineParams.swift */; };
 		B4CE12181F3AD60A002D341E /* TimelineParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CE12171F3AD60A002D341E /* TimelineParams.swift */; };
@@ -108,6 +110,8 @@
 		B47E586A1F3C959900CA0C0A /* UserTimelineTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTimelineTableViewController.swift; sourceTree = "<group>"; };
 		B47E586E1F3D8A2F00CA0C0A /* ImageViewerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewerViewController.swift; sourceTree = "<group>"; };
 		B47E58701F3DACAC00CA0C0A /* PannableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PannableViewController.swift; sourceTree = "<group>"; };
+		B4B406311F40A0A500683124 /* EmbededPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmbededPageViewController.swift; sourceTree = "<group>"; };
+		B4B406331F40B2EA00683124 /* PageManagerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageManagerViewController.swift; sourceTree = "<group>"; };
 		B4B7C4C31F3ED26E00F424A0 /* NavigationViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationViewControllerExtension.swift; sourceTree = "<group>"; };
 		B4CE12151F3ACCDF002D341E /* HomeTimelineParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTimelineParams.swift; sourceTree = "<group>"; };
 		B4CE12171F3AD60A002D341E /* TimelineParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineParams.swift; sourceTree = "<group>"; };
@@ -265,6 +269,8 @@
 				B47E586A1F3C959900CA0C0A /* UserTimelineTableViewController.swift */,
 				B47E58681F3C889800CA0C0A /* UserProfileViewController.swift */,
 				B47E586E1F3D8A2F00CA0C0A /* ImageViewerViewController.swift */,
+				B4B406311F40A0A500683124 /* EmbededPageViewController.swift */,
+				B4B406331F40B2EA00683124 /* PageManagerViewController.swift */,
 				B45F1D551F40645B00AF201C /* VideoViewerViewController.swift */,
 				B47E58701F3DACAC00CA0C0A /* PannableViewController.swift */,
 			);
@@ -503,6 +509,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B42985A81F29E8E700AFFB97 /* TweeBox.xcdatamodeld in Sources */,
+				B4B406341F40B2EA00683124 /* PageManagerViewController.swift in Sources */,
 				B4EC26231F2F810700011DA0 /* UserTimelineParams.swift in Sources */,
 				B443A0F01F2B371A0021BB65 /* Tweet.swift in Sources */,
 				B40930001F395FFD00CAB109 /* TweetWithTextTableViewCell.swift in Sources */,
@@ -527,6 +534,7 @@
 				B4CE12161F3ACCDF002D341E /* HomeTimelineParams.swift in Sources */,
 				B443A0FC1F2B70D40021BB65 /* Error.swift in Sources */,
 				B43BB8B91F359F9A0011A301 /* Coordinates.swift in Sources */,
+				B4B406321F40A0A500683124 /* EmbededPageViewController.swift in Sources */,
 				B40930041F3965B600CAB109 /* TweetTableViewCell.swift in Sources */,
 				B47E586F1F3D8A2F00CA0C0A /* ImageViewerViewController.swift in Sources */,
 				B42985A01F29E8E700AFFB97 /* AppDelegate.swift in Sources */,

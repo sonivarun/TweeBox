@@ -9,6 +9,7 @@
 import UIKit
 import Photos
 import Whisper
+import Kingfisher
 //import BMPlayer
 
 class ImageViewerViewController: PannableViewController {
@@ -18,24 +19,6 @@ class ImageViewerViewController: PannableViewController {
     public var tweetMedia: TweetMedia!
     
     public var imageView = UIImageView()
-    
-    fileprivate func centerIt() {
-        let imageFactor = imageView.frame.size.width / imageView.frame.size.height
-        
-        let screenWidth = UIScreen.main.bounds.size.width
-        let screenHeight = UIScreen.main.bounds.size.height
-        let screenFactor = screenWidth / screenHeight
-        
-        if imageFactor >= screenFactor {  // image is wider
-            imageView.frame.size.width = screenWidth
-            imageView.frame.size.height = screenWidth / imageFactor
-        } else {
-            imageView.frame.size.height = screenHeight
-            imageView.frame.size.width = screenHeight * imageFactor
-        }
-        imageView.center = view.center
-        scrollView.setZoomScale(1.0, animated: true)
-    }
     
     public var image: UIImage? {
         get {
@@ -71,9 +54,21 @@ class ImageViewerViewController: PannableViewController {
         }
     }
     
+    var photoIndex: Int!
+    
 //    @IBAction func tapToDismiss(_ sender: UITapGestureRecognizer) {
 //        self.dismiss(animated: true, completion: nil)
 //    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if image == nil, imageURL != nil {
+            imageView.kf.indicatorType = .activity
+            imageView.kf.setImage(with: imageURL)
+        }
+    }
+    
     
     @IBAction func doubleTapToZoom(_ sender: UITapGestureRecognizer) {
         
@@ -151,6 +146,24 @@ class ImageViewerViewController: PannableViewController {
 //        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 //        view.addSubview(blurEffectView)
 //    }
+    
+    fileprivate func centerIt() {
+        let imageFactor = imageView.frame.size.width / imageView.frame.size.height
+        
+        let screenWidth = UIScreen.main.bounds.size.width
+        let screenHeight = UIScreen.main.bounds.size.height
+        let screenFactor = screenWidth / screenHeight
+        
+        if imageFactor >= screenFactor {  // image is wider
+            imageView.frame.size.width = screenWidth
+            imageView.frame.size.height = screenWidth / imageFactor
+        } else {
+            imageView.frame.size.height = screenHeight
+            imageView.frame.size.width = screenHeight * imageFactor
+        }
+        imageView.center = view.center
+        scrollView.setZoomScale(1.0, animated: true)
+    }
     
 }
 
