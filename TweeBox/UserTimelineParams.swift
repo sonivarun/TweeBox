@@ -18,17 +18,18 @@ class UserTimelineParams: TimelineParams {
         
         self.userID = userID
         
-        super.init()
+        super.init(excludeReplies: nil, includeRetweets: nil)
         resourceURL = ResourceURL.user_timeline
     }
     
     override public func getParams() -> [String: String] {
-        var params = [String: String]()
+        var params = super.getParams()
         
         if userID != nil {
             params["user_id"] = userID
         }
         
-        return super.getParams()
+        print(params)
+        return params
     }
 }

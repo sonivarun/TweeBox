@@ -10,9 +10,9 @@ import Foundation
 
 class HomeTimelineParams: TimelineParams {
     
-    override init(sinceID: String? = nil, maxID: String? = nil, excludeReplies: Bool = false, includeRetweets: Bool = true) {
+    override init(sinceID: String? = nil, maxID: String? = nil, excludeReplies: Bool? = false, includeRetweets: Bool? = true) {
         
-        super.init()
+        super.init(excludeReplies: nil, includeRetweets: nil)
         resourceURL = ResourceURL.home_timeline
     }
 }

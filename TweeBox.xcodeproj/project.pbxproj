@@ -44,6 +44,7 @@
 		B47E58711F3DACAC00CA0C0A /* PannableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47E58701F3DACAC00CA0C0A /* PannableViewController.swift */; };
 		B4B406321F40A0A500683124 /* EmbededPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B406311F40A0A500683124 /* EmbededPageViewController.swift */; };
 		B4B406341F40B2EA00683124 /* PageManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B406331F40B2EA00683124 /* PageManagerViewController.swift */; };
+		B4B406361F4163E600683124 /* HomeTimelineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B406351F4163E600683124 /* HomeTimelineTableViewController.swift */; };
 		B4B7C4C41F3ED26E00F424A0 /* NavigationViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B7C4C31F3ED26E00F424A0 /* NavigationViewControllerExtension.swift */; };
 		B4CE12161F3ACCDF002D341E /* HomeTimelineParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CE12151F3ACCDF002D341E /* HomeTimelineParams.swift */; };
 		B4CE12181F3AD60A002D341E /* TimelineParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CE12171F3AD60A002D341E /* TimelineParams.swift */; };
@@ -112,6 +113,7 @@
 		B47E58701F3DACAC00CA0C0A /* PannableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PannableViewController.swift; sourceTree = "<group>"; };
 		B4B406311F40A0A500683124 /* EmbededPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmbededPageViewController.swift; sourceTree = "<group>"; };
 		B4B406331F40B2EA00683124 /* PageManagerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageManagerViewController.swift; sourceTree = "<group>"; };
+		B4B406351F4163E600683124 /* HomeTimelineTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTimelineTableViewController.swift; sourceTree = "<group>"; };
 		B4B7C4C31F3ED26E00F424A0 /* NavigationViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationViewControllerExtension.swift; sourceTree = "<group>"; };
 		B4CE12151F3ACCDF002D341E /* HomeTimelineParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTimelineParams.swift; sourceTree = "<group>"; };
 		B4CE12171F3AD60A002D341E /* TimelineParams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineParams.swift; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 				B42985A11F29E8E700AFFB97 /* LoginViewController.swift */,
 				B43BBCA91F3716F2002D0AE0 /* TimelineTableViewController.swift */,
 				B47E586A1F3C959900CA0C0A /* UserTimelineTableViewController.swift */,
+				B4B406351F4163E600683124 /* HomeTimelineTableViewController.swift */,
 				B47E58681F3C889800CA0C0A /* UserProfileViewController.swift */,
 				B47E586E1F3D8A2F00CA0C0A /* ImageViewerViewController.swift */,
 				B4B406311F40A0A500683124 /* EmbededPageViewController.swift */,
@@ -517,6 +520,7 @@
 				B47E58711F3DACAC00CA0C0A /* PannableViewController.swift in Sources */,
 				B40930081F39710000CAB109 /* URLExtension.swift in Sources */,
 				B409300A1F39763E00CAB109 /* MediaSize.swift in Sources */,
+				B4B406361F4163E600683124 /* HomeTimelineTableViewController.swift in Sources */,
 				B43BB8BB1F35A2300011A301 /* Entity.swift in Sources */,
 				B43BB8BD1F35A4A40011A301 /* Place.swift in Sources */,
 				B47E58691F3C889800CA0C0A /* UserProfileViewController.swift in Sources */,

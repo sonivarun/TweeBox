@@ -8,12 +8,17 @@
 
 import UIKit
 import Kingfisher
-//import SDWebImage
+
+protocol TweetTableViewCellProtocol: class {
+    func profileImageTapped(section: Int, row: Int)
+}
 
 class TweetTableViewCell: UITableViewCell {
     
     // tap to segue
     weak var delegate: TweetWithPicTableViewCellProtocol?
+    weak var profilrDelegate: TweetTableViewCellProtocol?
+    
     var section: Int?
     var row: Int?
     var mediaIndex: Int?
@@ -29,20 +34,23 @@ class TweetTableViewCell: UITableViewCell {
     @IBOutlet weak var tweetUserName: UILabel!
     @IBOutlet weak var tweetUserID: UILabel!
     
+    @IBAction func profileImageTapped(byReactingTo: UIGestureRecognizer) {
+        print(section, row)
+        guard let section = section, let row = row else { return }
+        profilrDelegate?.profileImageTapped(section: section, row: row)
+    }
+    
+    
     func updateUI() {
         
         if let userProfileImageURL = tweet?.user.profileImageURL, let picView = self.tweetUserProfilePic {
             
             // Kingfisher
-//            let placeholder = UIImage(named: "placeholder")
-//            let processor = RoundCornerImageProcessor(cornerRadius: Constants.defaultProfileRadius)
-//            self.tweetUserProfilePic?.kf.indicatorType = .activity
             picView.kf.setImage(
                 with: userProfileImageURL,
 //                placeholder: placeholder,
                 options: [
                     .transition(.fade(Constants.picFadeInDuration)),
-//                    .processor(processor)
                 ]
             )
             
@@ -52,10 +60,14 @@ class TweetTableViewCell: UITableViewCell {
             picView.layer.cornerRadius = picView.frame.size.width / 2
             picView.clipsToBounds = true
             
-            // SDWebImage
-//            self.tweetUserProfilePic?.sd_setShowActivityIndicatorView(true)
-//            self.tweetUserProfilePic?.sd_setIndicatorStyle(.gray)
-//            self.self.tweetUserProfilePic?.sd_setImage(with: userProfileImageURL)
+            // tap to segue
+            let tapOnProfileImage = UITapGestureRecognizer(
+                target: self,
+                action: #selector(profileImageTapped(byReactingTo:))
+            )
+            tapOnProfileImage.numberOfTapsRequired = 1
+            picView.addGestureRecognizer(tapOnProfileImage)
+            picView.isUserInteractionEnabled = true            
         } else {
             tweetUserProfilePic?.image = nil
         }

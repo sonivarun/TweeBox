@@ -18,32 +18,33 @@ class Timeline {
     public var sinceID: String?
     public var fetchNewer: Bool
     public var resourceURL: (String, String)
-    public var params: [String: String]
+    public var timelineParams: TimelineParams
     
-    init(maxID: String?, sinceID: String?, fetchNewer: Bool = true, resourceURL: (String, String), params: [String: String]) {
+    init(maxID: String?, sinceID: String?, fetchNewer: Bool = true, resourceURL: (String, String), timelineParams: TimelineParams) {
+        
         self.maxID = maxID
         self.sinceID = sinceID
+        
         self.fetchNewer = fetchNewer
         
         self.resourceURL = resourceURL
-        self.params = params
+        self.timelineParams = timelineParams
     }
     
     public func fetchData(_ handler: @escaping (String?, String?, [Tweet]?) -> Void) {
         
-        if let userID = Twitter.sharedInstance().sessionStore.session()?.userID {
-            
-            let userTimelineParams = UserTimelineParams(of: userID)
+        if Twitter.sharedInstance().sessionStore.session()?.userID != nil {
             
             if fetchNewer, sinceID != nil {
-                userTimelineParams.sinceID = String(Int(sinceID!)! + 1)
+                print(">>> newer")
+                timelineParams.sinceID = String(Int(sinceID!)! + 1)
             }
             
             if !fetchNewer, maxID != nil {
-                userTimelineParams.maxID = String(Int(maxID!)! - 1)
+                timelineParams.maxID = String(Int(maxID!)! - 1)
             }
             
-            let client = RESTfulClient(resource: resourceURL, params: userTimelineParams.params)
+            let client = RESTfulClient(resource: resourceURL, params: timelineParams.getParams())
             
             client.getData() { data in
                 let json = JSON(data: data)

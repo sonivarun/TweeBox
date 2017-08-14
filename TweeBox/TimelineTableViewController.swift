@@ -18,19 +18,16 @@ class TimelineTableViewController: UITableViewController
     
     fileprivate var timeline = [Array<Tweet>]() {
         didSet {
-            print(timeline.count)
-//            warningTextLabel.isHidden = true
-            Whisper.hide(whisperFrom: navigationController!)
+            print(">>> Batch >> \(timeline.count)")
+            if let navigationController = navigationController {
+                Whisper.hide(whisperFrom: navigationController)
+            }
             tableView.separatorStyle = .singleLine
         }
     }
     
     public var maxID: String?
-//    { didSet { print("max: \(maxID ?? "maxID NOT EXIST")") } }
-    
     public var sinceID: String?
-//    { didSet { print("since: \(sinceID ?? "sinceID NOT EXIST")") } }
-    
     public var fetchNewer = true
     /*
      if there is a newer batch, there exists a maxID;
@@ -42,6 +39,7 @@ class TimelineTableViewController: UITableViewController
     
     // tap to segue
     weak var delegate:TweetWithPicTableViewCell?
+    weak var profilrDelegate: TweetTableViewCell?
     
     fileprivate var clickedTweet: Tweet?
     fileprivate var clickedImageIndex: Int?
@@ -67,11 +65,11 @@ class TimelineTableViewController: UITableViewController
         
         if timeline.flatMap({ $0 }).count == 0 {
             
-            print("nothing")
-            
             let message = Message(title: "Pull down to refresh.", backgroundColor: .orange)
             tableView.separatorStyle = .none
-            Whisper.show(whisper: message, to: navigationController!, action: .present)
+            if let navigationController = navigationController {
+                Whisper.show(whisper: message, to: navigationController, action: .present)
+            }
         }
 
         
@@ -117,18 +115,18 @@ class TimelineTableViewController: UITableViewController
             sinceID: sinceID,
             fetchNewer: fetchNewer,
             resourceURL: homeTimelineParams.resourceURL,
-            params: homeTimelineParams.getParams()
+            timelineParams: homeTimelineParams
         )
         
         timeline.fetchData { [weak self] (maxID, sinceID, tweets) in
-            if maxID != nil {
-                self?.maxID = maxID!
+            if let maxID = maxID {
+                self?.maxID = maxID
             }
-            if sinceID != nil {
-                self?.sinceID = sinceID!
+            if let sinceID = sinceID {
+                self?.sinceID = sinceID
             }
-            if tweets != nil {
-                self?.insertNewTweets(with: tweets!)
+            if let tweets = tweets {
+                self?.insertNewTweets(with: tweets)
 //                self?.tableView.reloadData()
             }
             
@@ -154,7 +152,6 @@ class TimelineTableViewController: UITableViewController
     }
     
     @objc private func tapToPresentMediaViewer(byReactingTo tapGesture: UITapGestureRecognizer) {
-        print(">>> tap")
         performSegue(withIdentifier: "To Media", sender: nil)
     }
     
@@ -181,6 +178,11 @@ class TimelineTableViewController: UITableViewController
                 cell = tableView.dequeueReusableCell(withIdentifier: "Tweet with Text", for: indexPath)
                 if let tweetCell = cell as? TweetWithTextTableViewCell {
                     tweetCell.tweet = tweet
+                    
+                    // tap to segue
+                    tweetCell.profilrDelegate = self
+                    tweetCell.section = indexPath.section
+                    tweetCell.row = indexPath.row
                 }
             case 1:
                 cell = tableView.dequeueReusableCell(withIdentifier: "Tweet with Pic and Text", for: indexPath)
@@ -189,6 +191,7 @@ class TimelineTableViewController: UITableViewController
                     
                     // tap to segue
                     tweetCell.delegate = self
+                    tweetCell.profilrDelegate = self
                     tweetCell.section = indexPath.section
                     tweetCell.row = indexPath.row
                     tweetCell.mediaIndex = 0
@@ -200,6 +203,7 @@ class TimelineTableViewController: UITableViewController
                     
                     // tap to segue
                     tweetCell.delegate = self
+                    tweetCell.profilrDelegate = self
                     tweetCell.section = indexPath.section
                     tweetCell.row = indexPath.row
                 }
@@ -210,6 +214,7 @@ class TimelineTableViewController: UITableViewController
                     
                     // tap to segue
                     tweetCell.delegate = self
+                    tweetCell.profilrDelegate = self
                     tweetCell.section = indexPath.section
                     tweetCell.row = indexPath.row
                 }
@@ -220,6 +225,7 @@ class TimelineTableViewController: UITableViewController
                     
                     // tap to segue
                     tweetCell.delegate = self
+                    tweetCell.profilrDelegate = self
                     tweetCell.section = indexPath.section
                     tweetCell.row = indexPath.row
                 }
@@ -227,12 +233,22 @@ class TimelineTableViewController: UITableViewController
                 cell = tableView.dequeueReusableCell(withIdentifier: "Tweet with Text", for: indexPath)
                 if let tweetCell = cell as? TweetWithTextTableViewCell {
                     tweetCell.tweet = tweet
+                    
+                    // tap to segue
+                    tweetCell.profilrDelegate = self
+                    tweetCell.section = indexPath.section
+                    tweetCell.row = indexPath.row
                 }
             }
         } else {
             cell = tableView.dequeueReusableCell(withIdentifier: "Tweet with Text", for: indexPath)
             if let tweetCell = cell as? TweetWithTextTableViewCell {
                 tweetCell.tweet = tweet
+                
+                // tap to segue
+                tweetCell.profilrDelegate = self
+                tweetCell.section = indexPath.section
+                tweetCell.row = indexPath.row
             }
         }
 //        print(cell.bounds.size.height)
@@ -249,7 +265,7 @@ class TimelineTableViewController: UITableViewController
 }
 
 // tap to segue
-extension TimelineTableViewController: TweetWithPicTableViewCellProtocol {
+extension TimelineTableViewController: TweetWithPicTableViewCellProtocol, TweetTableViewCellProtocol {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "imageTapped" {
@@ -261,12 +277,24 @@ extension TimelineTableViewController: TweetWithPicTableViewCellProtocol {
             if let videoViewer = segue.destination.content as? VideoViewerViewController {
                 videoViewer.tweetMedia = media[0]
             }
+        } else if segue.identifier == "profileImageTapped" {
+            if let profileVIewController = segue.destination.content as? UserTimelineTableViewController {
+                profileVIewController.userID = (clickedTweet?.user.id)!
+            }
         }
     }
     
-    func imageTapped(section: Int, row: Int, mediaIndex: Int, media: [TweetMedia]) {
+    func profileImageTapped(section: Int, row: Int) {
         
-        print("image index: \(section, mediaIndex)")
+        print("profile tapped")
+        
+        self.clickedTweet = timeline[section][row]
+        
+        performSegue(withIdentifier: "profileImageTapped", sender: nil)
+    }
+
+    
+    func imageTapped(section: Int, row: Int, mediaIndex: Int, media: [TweetMedia]) {
         
         self.clickedTweet = timeline[section][row]
         self.clickedImageIndex = mediaIndex
@@ -280,8 +308,8 @@ extension TimelineTableViewController: TweetWithPicTableViewCellProtocol {
                 
                 KingfisherManager.shared.retrieveImage(with: clickedMediaURL, options: nil, progressBlock: {
                     receivedSize, totalSize in
-                    let percentage = (Float(receivedSize) / Float(totalSize)) * 100.0
-                    print("Loading: \(percentage)%")
+//                    let percentage = (Float(receivedSize) / Float(totalSize)) * 100.0
+//                    print("Loading: \(percentage)%")
                     // TODO: progress indicator
                 }) { [weak self] (image, error, cacheType, url) in
                     if let image = image {

@@ -11,8 +11,7 @@ import TwitterKit
 
 class UserProfileViewController: UIViewController {
 
-    public var userID: String = (Twitter.sharedInstance().sessionStore.session()?.userID) ?? ""
-    
+    public var userID: String?
     
     @IBOutlet weak var profilePic: UIImageView!
     @IBOutlet weak var nameTextLabel: UILabel!
@@ -23,18 +22,4 @@ class UserProfileViewController: UIViewController {
         nameTextLabel.text = "我的阿波罗鸡盒"
         screenNameTextLabel.text = "@4faramita"
     }
-
-//    private var userTimelineViewController: UserTimelineTableViewController?
-//
-//    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "User Timeline" {
-//            userTimelineViewController = segue.destination as? UserTimelineTableViewController
-//            updateEmbededUserTimeline()
-//        }
-//    }
-//    
-//    private func updateEmbededUserTimeline() {
-////        userTimelineViewController?.userID = userID
-//    }
 }

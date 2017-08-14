@@ -122,12 +122,6 @@ class TweetWithPicTableViewCell: TweetTableViewCell {
             picView.addGestureRecognizer(ptap)
             picView.isUserInteractionEnabled = true
         }
-        
-        if pic.type == "video" {
-            print("video")
-        } else if pic.type == "animated_gif" {
-            print("gif")
-        }
     }
     
     override func updateUI() {

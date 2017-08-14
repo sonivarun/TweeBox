@@ -18,28 +18,28 @@ class TimelineParams {
     
     //    trimUser
     
-    public var excludeReplies: Bool
+    public var excludeReplies = false
     
-    public var includeRetweets: Bool
+    public var includeRetweets = true
     
     public var resourceURL: (String, String)!
     
-    
-    public var params: [String: String] {
-        return getParams()
-    }
-    
-    init(sinceID: String? = nil, maxID: String? = nil, excludeReplies: Bool = false, includeRetweets: Bool = true) {
+
+    init(sinceID: String? = nil, maxID: String? = nil, excludeReplies: Bool?, includeRetweets: Bool?) {
         
         self.sinceID = sinceID
         self.maxID = maxID
-        self.excludeReplies = excludeReplies
-        self.includeRetweets = includeRetweets
+        if let excludeReplies = excludeReplies {
+            self.excludeReplies = excludeReplies
+        }
+        if let includeRetweets = includeRetweets {
+            self.includeRetweets = includeRetweets
+        }
     }
     
     public func getParams() -> [String: String] {
-        var params = [String: String]()
         
+        var params = [String: String]()
         
         if sinceID != nil {
             params["since_id"] = sinceID

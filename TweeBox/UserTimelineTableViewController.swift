@@ -12,18 +12,23 @@ import AMScrollingNavbar
 
 class UserTimelineTableViewController: TimelineTableViewController {
 
-    public var userID = (Twitter.sharedInstance().sessionStore.session()?.userID)!
-    
+    public var userID: String? {
+        didSet {
+            print(">>> myself? >> \(userID, Twitter.sharedInstance().sessionStore.session()?.userID, userID == Twitter.sharedInstance().sessionStore.session()?.userID)")
+            refreshTimeline()
+        }
+    }
+        
     override func refreshTimeline() {
         
-        let userTimelineParams = UserTimelineParams(of: userID)
+        let userTimelineParams = UserTimelineParams(of: userID!)
         
         let timeline = Timeline(
             maxID: maxID,
             sinceID: sinceID,
             fetchNewer: fetchNewer,
             resourceURL: userTimelineParams.resourceURL,
-            params: userTimelineParams.getParams()
+            timelineParams: userTimelineParams
         )
         
         timeline.fetchData { [weak self] (maxID, sinceID, tweets) in
@@ -35,7 +40,7 @@ class UserTimelineTableViewController: TimelineTableViewController {
             }
             if tweets != nil {
                 self?.insertNewTweets(with: tweets!)
-                //                self?.tableView.reloadData()
+//                self?.tableView.reloadData()
             }
             
             Timer.scheduledTimer(
