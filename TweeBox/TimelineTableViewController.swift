@@ -11,18 +11,25 @@ import TwitterKit
 import AMScrollingNavbar
 import Kingfisher
 import Whisper
+import SnapKit
 
-class TimelineTableViewController: UITableViewController
-//    , ScrollingNavigationControllerDelegate
-{
-    
-    fileprivate var timeline = [Array<Tweet>]() {
+class TimelineTableViewController: UITableViewController, ScrollingNavigationControllerDelegate {
+    var emptyWarningCollapsed = false
+
+    var timeline = [Array<Tweet>]() {
         didSet {
-            print(">>> Batch >> \(timeline.count)")
-            if let navigationController = navigationController {
-                Whisper.hide(whisperFrom: navigationController)
+            
+            guard timeline.count > 0, emptyWarningCollapsed else {
+                
+                if timeline.count > 0, let navigationController = navigationController {
+                    Whisper.hide(whisperFrom: navigationController)
+                    emptyWarningCollapsed = true
+                }
+                return
             }
-            tableView.separatorStyle = .singleLine
+            
+            print(">>> Batch >> \(timeline.count)")
+//            tableView.separatorStyle = .singleLine
         }
     }
     
@@ -41,19 +48,17 @@ class TimelineTableViewController: UITableViewController
     weak var delegate:TweetWithPicTableViewCell?
     weak var profilrDelegate: TweetTableViewCell?
     
-    fileprivate var clickedTweet: Tweet?
-    fileprivate var clickedImageIndex: Int?
-    fileprivate var clickMedia: UIImage?
-    fileprivate var imageURLToShare: URL?
-    fileprivate var media: [TweetMedia]!
+    var clickedTweet: Tweet?
+    var clickedImageIndex: Int?
+    var clickMedia: UIImage?
+    var imageURLToShare: URL?
+    var media: [TweetMedia]!
     
-//    private var warningTextLabel: UILabel!
     
     // MARK: - Life cycle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         tableView.estimatedRowHeight = tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
     }
@@ -64,26 +69,23 @@ class TimelineTableViewController: UITableViewController
         //  Warning text when table is empty
         
         if timeline.flatMap({ $0 }).count == 0 {
-            
-            let message = Message(title: "Pull down to refresh.", backgroundColor: .orange)
-            tableView.separatorStyle = .none
-            if let navigationController = navigationController {
-                Whisper.show(whisper: message, to: navigationController, action: .present)
-            }
+            showEmptyWarningMessage()
         }
-
         
-        // Hide bars on scrolling
-//        if let navigationController = navigationController as? ScrollingNavigationController, let tabBarController = tabBarController {
-//            navigationController.followScrollView(
-//                tableView,
-//                delay: 50.0,
-//                scrollSpeedFactor: (Constants.naturalReading ? -1 : 1),
-//                followers: [tabBarController.tabBar]
-//            )
-//        }
+        hideBarsOnScrolling()
     }
     
+    func hideBarsOnScrolling() {
+        if let navigationController = navigationController as? ScrollingNavigationController, let tabBarController = tabBarController {
+            navigationController.followScrollView(
+                tableView,
+                delay: 50.0,
+                scrollSpeedFactor: (Constants.naturalReading ? -1 : 1),
+                followers: [tabBarController.tabBar]
+            )
+        }
+
+    }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -91,15 +93,30 @@ class TimelineTableViewController: UITableViewController
         self.refreshControl?.endRefreshing()
     }
     
+    // Hide bars on scrolling
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
-//        if let navigationController = navigationController as? ScrollingNavigationController {
-//            navigationController.stopFollowingScrollView()
-//        }
+        stopHiddingbard()
     }
     
+    func stopHiddingbard() {
+        if let navigationController = navigationController as? ScrollingNavigationController {
+            navigationController.stopFollowingScrollView()
+        }
         
+    }
+    
+    
+    func showEmptyWarningMessage() {
+        let message = Message(title: "Pull down to refresh.", backgroundColor: .orange)
+//        tableView.separatorStyle = .none
+        if let navigationController = navigationController {
+            Whisper.show(whisper: message, to: navigationController, action: .present)
+        }
+    }
+    
+    
     func insertNewTweets(with newTweets: [Tweet]) {
         self.timeline.insert(newTweets, at: 0)
         self.tableView.insertSections([0], with: .automatic)
@@ -126,8 +143,25 @@ class TimelineTableViewController: UITableViewController
                 self?.sinceID = sinceID
             }
             if let tweets = tweets {
-                self?.insertNewTweets(with: tweets)
 //                self?.tableView.reloadData()
+                
+                if tweets.count > 0 {
+                    
+                    self?.insertNewTweets(with: tweets)
+                    
+                    let cells = self?.tableView.visibleCells
+                    if cells != nil {
+                        for cell in cells! {
+                            let indexPath = self?.tableView.indexPath(for: cell)
+//                            print(">>> indexPath >> \(indexPath)")
+                            if let tweetCell = cell as? TweetTableViewCell {
+                                tweetCell.section = indexPath?.section
+                            }
+                        }
+
+                    }
+
+                }
             }
             
             Timer.scheduledTimer(
@@ -137,14 +171,6 @@ class TimelineTableViewController: UITableViewController
             }
         }
         
-        // FIX THIS: FOR REFRESH DOWNWORD
-        let cells = self.tableView.visibleCells
-        
-        for cell in cells {
-            if let tweetCell = cell as? TweetTableViewCell {
-                tweetCell.section? += 1
-            }
-        }
     }
     
     @IBAction func refresh(_ sender: UIRefreshControl) {
@@ -279,7 +305,7 @@ extension TimelineTableViewController: TweetWithPicTableViewCellProtocol, TweetT
             }
         } else if segue.identifier == "profileImageTapped" {
             if let profileVIewController = segue.destination.content as? UserTimelineTableViewController {
-                profileVIewController.userID = (clickedTweet?.user.id)!
+                profileVIewController.user = clickedTweet?.user
             }
         }
     }

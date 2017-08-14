@@ -36,7 +36,6 @@ class Timeline {
         if Twitter.sharedInstance().sessionStore.session()?.userID != nil {
             
             if fetchNewer, sinceID != nil {
-                print(">>> newer")
                 timelineParams.sinceID = String(Int(sinceID!)! + 1)
             }
             

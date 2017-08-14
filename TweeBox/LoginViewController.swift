@@ -9,13 +9,16 @@
 import UIKit
 import SafariServices
 import TwitterKit
-import SwiftyJSON
 
 class LoginViewController: UIViewController, SFSafariViewControllerDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         addLoginButton()
+        
+        if Twitter.sharedInstance().sessionStore.session()?.userID != nil {
+            performSegue(withIdentifier: "login", sender: nil)
+        }
     }
     
     private func addLoginButton() {

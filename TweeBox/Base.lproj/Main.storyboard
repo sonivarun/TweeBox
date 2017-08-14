@@ -584,7 +584,7 @@
                     <connections>
                         <segue destination="tY3-Cn-E0S" kind="presentation" identifier="videoTapped" id="mef-VN-nlC"/>
                         <segue destination="YmO-B7-dd1" kind="presentation" identifier="imageTapped" id="TE5-Ah-PTm"/>
-                        <segue destination="yFs-f3-OUc" kind="showDetail" identifier="profileImageTapped" id="VBe-64-teD"/>
+                        <segue destination="hzn-zy-f6t" kind="show" identifier="profileImageTapped" id="Wkj-Gy-Pd1"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oQt-Fg-ncE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -657,12 +657,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5vE-tx-IMM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3967" y="543"/>
+            <point key="canvasLocation" x="4687" y="-314"/>
         </scene>
         <!--Timeline-->
         <scene sceneID="1uf-C6-ebH">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="c0G-tD-z40" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="c0G-tD-z40" customClass="ScrollingNavigationController" customModule="AMScrollingNavbar" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Timeline" image="twitter" selectedImage="twitter_selected" id="w4k-m8-5Yz"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Xgu-3p-NuR">
@@ -705,16 +705,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <containerView key="tableHeaderView" opaque="NO" contentMode="scaleToFill" id="OpQ-uB-03v">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="165"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                            <connections>
-                                <segue destination="3Fw-KE-tuT" kind="embed" identifier="profile" id="5Su-q4-MD6"/>
-                            </connections>
-                        </containerView>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Tweet with Text" rowHeight="112" id="TnT-sI-MP2" customClass="TweetWithTextTableViewCell" customModule="TweeBox" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="193" width="375" height="112"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="112"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TnT-sI-MP2" id="QLJ-au-TO0">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="112"/>
@@ -796,7 +789,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Tweet with Pic and Text" rowHeight="229" id="Rzl-KN-vYz" customClass="TweetWithPicAndTextTableViewCell" customModule="TweeBox" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="305" width="375" height="229"/>
+                                <rect key="frame" x="0.0" y="140" width="375" height="229"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Rzl-KN-vYz" id="Slo-0c-DW3">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="229"/>
@@ -887,7 +880,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Tweet with Two Pics and Text" rowHeight="232" id="BaF-bu-Gxk" customClass="TweetWithPicAndTextTableViewCell" customModule="TweeBox" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="534" width="375" height="232"/>
+                                <rect key="frame" x="0.0" y="369" width="375" height="232"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BaF-bu-Gxk" id="zHK-qI-eOO">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="232"/>
@@ -988,7 +981,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Tweet with Three Pics and Text" rowHeight="229" id="qWK-FP-Wdb" customClass="TweetWithPicAndTextTableViewCell" customModule="TweeBox" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="766" width="375" height="229"/>
+                                <rect key="frame" x="0.0" y="601" width="375" height="229"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qWK-FP-Wdb" id="9bT-1L-wvf">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="229"/>
@@ -1101,7 +1094,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Tweet with Four Pics and Text" rowHeight="233" id="Jf4-FP-gn1" customClass="TweetWithPicAndTextTableViewCell" customModule="TweeBox" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="995" width="375" height="233"/>
+                                <rect key="frame" x="0.0" y="830" width="375" height="233"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jf4-FP-gn1" id="Amp-yZ-z3D">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="233"/>
@@ -1236,25 +1229,10 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="b7F-7W-oqZ"/>
-                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="I3B-Ab-Q2Y">
-                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <attributedString key="attributedTitle">
-                            <fragment content="Refreshing…">
-                                <attributes>
-                                    <font key="NSFont" metaFont="smallSystem"/>
-                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                </attributes>
-                            </fragment>
-                        </attributedString>
-                        <connections>
-                            <action selector="refresh:" destination="2zB-YM-S6q" eventType="valueChanged" id="bJy-Vo-vpw"/>
-                        </connections>
-                    </refreshControl>
                     <connections>
                         <segue destination="tY3-Cn-E0S" kind="presentation" identifier="videoTapped" id="bjk-Qr-s7r"/>
                         <segue destination="YmO-B7-dd1" kind="presentation" identifier="imageTapped" id="3a5-VP-cl5"/>
-                        <segue destination="yFs-f3-OUc" kind="showDetail" identifier="profileImageTapped" id="JBN-pd-tdb"/>
+                        <segue destination="hzn-zy-f6t" kind="show" identifier="profileImageTapped" id="xzh-oI-kcY"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5f6-CM-xzV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1264,7 +1242,7 @@
         <!--Profile-->
         <scene sceneID="4ig-H2-qBt">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="K43-fS-edq" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="K43-fS-edq" customClass="ScrollingNavigationController" customModule="AMScrollingNavbar" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Profile" image="profile" selectedImage="profile_selected" id="0JU-qi-dzG"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="0br-TP-0sC">
@@ -1280,64 +1258,10 @@
             </objects>
             <point key="canvasLocation" x="1836" y="449.32533733133437"/>
         </scene>
-        <!--User Profile View Controller-->
-        <scene sceneID="8PR-cy-xaw">
-            <objects>
-                <viewController id="3Fw-KE-tuT" customClass="UserProfileViewController" customModule="TweeBox" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="V13-V0-f2J"/>
-                        <viewControllerLayoutGuide type="bottom" id="C7P-kQ-3ml"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="WBA-x5-s75">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="165"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="aYh-nU-0kj">
-                                <rect key="frame" x="16" y="10" width="343" height="145"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vAM-6K-y6g">
-                                        <rect key="frame" x="121.5" y="0.0" width="100" height="100"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="0Ag-wK-eys"/>
-                                            <constraint firstAttribute="height" constant="100" id="81D-gy-Y96"/>
-                                        </constraints>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AZT-tq-Fxm">
-                                        <rect key="frame" x="150.5" y="105" width="42" height="20.5"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RRK-88-OGr">
-                                        <rect key="frame" x="156" y="130.5" width="31" height="14.5"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                            </stackView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="aYh-nU-0kj" secondAttribute="trailing" id="Omj-2a-2Iu"/>
-                            <constraint firstItem="aYh-nU-0kj" firstAttribute="leading" secondItem="WBA-x5-s75" secondAttribute="leadingMargin" id="s5S-7b-htU"/>
-                            <constraint firstItem="aYh-nU-0kj" firstAttribute="top" secondItem="WBA-x5-s75" secondAttribute="topMargin" constant="10" id="tWo-Wx-3He"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="nameTextLabel" destination="AZT-tq-Fxm" id="ZvD-HD-D9l"/>
-                        <outlet property="profilePic" destination="vAM-6K-y6g" id="TzU-hI-usV"/>
-                        <outlet property="screenNameTextLabel" destination="RRK-88-OGr" id="Iac-Z8-mDO"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="c27-B7-mNM" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3500" y="1061"/>
-        </scene>
         <!--User Timeline Table View Controller-->
         <scene sceneID="V32-XX-0PA">
             <objects>
-                <tableViewController id="hzn-zy-f6t" customClass="UserTimelineTableViewController" customModule="TweeBox" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="UserProfileViewController" hidesBottomBarWhenPushed="YES" id="hzn-zy-f6t" customClass="UserTimelineTableViewController" customModule="TweeBox" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="179" sectionHeaderHeight="28" sectionFooterHeight="28" id="kWM-h3-yfW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1866,43 +1790,14 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="FPV-hV-Lqi"/>
-                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="1KC-z0-ylt">
-                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <attributedString key="attributedTitle">
-                            <fragment content="Refreshing…">
-                                <attributes>
-                                    <font key="NSFont" metaFont="smallSystem"/>
-                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                </attributes>
-                            </fragment>
-                        </attributedString>
-                        <connections>
-                            <action selector="refresh:" destination="hzn-zy-f6t" eventType="valueChanged" id="4bZ-gC-cNZ"/>
-                        </connections>
-                    </refreshControl>
+                    <connections>
+                        <segue destination="YmO-B7-dd1" kind="presentation" identifier="imageTapped" id="yYH-Yj-puI"/>
+                        <segue destination="tY3-Cn-E0S" kind="presentation" identifier="videoTapped" id="qpP-VB-iib"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qj8-Pl-kMe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6260" y="66.11694152923539"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="mDX-zK-Zp1">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yFs-f3-OUc" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ns5-2p-l1E">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="hzn-zy-f6t" kind="relationship" relationship="rootViewController" id="BgF-SW-P3A"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="656-z6-Mrf" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5320.8000000000002" y="66.11694152923539"/>
+            <point key="canvasLocation" x="4029.5999999999999" y="448.42578710644682"/>
         </scene>
     </scenes>
     <resources>
@@ -1912,8 +1807,8 @@
         <image name="twitter_selected" width="16" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="VBe-64-teD"/>
-        <segue reference="3a5-VP-cl5"/>
-        <segue reference="bjk-Qr-s7r"/>
+        <segue reference="xzh-oI-kcY"/>
+        <segue reference="qpP-VB-iib"/>
+        <segue reference="yYH-Yj-puI"/>
     </inferredMetricsTieBreakers>
 </document>
