@@ -273,6 +273,39 @@ class UserTimelineTableViewController: TimelineTableViewController {
             make.top.equalTo(screenNameLabel.snp.bottom).offset(8)
         }
         bioLabel.isOpaque = false
+        
+        
+        if let location = user?.location, location != "" {
+            locationLabel = UILabel()
+            headerView.addSubview(locationLabel!)
+            locationLabel?.text = location
+            locationLabel?.font = UIFont(descriptor: .preferredFontDescriptor(withTextStyle: .caption2), size: 12)
+            locationLabel?.textColor = .lightGray
+            locationLabel?.snp.makeConstraints { (make) in
+                make.left.equalTo(headerView).offset(Constants.contentUnifiedOffset + (Constants.profileImageRadius * 2) + 9)
+                make.top.equalTo(bioLabel.snp.bottom).offset(6)
+            }
+            locationLabel?.isOpaque = false
+        }
+        
+        if let userURL = user?.url {
+            userURLButton = UIButton()
+            headerView.addSubview(userURLButton!)
+            userURLButton?.snp.makeConstraints { (make) in
+                make.left.equalTo(headerView).offset(Constants.contentUnifiedOffset + (Constants.profileImageRadius * 2) + 9)
+                if let location = user?.location, location != "" {
+                    make.top.equalTo(locationLabel!.snp.bottom).offset(5)
+                } else {
+                    make.top.equalTo(bioLabel.snp.bottom).offset(5)
+                }
+            }
+            userURLButton?.setTitle(userURL.absoluteString, for: .normal)
+            userURLButton?.setTitleColor(.lightGray, for: .normal)
+            //            userURLButton.titleLabel?.textAlignment = .center
+            userURLButton?.titleLabel?.font = UIFont(descriptor: .preferredFontDescriptor(withTextStyle: .caption2), size: 12)
+            //            userURLButton(forAction: #selector(tapFollowerButton(_:)), withSender: self)
+            
+        }
 
         
         let toolbar = UIToolbar()
@@ -322,38 +355,6 @@ class UserTimelineTableViewController: TimelineTableViewController {
         separator.backgroundColor = .gray
         separator.isUserInteractionEnabled = false
         
-        
-        if let location = user?.location, location != "" {
-            locationLabel = UILabel()
-            headerView.addSubview(locationLabel!)
-            locationLabel?.text = location
-            locationLabel?.font = UIFont(descriptor: .preferredFontDescriptor(withTextStyle: .caption2), size: 12)
-            locationLabel?.textColor = .lightGray
-            locationLabel?.snp.makeConstraints { (make) in
-                make.left.equalTo(headerView).offset(Constants.contentUnifiedOffset + (Constants.profileImageRadius * 2) + 9)
-                make.top.equalTo(bioLabel.snp.bottom).offset(6)
-            }
-            locationLabel?.isOpaque = false
-        }
-        
-        if let userURL = user?.url {
-            userURLButton = UIButton()
-            headerView.addSubview(userURLButton!)
-            userURLButton?.snp.makeConstraints { (make) in
-                make.left.equalTo(headerView).offset(Constants.contentUnifiedOffset + (Constants.profileImageRadius * 2) + 9)
-                if let location = user?.location, location != "" {
-                    make.top.equalTo(locationLabel!.snp.bottom).offset(5)
-                } else {
-                    make.top.equalTo(bioLabel.snp.bottom).offset(5)
-                }
-            }
-            userURLButton?.setTitle(userURL.absoluteString, for: .normal)
-            userURLButton?.setTitleColor(.lightGray, for: .normal)
-//            userURLButton.titleLabel?.textAlignment = .center
-            userURLButton?.titleLabel?.font = UIFont(descriptor: .preferredFontDescriptor(withTextStyle: .caption2), size: 12)
-//            userURLButton(forAction: #selector(tapFollowerButton(_:)), withSender: self)
-
-        }
         
         headerView.contentMode = .scaleAspectFill
         
