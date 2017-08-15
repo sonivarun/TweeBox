@@ -33,14 +33,19 @@ class UserTimelineTableViewController: TimelineTableViewController {
     private var profileBannerImageURL: URL?
     
     
+    private let headerView = UIImageView()
     private var visualEffectView: VisualEffectView?
     private let profileImageView = UIImageView()
     private let nameLabel = UILabel()
     private let screenNameLabel = UILabel()
     private let bioLabel = UILabel()
-//    private let bioLabel = UITextView()
+    private var locationLabel: UILabel?
+    private var userURLButton: UIButton?
     
-    private var objects = [UIView]()
+    private var objects = [UIView?]()
+    
+    private var headerHeight: CGFloat = 0
+    private var headerHeightCalculated = false
     
 //    private var isRefreshing = false
     
@@ -54,21 +59,61 @@ class UserTimelineTableViewController: TimelineTableViewController {
         super.viewDidLayoutSubviews()
         
         if let height = tableView.parallaxHeader.view?.bounds.height {
-            
-//            if height > CGFloat(400), !isRefreshing {
-//                print("refreshing")
-//                isRefreshing = true
-//                refreshTimeline()
-//            }
-            
-            visualEffectView?.blurRadius = min(10 * max(0, (Constants.profilePanelHeight + Constants.profilePanelDragOffset - height) / Constants.profilePanelDragOffset), 10)
-            visualEffectView?.colorTintAlpha = min(0.5 * max(0, (Constants.profilePanelHeight + Constants.profilePanelDragOffset - height) / Constants.profilePanelDragOffset), 0.5)
-            
-            for object in objects {
-                object.alpha = min(max(0, (Constants.profilePanelHeight + Constants.profilePanelDragOffset - height) / Constants.profilePanelDragOffset), 1)
+
+//            pullToRefresh(height)
+            makeProfileObjectsDisapearByPulling(height)
+        }
+        
+        if !headerHeightCalculated {
+            calculateHeaderHeight()
+        }
+        
+//        print(">>> headerHeight >> \(headerHeight)")
+    }
+    
+//    private func pullToRefresh(_ height: CGFloat) {
+//        if height > CGFloat(400), !isRefreshing {
+//            print("refreshing")
+//            isRefreshing = true
+//            refreshTimeline()
+//        }
+//    }
+    
+    private func makeProfileObjectsDisapearByPulling(_ height: CGFloat) {
+        
+        objects = [profileImageView, nameLabel, screenNameLabel, bioLabel, locationLabel, userURLButton]
+        
+        visualEffectView?.blurRadius = min(10 * max(0, (headerHeight + Constants.profilePanelDragOffset - height) / Constants.profilePanelDragOffset), 10)
+        visualEffectView?.colorTintAlpha = min(0.5 * max(0, (headerHeight + Constants.profilePanelDragOffset - height) / Constants.profilePanelDragOffset), 0.5)
+        
+        for object in objects {
+            if let object = object {
+                object.alpha = min(max(0, (headerHeight + Constants.profilePanelDragOffset - height) / Constants.profilePanelDragOffset), 1)
             }
         }
-//        print(">>> folllowerButton >> \(folllowerButton.bounds)")
+    }
+    
+    private func calculateHeaderHeight() {
+        
+        if let userURLButton = userURLButton {
+            let convertedBounds = headerView.convert(userURLButton.bounds, from: userURLButton)
+            headerHeight = convertedBounds.maxY
+        } else if let locationLabel = locationLabel {
+            let convertedBounds = headerView.convert(locationLabel.bounds, from: locationLabel)
+            headerHeight = convertedBounds.maxY
+        } else {
+            let bioConvertedBounds = headerView.convert(bioLabel.bounds, from: bioLabel)
+            let imageConvertedBounds = headerView.convert(profileImageView.bounds, from: profileImageView)
+            headerHeight = max(bioConvertedBounds.maxY, imageConvertedBounds.maxY)
+        }
+        
+        if headerHeight > (Constants.profileToolbarHeight + Constants.contentUnifiedOffset) {
+            
+            headerHeight = max(headerHeight, CGFloat(2 * Constants.profileImageRadius + Constants.contentUnifiedOffset))
+            headerHeight += (Constants.profileToolbarHeight + Constants.contentUnifiedOffset)
+            tableView.parallaxHeader.height = headerHeight
+            headerHeightCalculated = true
+        }
     }
     
 //    override func hideBarsOnScrolling() { }
@@ -145,9 +190,6 @@ class UserTimelineTableViewController: TimelineTableViewController {
     // Header
     private func addHeader() {
         
-        objects = [profileImageView, nameLabel, screenNameLabel, bioLabel]
-        
-        let headerView = UIImageView()
         headerView.kf.setImage(with: user?.profileBannerURL, placeholder: nil, options: nil, progressBlock: nil) { [weak self] (image, error, cacheType, url) in
             self?.profileBannerImage = image
             self?.profileBannerImageURL = url
@@ -168,7 +210,7 @@ class UserTimelineTableViewController: TimelineTableViewController {
         headerView.addSubview(profileImageView)
         profileImageView.snp.makeConstraints { (make) in
             make.centerY.equalTo(headerView).offset(-25)
-            make.left.equalTo(headerView).offset(20)
+            make.left.equalTo(headerView).offset(Constants.contentUnifiedOffset)
             make.width.equalTo(Constants.profileImageRadius * 2)
             make.height.equalTo(Constants.profileImageRadius * 2)
         }
@@ -197,8 +239,8 @@ class UserTimelineTableViewController: TimelineTableViewController {
         nameLabel.numberOfLines = 1
         nameLabel.lineBreakMode = .byTruncatingTail
         nameLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(headerView).offset(20 + (Constants.profileImageRadius * 2) + 10)
-            make.top.equalTo(headerView).offset(20)
+            make.left.equalTo(headerView).offset(Constants.contentUnifiedOffset + (Constants.profileImageRadius * 2) + 10)
+            make.top.equalTo(headerView).offset(Constants.contentUnifiedOffset)
         }
         nameLabel.isOpaque = false
         
@@ -208,18 +250,13 @@ class UserTimelineTableViewController: TimelineTableViewController {
         screenNameLabel.font = UIFont(descriptor: .preferredFontDescriptor(withTextStyle: .caption1), size: 15)
         screenNameLabel.textColor = .lightGray
         screenNameLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(headerView).offset(20 + (Constants.profileImageRadius * 2) + 9)
-            make.top.equalTo(headerView).offset(20 + 25 + 6)
+            make.left.equalTo(headerView).offset(Constants.contentUnifiedOffset + (Constants.profileImageRadius * 2) + 9)
+            make.top.equalTo(nameLabel.snp.bottom).offset(6)
         }
         screenNameLabel.isOpaque = false
         
         
         headerView.addSubview(bioLabel)
-        // for UITextView
-//        bioLabel.isEditable = true
-//        bioLabel.backgroundColor = .clear
-        
-        // for UILabel
         bioLabel.lineBreakMode = .byWordWrapping
         bioLabel.numberOfLines = 0
         
@@ -228,13 +265,12 @@ class UserTimelineTableViewController: TimelineTableViewController {
         bioLabel.textColor = .white
         bioLabel.text = user?.description
         bioLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(headerView).offset(20 + (Constants.profileImageRadius * 2) + 10)
-            make.right.equalTo(headerView).offset(-20)
-            make.top.equalTo(headerView).offset(20 + 25 + 10 + 15 + 8)
+            make.left.equalTo(headerView).offset(Constants.contentUnifiedOffset + (Constants.profileImageRadius * 2) + 10)
+            make.right.equalTo(headerView).offset(-Constants.contentUnifiedOffset)
+            make.top.equalTo(screenNameLabel.snp.bottom).offset(8)
         }
         bioLabel.isOpaque = false
-        // for UITextView
-//        bioLabel.isEditable = false
+
         
         let toolbar = UIToolbar()
         headerView.addSubview(toolbar)
@@ -283,10 +319,42 @@ class UserTimelineTableViewController: TimelineTableViewController {
         separator.backgroundColor = .gray
         separator.isUserInteractionEnabled = false
         
+        
+        if let location = user?.location, location != "" {
+            locationLabel = UILabel()
+            headerView.addSubview(locationLabel!)
+            locationLabel?.text = location
+            locationLabel?.font = UIFont(descriptor: .preferredFontDescriptor(withTextStyle: .caption2), size: 12)
+            locationLabel?.textColor = .lightGray
+            locationLabel?.snp.makeConstraints { (make) in
+                make.left.equalTo(headerView).offset(Constants.contentUnifiedOffset + (Constants.profileImageRadius * 2) + 9)
+                make.top.equalTo(bioLabel.snp.bottom).offset(6)
+            }
+            locationLabel?.isOpaque = false
+        }
+        
+        if let userURL = user?.url {
+            userURLButton = UIButton()
+            headerView.addSubview(userURLButton!)
+            userURLButton?.snp.makeConstraints { (make) in
+                make.left.equalTo(headerView).offset(Constants.contentUnifiedOffset + (Constants.profileImageRadius * 2) + 9)
+                if let location = user?.location, location != "" {
+                    make.top.equalTo(locationLabel!.snp.bottom).offset(5)
+                } else {
+                    make.top.equalTo(bioLabel.snp.bottom).offset(5)
+                }
+            }
+            userURLButton?.setTitle(userURL.absoluteString, for: .normal)
+            userURLButton?.setTitleColor(.lightGray, for: .normal)
+//            userURLButton.titleLabel?.textAlignment = .center
+            userURLButton?.titleLabel?.font = UIFont(descriptor: .preferredFontDescriptor(withTextStyle: .caption2), size: 12)
+//            userURLButton(forAction: #selector(tapFollowerButton(_:)), withSender: self)
+
+        }
+        
         headerView.contentMode = .scaleAspectFill
         
         tableView.parallaxHeader.view = headerView
-        tableView.parallaxHeader.height = Constants.profilePanelHeight
         tableView.parallaxHeader.mode = .fill
         tableView.parallaxHeader.minimumHeight = Constants.profileToolbarHeight
     }
