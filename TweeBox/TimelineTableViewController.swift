@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import TwitterKit
 //import AMScrollingNavbar
 import Kingfisher
 import Whisper
@@ -58,12 +57,14 @@ class TimelineTableViewController: UITableViewController
     
     
     // MARK: - Life cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
                 
         tableView.estimatedRowHeight = tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -97,11 +98,11 @@ class TimelineTableViewController: UITableViewController
     }
     
     // Hide bars on scrolling
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        
+//    override func viewDidDisappear(_ animated: Bool) {
+//        super.viewDidDisappear(animated)
+    
 //        stopHiddingbard()
-    }
+//    }
     
 //    func stopHiddingbard() {
 //        if let navigationController = navigationController as? ScrollingNavigationController {
@@ -145,26 +146,26 @@ class TimelineTableViewController: UITableViewController
             if let sinceID = sinceID {
                 self?.sinceID = sinceID
             }
-            if let tweets = tweets {
+//            if let tweets = tweets {
 //                self?.tableView.reloadData()
+            
+            if tweets.count > 0 {
                 
-                if tweets.count > 0 {
-                    
-                    self?.insertNewTweets(with: tweets)
-                    
-                    let cells = self?.tableView.visibleCells
-                    if cells != nil {
-                        for cell in cells! {
-                            let indexPath = self?.tableView.indexPath(for: cell)
-                            if let tweetCell = cell as? TweetTableViewCell {
-                                tweetCell.section = indexPath?.section
-                            }
+                self?.insertNewTweets(with: tweets)
+                
+                let cells = self?.tableView.visibleCells
+                if cells != nil {
+                    for cell in cells! {
+                        let indexPath = self?.tableView.indexPath(for: cell)
+                        if let tweetCell = cell as? TweetTableViewCell {
+                            tweetCell.section = indexPath?.section
                         }
-
                     }
-
+                    
                 }
+                
             }
+//            }
             
             Timer.scheduledTimer(
                 withTimeInterval: TimeInterval(0.1),
@@ -306,8 +307,8 @@ extension TimelineTableViewController: TweetWithPicTableViewCellProtocol, TweetT
                 videoViewer.tweetMedia = media[0]
             }
         } else if segue.identifier == "profileImageTapped" {
-            if let profileVIewController = segue.destination.content as? UserTimelineTableViewController {
-                profileVIewController.user = clickedTweet?.user
+            if let profileViewController = segue.destination.content as? UserTimelineTableViewController {
+                profileViewController.user = clickedTweet?.user
             }
         }
     }

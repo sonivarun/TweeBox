@@ -37,4 +37,6 @@
 
 ### Settings:
 
+### Search:
+
 ### DM:

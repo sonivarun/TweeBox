@@ -41,6 +41,8 @@ class UserTimelineTableViewController: TimelineTableViewController {
     private let bioLabel = UILabel()
     private var locationLabel: UILabel?
     private var userURLButton: UIButton?
+    private let folllowerButton = UIButton()
+    private let folllowingButton = UIButton()
     
     private var objects = [UIView?]()
     
@@ -138,7 +140,7 @@ class UserTimelineTableViewController: TimelineTableViewController {
             if sinceID != nil {
                 self?.sinceID = sinceID!
             }
-            if let tweets = tweets, tweets.count != 0 {
+            if tweets.count != 0 {
                 self?.insertNewTweets(with: tweets)
 //                self?.tableView.reloadData()
             }
@@ -190,6 +192,7 @@ class UserTimelineTableViewController: TimelineTableViewController {
     // Header
     private func addHeader() {
         
+        headerView.isUserInteractionEnabled = true
         headerView.kf.setImage(with: user?.profileBannerURL, placeholder: nil, options: nil, progressBlock: nil) { [weak self] (image, error, cacheType, url) in
             self?.profileBannerImage = image
             self?.profileBannerImageURL = url
@@ -281,7 +284,7 @@ class UserTimelineTableViewController: TimelineTableViewController {
         }
         toolbar.barStyle = .default
         
-        let folllowerButton = UIButton()
+        
         toolbar.addSubview(folllowerButton)
         folllowerButton.snp.makeConstraints { (make) in
             make.centerY.equalTo(toolbar)
@@ -293,9 +296,9 @@ class UserTimelineTableViewController: TimelineTableViewController {
         folllowerButton.setTitleColor(.darkGray, for: .normal)
         folllowerButton.titleLabel?.textAlignment = .center
         folllowerButton.titleLabel?.font = UIFont(descriptor: .preferredFontDescriptor(withTextStyle: .caption2), size: 14)
-//        folllowerButton.target(forAction: #selector(tapFollowerButton(_:)), withSender: self)
+        folllowerButton.addTarget(self, action: #selector(viewFollowerList(_:)), for: .touchUpInside)
         
-        let folllowingButton = UIButton()
+        
         toolbar.addSubview(folllowingButton)
         folllowingButton.snp.makeConstraints { (make) in
             make.centerY.equalTo(toolbar)
@@ -307,7 +310,7 @@ class UserTimelineTableViewController: TimelineTableViewController {
         folllowingButton.setTitleColor(.darkGray, for: .normal)
         folllowingButton.titleLabel?.textAlignment = .center
         folllowingButton.titleLabel?.font = UIFont(descriptor: .preferredFontDescriptor(withTextStyle: .caption2), size: 14)
-//        folllowerButton.target(forAction: #selector(tapFollowerButton(_:)), withSender: self)
+        folllowingButton.addTarget(self, action: #selector(viewFollowingList(_:)), for: .touchUpInside)
         
         let separator = UIButton()
         toolbar.addSubview(separator)
@@ -359,7 +362,28 @@ class UserTimelineTableViewController: TimelineTableViewController {
         tableView.parallaxHeader.minimumHeight = Constants.profileToolbarHeight
     }
     
-    @IBAction private func tapFollowerButton(_ sender: UIButton) {
-        print(">>> TAPPED")
+    @IBAction private func viewFollowerList(_ sender: Any?) {
+        performSegue(withIdentifier: "User List", sender: folllowerButton)
+    }
+    
+    @IBAction private func viewFollowingList(_ sender: Any?) {
+        performSegue(withIdentifier: "User List", sender: folllowingButton)
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        print(">>> sender >> \(sender)")
+        if segue.identifier == "User List" {
+            if let sender = sender as? UIButton, let userListTableViewController = segue.destination.content as? UserListTableViewController {
+                if (sender.titleLabel?.text?.hasSuffix("follower") ?? false) {
+                    userListTableViewController.resourceURL = ResourceURL.followers_list
+                } else if (sender.titleLabel?.text?.hasSuffix("following") ?? false) {
+                    userListTableViewController.resourceURL = ResourceURL.followings_list
+                }
+                userListTableViewController.userListParams = UserListParams(userID: userID!)
+            }
+        }
+
     }
 }

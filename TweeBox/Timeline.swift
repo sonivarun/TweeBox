@@ -29,7 +29,7 @@ class Timeline {
         self.timelineParams = timelineParams
     }
     
-    public func fetchData(_ handler: @escaping (String?, String?, [Tweet]?) -> Void) {
+    public func fetchData(_ handler: @escaping (String?, String?, [Tweet]) -> Void) {
         
         if Twitter.sharedInstance().sessionStore.session()?.userID != nil {
             

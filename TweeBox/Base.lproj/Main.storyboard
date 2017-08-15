@@ -1233,6 +1233,7 @@
                         <segue destination="tY3-Cn-E0S" kind="presentation" identifier="videoTapped" id="bjk-Qr-s7r"/>
                         <segue destination="YmO-B7-dd1" kind="presentation" identifier="imageTapped" id="3a5-VP-cl5"/>
                         <segue destination="hzn-zy-f6t" kind="show" identifier="profileImageTapped" id="xzh-oI-kcY"/>
+                        <segue destination="EXU-Nt-KBj" kind="show" identifier="User List" id="zQS-WH-LUi"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5f6-CM-xzV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1793,11 +1794,126 @@
                     <connections>
                         <segue destination="YmO-B7-dd1" kind="presentation" identifier="imageTapped" id="yYH-Yj-puI"/>
                         <segue destination="tY3-Cn-E0S" kind="presentation" identifier="videoTapped" id="qpP-VB-iib"/>
+                        <segue destination="EXU-Nt-KBj" kind="show" identifier="User List" id="0Tc-Hd-BoA"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qj8-Pl-kMe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4029.5999999999999" y="448.42578710644682"/>
+            <point key="canvasLocation" x="4028" y="491"/>
+        </scene>
+        <!--User List Table View Controller-->
+        <scene sceneID="qfw-Be-4Dd">
+            <objects>
+                <tableViewController id="EXU-Nt-KBj" customClass="UserListTableViewController" customModule="TweeBox" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="94" sectionHeaderHeight="28" sectionFooterHeight="28" id="GyH-9O-0sb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Twitter User" rowHeight="64" id="1jq-El-8J7" customClass="TwitterUserTableViewCell" customModule="TweeBox" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="64"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1jq-El-8J7" id="skp-LZ-qwl">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="wsk-TG-ori">
+                                            <rect key="frame" x="8" y="8" width="190.5" height="48"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bVw-ln-n5V">
+                                                    <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="48" id="Z9c-ue-btr"/>
+                                                        <constraint firstAttribute="height" constant="48" id="k4M-aw-802"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="rDs-Le-yqE">
+                                                    <rect key="frame" x="58" y="0.0" width="132.5" height="48"/>
+                                                    <subviews>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="f1K-aP-ila">
+                                                            <rect key="frame" x="0.0" y="0.0" width="132" height="16"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jZ8-XK-u5G">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="45" height="16"/>
+                                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@screenName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O2X-vn-tbp">
+                                                                    <rect key="frame" x="50" y="0.0" width="82" height="16"/>
+                                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="4z2-uX-x3q">
+                                                            <rect key="frame" x="0.0" y="16" width="111.5" height="16"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tweets" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7qX-za-Qhi">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="44" height="16"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="44" id="YRK-YT-WXM"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Followers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fcv-eY-ztQ">
+                                                                    <rect key="frame" x="54" y="0.0" width="57.5" height="16"/>
+                                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="createdTime" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lco-Ph-L0O">
+                                                            <rect key="frame" x="0.0" y="32" width="76.5" height="16"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="4z2-uX-x3q" secondAttribute="trailing" constant="21" id="wPT-F7-SRi"/>
+                                                    </constraints>
+                                                </stackView>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="wsk-TG-ori" firstAttribute="leading" secondItem="skp-LZ-qwl" secondAttribute="leadingMargin" id="Wl9-oq-jsJ"/>
+                                        <constraint firstItem="wsk-TG-ori" firstAttribute="centerY" secondItem="skp-LZ-qwl" secondAttribute="centerY" id="eGy-Bd-smu"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="createdTimeLabel" destination="Lco-Ph-L0O" id="6au-6n-X5X"/>
+                                    <outlet property="followersCountLabel" destination="fcv-eY-ztQ" id="91W-vT-X5O"/>
+                                    <outlet property="nameLabel" destination="jZ8-XK-u5G" id="a7j-tF-cM1"/>
+                                    <outlet property="profileImage" destination="bVw-ln-n5V" id="REk-3b-geA"/>
+                                    <outlet property="screenNameLabel" destination="O2X-vn-tbp" id="kKH-ON-afT"/>
+                                    <outlet property="tweetsCountLabel" destination="7qX-za-Qhi" id="gt8-qM-3FI"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="EXU-Nt-KBj" id="lCM-JE-9pF"/>
+                            <outlet property="delegate" destination="EXU-Nt-KBj" id="bdd-Ic-hBQ"/>
+                        </connections>
+                    </tableView>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="Phd-mn-2Vp">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <connections>
+                            <action selector="refresh:" destination="EXU-Nt-KBj" eventType="valueChanged" id="RfO-c8-E0s"/>
+                        </connections>
+                    </refreshControl>
+                    <connections>
+                        <segue destination="hzn-zy-f6t" kind="show" identifier="View User" id="Vvn-Xh-HSy"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EdA-iq-esl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3390" y="1406"/>
         </scene>
     </scenes>
     <resources>
@@ -1807,8 +1923,9 @@
         <image name="twitter_selected" width="16" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="xzh-oI-kcY"/>
-        <segue reference="qpP-VB-iib"/>
         <segue reference="yYH-Yj-puI"/>
+        <segue reference="Vvn-Xh-HSy"/>
+        <segue reference="0Tc-Hd-BoA"/>
+        <segue reference="qpP-VB-iib"/>
     </inferredMetricsTieBreakers>
 </document>
