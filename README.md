@@ -17,11 +17,11 @@
   - [ ] Multiple Image viewer
   - [x] GIF / video viewer
 
-- [ ] Date and time text
+- [ ] Relative time
 - [ ] Content filter
 - [ ] User profile page: 
   - [x] Basic infomation
-  - [ ] text parsing
+  - [ ] Text parsing
   - [ ] Click action (query)
 - [ ] Save to database
 - [ ] Load upward and downward

@@ -44,11 +44,13 @@ class TweetWithPicTableViewCell: TweetTableViewCell {
             mediaIndex = ((totalMediaNum == 4) ? 3 : ((totalMediaNum == 3) ? 2 : ((totalMediaNum == 2) ? 1 : 0)))
             print("here")
         }
-        print(">>> touchPoint >> \(touchPoint)")
-        print(">>> frame >> \(self.tweetPicContent.bounds)")
-        print(">>> whichMedia >> \(whichMedia)")
-        print(">>> totalMediaNum >> \(totalMediaNum)")
-        print(">>> pic index >> \(mediaIndex)")
+        
+//        print(">>> touchPoint >> \(touchPoint)")
+//        print(">>> frame >> \(self.tweetPicContent.bounds)")
+//        print(">>> whichMedia >> \(whichMedia)")
+//        print(">>> totalMediaNum >> \(totalMediaNum)")
+//        print(">>> pic index >> \(mediaIndex)")
+        
         guard let section = section, let row = row, let mediaIndex = mediaIndex else { return }
         delegate?.imageTapped(section: section, row: row, mediaIndex: mediaIndex, media: (tweet?.entities?.media)!)
     }
