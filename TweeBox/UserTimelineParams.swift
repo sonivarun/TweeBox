@@ -29,7 +29,6 @@ class UserTimelineParams: TimelineParams {
             params["user_id"] = userID
         }
         
-        print(params)
         return params
     }
 }

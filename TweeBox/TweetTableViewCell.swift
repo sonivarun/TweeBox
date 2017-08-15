@@ -35,7 +35,6 @@ class TweetTableViewCell: UITableViewCell {
     @IBOutlet weak var tweetUserID: UILabel!
     
     @IBAction func profileImageTapped(byReactingTo: UIGestureRecognizer) {
-        print(section, row)
         guard let section = section, let row = row else { return }
         profilrDelegate?.profileImageTapped(section: section, row: row)
     }

@@ -16,7 +16,7 @@ class ImageViewerViewController: PannableViewController {
         
     public var imageURL: URL!
     
-    public var tweetMedia: TweetMedia!
+//    public var tweetMedia: TweetMedia!
     
     public var imageView = UIImageView()
     

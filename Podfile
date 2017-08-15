@@ -13,5 +13,5 @@ target 'TweeBox' do
 	pod 'Whisper'
 	pod 'BMPlayer'
 	pod "MXParallaxHeader"
-	pod "DynamicBlurView"
+	pod "VisualEffectView"
 end

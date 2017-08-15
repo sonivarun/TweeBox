@@ -662,7 +662,7 @@
         <!--Timeline-->
         <scene sceneID="1uf-C6-ebH">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="c0G-tD-z40" customClass="ScrollingNavigationController" customModule="AMScrollingNavbar" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="c0G-tD-z40" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Timeline" image="twitter" selectedImage="twitter_selected" id="w4k-m8-5Yz"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Xgu-3p-NuR">
@@ -1242,7 +1242,7 @@
         <!--Profile-->
         <scene sceneID="4ig-H2-qBt">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="K43-fS-edq" customClass="ScrollingNavigationController" customModule="AMScrollingNavbar" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="K43-fS-edq" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Profile" image="profile" selectedImage="profile_selected" id="0JU-qi-dzG"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="0br-TP-0sC">

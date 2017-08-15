@@ -8,12 +8,14 @@
 
 import UIKit
 import TwitterKit
-import AMScrollingNavbar
+//import AMScrollingNavbar
 import Kingfisher
 import Whisper
 import SnapKit
 
-class TimelineTableViewController: UITableViewController, ScrollingNavigationControllerDelegate {
+class TimelineTableViewController: UITableViewController
+//, ScrollingNavigationControllerDelegate 
+{
     var emptyWarningCollapsed = false
 
     var timeline = [Array<Tweet>]() {
@@ -72,20 +74,21 @@ class TimelineTableViewController: UITableViewController, ScrollingNavigationCon
             showEmptyWarningMessage()
         }
         
-        hideBarsOnScrolling()
+//        hideBarsOnScrolling()
     }
     
-    func hideBarsOnScrolling() {
-        if let navigationController = navigationController as? ScrollingNavigationController, let tabBarController = tabBarController {
-            navigationController.followScrollView(
-                tableView,
-                delay: 50.0,
-                scrollSpeedFactor: (Constants.naturalReading ? -1 : 1),
-                followers: [tabBarController.tabBar]
-            )
-        }
-
-    }
+    // Hide bars on scrolling
+//    func hideBarsOnScrolling() {
+//        if let navigationController = navigationController as? ScrollingNavigationController, let tabBarController = tabBarController {
+//            navigationController.followScrollView(
+//                tableView,
+//                delay: 50.0,
+//                scrollSpeedFactor: (Constants.naturalReading ? -1 : 1),
+//                followers: [tabBarController.tabBar]
+//            )
+//        }
+//
+//    }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -97,15 +100,15 @@ class TimelineTableViewController: UITableViewController, ScrollingNavigationCon
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
-        stopHiddingbard()
+//        stopHiddingbard()
     }
     
-    func stopHiddingbard() {
-        if let navigationController = navigationController as? ScrollingNavigationController {
-            navigationController.stopFollowingScrollView()
-        }
-        
-    }
+//    func stopHiddingbard() {
+//        if let navigationController = navigationController as? ScrollingNavigationController {
+//            navigationController.stopFollowingScrollView()
+//        }
+//        
+//    }
     
     
     func showEmptyWarningMessage() {
@@ -153,7 +156,6 @@ class TimelineTableViewController: UITableViewController, ScrollingNavigationCon
                     if cells != nil {
                         for cell in cells! {
                             let indexPath = self?.tableView.indexPath(for: cell)
-//                            print(">>> indexPath >> \(indexPath)")
                             if let tweetCell = cell as? TweetTableViewCell {
                                 tweetCell.section = indexPath?.section
                             }
@@ -277,17 +279,17 @@ class TimelineTableViewController: UITableViewController, ScrollingNavigationCon
                 tweetCell.row = indexPath.row
             }
         }
-//        print(cell.bounds.size.height)
+
         return cell
     }
     
-    
-    override func scrollViewShouldScrollToTop(_ scrollView: UIScrollView) -> Bool {
-        if let navigationController = navigationController as? ScrollingNavigationController {
-            navigationController.showNavbar(animated: true)
-        }
-        return true
-    }
+    // Hide bars on scrolling
+//    override func scrollViewShouldScrollToTop(_ scrollView: UIScrollView) -> Bool {
+//        if let navigationController = navigationController as? ScrollingNavigationController {
+//            navigationController.showNavbar(animated: true)
+//        }
+//        return true
+//    }
 }
 
 // tap to segue

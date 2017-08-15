@@ -11,9 +11,7 @@ import TwitterKit
 import SwiftyJSON
 
 class Timeline {
-    public var timeline = [Tweet]()
-//    { didSet { print(timeline.count) } }
-    
+    public var timeline = [Tweet]()    
     public var maxID: String?
     public var sinceID: String?
     public var fetchNewer: Bool

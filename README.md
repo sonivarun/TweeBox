@@ -4,12 +4,13 @@
 ### Basic
 - [x] RESTful client
 - [x] Twitter API wrapper
+- [ ] Error handling
 
 ### Timeline:
 - [x] Basic timeline information display
-- [x] Timeline text parsing
+- [ ] Timeline text parsing
 - [ ] Click and wait indicator
-- [ ] Image viewer
+- [ ] Image viewer:
   - [x] Gestures, alerts
   - [x] Single Image viewer
   - [x] Share sheet
@@ -18,7 +19,10 @@
 
 - [ ] Date and time text
 - [ ] Content filter
-- [ ] User profile page: basic infomation
+- [ ] User profile page: 
+  - [x] Basic infomation
+  - [ ] text parsing
+  - [ ] Click action (query)
 - [ ] Save to database
 - [ ] Load upward and downward
 

@@ -10,7 +10,7 @@ import UIKit
 import TwitterKit
 import Kingfisher
 import MXParallaxHeader
-import DynamicBlurView
+import VisualEffectView
 
 class UserTimelineTableViewController: TimelineTableViewController {
     
@@ -26,6 +26,22 @@ class UserTimelineTableViewController: TimelineTableViewController {
         }
     }
     
+    private var profileImage: UIImage?
+    private var profileImageURL: URL?
+    
+    private var profileBannerImage: UIImage?
+    private var profileBannerImageURL: URL?
+    
+    
+    private var visualEffectView: VisualEffectView?
+    private let profileImageView = UIImageView()
+    private let nameLabel = UILabel()
+    private let screenNameLabel = UILabel()
+    private let bioLabel = UILabel()
+//    private let bioLabel = UITextView()
+    
+    private var objects = [UIView]()
+    
 //    private var isRefreshing = false
     
     override func viewDidLoad() {
@@ -34,18 +50,29 @@ class UserTimelineTableViewController: TimelineTableViewController {
         addHeader()
     }
     
-//    override func viewDidLayoutSubviews() {
-//        super.viewDidLayoutSubviews()
-//        
-//        if let height = tableView.parallaxHeader.view?.bounds.height, height > CGFloat(300), !isRefreshing {
-//            print("refreshing")
-//            isRefreshing = true
-//            refreshTimeline()
-//        }
-//    }
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        if let height = tableView.parallaxHeader.view?.bounds.height {
+            
+//            if height > CGFloat(400), !isRefreshing {
+//                print("refreshing")
+//                isRefreshing = true
+//                refreshTimeline()
+//            }
+            
+            visualEffectView?.blurRadius = min(10 * max(0, (Constants.profilePanelHeight + Constants.profilePanelDragOffset - height) / Constants.profilePanelDragOffset), 10)
+            visualEffectView?.colorTintAlpha = min(0.5 * max(0, (Constants.profilePanelHeight + Constants.profilePanelDragOffset - height) / Constants.profilePanelDragOffset), 0.5)
+            
+            for object in objects {
+                object.alpha = min(max(0, (Constants.profilePanelHeight + Constants.profilePanelDragOffset - height) / Constants.profilePanelDragOffset), 1)
+            }
+        }
+//        print(">>> folllowerButton >> \(folllowerButton.bounds)")
+    }
     
-    override func hideBarsOnScrolling() { }
-    override func stopHiddingbard() { }
+//    override func hideBarsOnScrolling() { }
+//    override func stopHiddingbard() { }
         
     override func refreshTimeline() {
         
@@ -99,74 +126,172 @@ class UserTimelineTableViewController: TimelineTableViewController {
     override func showEmptyWarningMessage() {
         emptyWarningCollapsed = true
     }
+    
+    @objc private func tapToViewBannerImage(_ sender: UIGestureRecognizer) {
+        print(">>> banner tapped")
+        clickMedia = profileBannerImage
+        imageURLToShare = profileBannerImageURL
+        performSegue(withIdentifier: "imageTapped", sender: self)
+    }
+    
+    @objc private func tapToViewProfileImage(_ sender: UIGestureRecognizer) {
+        print(">>> head tapped")
+        clickMedia = profileImage
+        imageURLToShare = profileImageURL
+        performSegue(withIdentifier: "imageTapped", sender: self)
+    }
 
     
     // Header
     private func addHeader() {
+        
+        objects = [profileImageView, nameLabel, screenNameLabel, bioLabel]
+        
         let headerView = UIImageView()
-        headerView.kf.setImage(with: user?.profileBackgroundImageURL)
+        headerView.kf.setImage(with: user?.profileBannerURL, placeholder: nil, options: nil, progressBlock: nil) { [weak self] (image, error, cacheType, url) in
+            self?.profileBannerImage = image
+            self?.profileBannerImageURL = url
+        }
         
-        // blur???
-        let blurView = DynamicBlurView(frame: headerView.bounds)
-        blurView.blurRadius = 100
-        blurView.dynamicMode = .tracking
-        view.addSubview(blurView)
+        let tapOnBanner = UITapGestureRecognizer(target: self, action: #selector(tapToViewBannerImage(_:)))
+        tapOnBanner.numberOfTapsRequired = 1
+        tapOnBanner.numberOfTouchesRequired = 1
+        headerView.addGestureRecognizer(tapOnBanner)
         
-        let profileImageView = UIImageView()
+        visualEffectView = VisualEffectView(frame: view.bounds)
+        visualEffectView?.blurRadius = 10
+        visualEffectView?.colorTint = .black
+        visualEffectView?.colorTintAlpha = 0.5
+        headerView.addSubview(visualEffectView!)
+        
+        
         headerView.addSubview(profileImageView)
         profileImageView.snp.makeConstraints { (make) in
-            make.centerY.equalTo(headerView)
+            make.centerY.equalTo(headerView).offset(-25)
             make.left.equalTo(headerView).offset(20)
             make.width.equalTo(Constants.profileImageRadius * 2)
             make.height.equalTo(Constants.profileImageRadius * 2)
         }
-        profileImageView.kf.setImage(with: user?.profileImageURL)
+        profileImageView.kf.setImage(with: user?.profileImageURL, placeholder: nil, options: nil, progressBlock: nil) { [weak self] (image, error, cacheType, url) in
+            self?.profileImage = image
+            self?.profileImageURL = url
+        }
         
         profileImageView.layer.borderWidth = 3.0
         profileImageView.layer.borderColor = UIColor.white.cgColor
         profileImageView.layer.cornerRadius = Constants.profileImageRadius
         profileImageView.clipsToBounds = true
         
+        profileImageView.isOpaque = false
         
-        let nameLabel = UILabel()
+        let tapOnHead = UITapGestureRecognizer(target: self, action: #selector(tapToViewProfileImage(_:)))
+        tapOnHead.numberOfTapsRequired = 1
+        tapOnHead.numberOfTouchesRequired = 1
+        headerView.addGestureRecognizer(tapOnHead)
+        
+        
         headerView.addSubview(nameLabel)
         nameLabel.text = user?.name
         nameLabel.font = UIFont(descriptor: .preferredFontDescriptor(withTextStyle: .headline), size: 22)
+        nameLabel.textColor = .white
         nameLabel.numberOfLines = 1
         nameLabel.lineBreakMode = .byTruncatingTail
         nameLabel.snp.makeConstraints { (make) in
             make.left.equalTo(headerView).offset(20 + (Constants.profileImageRadius * 2) + 10)
             make.top.equalTo(headerView).offset(20)
         }
+        nameLabel.isOpaque = false
         
-        let screenNameLabel = UILabel()
+    
         headerView.addSubview(screenNameLabel)
         screenNameLabel.text = "@\(user?.screenName ?? "twitterUser")"
         screenNameLabel.font = UIFont(descriptor: .preferredFontDescriptor(withTextStyle: .caption1), size: 15)
-        screenNameLabel.textColor = .gray
+        screenNameLabel.textColor = .lightGray
         screenNameLabel.snp.makeConstraints { (make) in
-            make.left.equalTo(headerView).offset(20 + (Constants.profileImageRadius * 2) + 8)
+            make.left.equalTo(headerView).offset(20 + (Constants.profileImageRadius * 2) + 9)
             make.top.equalTo(headerView).offset(20 + 25 + 6)
         }
+        screenNameLabel.isOpaque = false
         
-        let bioLabel = UILabel()
+        
         headerView.addSubview(bioLabel)
-        bioLabel.text = user?.description
-        bioLabel.font = UIFont(descriptor: .preferredFontDescriptor(withTextStyle: .body), size: 16)
+        // for UITextView
+//        bioLabel.isEditable = true
+//        bioLabel.backgroundColor = .clear
+        
+        // for UILabel
         bioLabel.lineBreakMode = .byWordWrapping
         bioLabel.numberOfLines = 0
+        
+        bioLabel.font = UIFont(descriptor: .preferredFontDescriptor(withTextStyle: .body), size: 12)
+
+        bioLabel.textColor = .white
+        bioLabel.text = user?.description
         bioLabel.snp.makeConstraints { (make) in
             make.left.equalTo(headerView).offset(20 + (Constants.profileImageRadius * 2) + 10)
             make.right.equalTo(headerView).offset(-20)
             make.top.equalTo(headerView).offset(20 + 25 + 10 + 15 + 8)
         }
+        bioLabel.isOpaque = false
+        // for UITextView
+//        bioLabel.isEditable = false
         
+        let toolbar = UIToolbar()
+        headerView.addSubview(toolbar)
+        toolbar.snp.makeConstraints { (make) in
+            make.bottom.equalTo(headerView)
+            make.height.equalTo(50)
+            make.width.equalTo(headerView)
+        }
+        toolbar.barStyle = .default
+        
+        let folllowerButton = UIButton()
+        toolbar.addSubview(folllowerButton)
+        folllowerButton.snp.makeConstraints { (make) in
+            make.centerY.equalTo(toolbar)
+            make.leading.equalTo(toolbar)
+            make.width.equalTo(toolbar).multipliedBy(0.5)
+            make.height.equalTo(toolbar)
+        }
+        folllowerButton.setTitle("\(user?.followersCount ?? 0) follower", for: .normal)
+        folllowerButton.setTitleColor(.darkGray, for: .normal)
+        folllowerButton.titleLabel?.textAlignment = .center
+        folllowerButton.titleLabel?.font = UIFont(descriptor: .preferredFontDescriptor(withTextStyle: .caption2), size: 14)
+//        folllowerButton.target(forAction: #selector(tapFollowerButton(_:)), withSender: self)
+        
+        let folllowingButton = UIButton()
+        toolbar.addSubview(folllowingButton)
+        folllowingButton.snp.makeConstraints { (make) in
+            make.centerY.equalTo(toolbar)
+            make.trailing.equalTo(toolbar)
+            make.width.equalTo(toolbar).multipliedBy(0.5)
+            make.height.equalTo(toolbar)
+        }
+        folllowingButton.setTitle("\(user?.followingCount ?? 0) following", for: .normal)
+        folllowingButton.setTitleColor(.darkGray, for: .normal)
+        folllowingButton.titleLabel?.textAlignment = .center
+        folllowingButton.titleLabel?.font = UIFont(descriptor: .preferredFontDescriptor(withTextStyle: .caption2), size: 14)
+//        folllowerButton.target(forAction: #selector(tapFollowerButton(_:)), withSender: self)
+        
+        let separator = UIButton()
+        toolbar.addSubview(separator)
+        separator.snp.makeConstraints { (make) in
+            make.center.equalTo(toolbar)
+            make.width.equalTo(1)
+            make.height.equalTo(toolbar).multipliedBy(0.6)
+        }
+        separator.backgroundColor = .gray
+        separator.isUserInteractionEnabled = false
         
         headerView.contentMode = .scaleAspectFill
         
         tableView.parallaxHeader.view = headerView
-        tableView.parallaxHeader.height = 200
+        tableView.parallaxHeader.height = Constants.profilePanelHeight
         tableView.parallaxHeader.mode = .fill
-        tableView.parallaxHeader.minimumHeight = 0
+        tableView.parallaxHeader.minimumHeight = Constants.profileToolbarHeight
+    }
+    
+    @IBAction private func tapFollowerButton(_ sender: UIButton) {
+        print(">>> TAPPED")
     }
 }

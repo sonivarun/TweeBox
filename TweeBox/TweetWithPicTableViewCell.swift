@@ -22,11 +22,16 @@ class TweetWithPicTableViewCell: TweetTableViewCell {
     
     @IBAction func imageTapped(byReactingTo: UIGestureRecognizer) {
         
-        let index = byReactingTo.location(in: self.tweetPicContent)
+        let touchPoint = byReactingTo.location(in: self.tweetPicContent)
         let xBound = self.tweetPicContent.bounds.maxX
-        let yBound = self.tweetPicContent.bounds.maxY
+        let yBound: CGFloat
+        if totalMediaNum == 2 || totalMediaNum == 3 {
+            yBound = self.tweetPicContent.bounds.maxY / 2
+        } else {
+            yBound = self.tweetPicContent.bounds.maxY
+        }
         
-        let whichMedia = (index.x <= xBound, index.y <= yBound)
+        let whichMedia = (touchPoint.x <= xBound, touchPoint.y <= yBound)
         
         switch whichMedia {
         case (true, true):  // up left
@@ -36,11 +41,14 @@ class TweetWithPicTableViewCell: TweetTableViewCell {
         case (true, false):  // down left
             mediaIndex = totalMediaNum == 4 ? 2 : 0
         case (false, false):  // down right
-            mediaIndex = totalMediaNum == 4 ? 3 : (totalMediaNum == 3 ? 2 : (totalMediaNum == 2 ? 1 : 0))
+            mediaIndex = ((totalMediaNum == 4) ? 3 : ((totalMediaNum == 3) ? 2 : ((totalMediaNum == 2) ? 1 : 0)))
+            print("here")
         }
-        
-        print(">>> image index: \(mediaIndex!)")
-                
+        print(">>> touchPoint >> \(touchPoint)")
+        print(">>> frame >> \(self.tweetPicContent.bounds)")
+        print(">>> whichMedia >> \(whichMedia)")
+        print(">>> totalMediaNum >> \(totalMediaNum)")
+        print(">>> pic index >> \(mediaIndex)")
         guard let section = section, let row = row, let mediaIndex = mediaIndex else { return }
         delegate?.imageTapped(section: section, row: row, mediaIndex: mediaIndex, media: (tweet?.entities?.media)!)
     }

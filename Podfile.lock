@@ -8,7 +8,6 @@ PODS:
     - NVActivityIndicatorView (~> 3.5)
     - SnapKit (~> 3.2)
   - DateToolsSwift (2.0.3)
-  - DynamicBlurView (1.3.0)
   - Kingfisher (3.10.4)
   - MXParallaxHeader (0.6.1)
   - NVActivityIndicatorView (3.7.0):
@@ -19,24 +18,24 @@ PODS:
   - TwitterCore (3.0.0)
   - TwitterKit (3.1.0):
     - TwitterCore (>= 3.0.0)
+  - VisualEffectView (2.0.7)
   - Whisper (5.0.0)
 
 DEPENDENCIES:
   - AMScrollingNavbar
   - BMPlayer
   - DateToolsSwift
-  - DynamicBlurView
   - Kingfisher (~> 3.0)
   - MXParallaxHeader
   - SwiftyJSON
   - TwitterKit
+  - VisualEffectView
   - Whisper
 
 SPEC CHECKSUMS:
   AMScrollingNavbar: 64b3626ebd557cbe4ddf7fdd31c652f02c9b8888
   BMPlayer: 5ba9e3f3d61ccc5a24ebd9cdc24901dcf28c98bc
   DateToolsSwift: bf69bf9056d9e53c5c03f06e51f219b9b8b02f9e
-  DynamicBlurView: ca9f6836d4123e20ac1636814077b278b34dd2a2
   Kingfisher: dc3a4983e86d2dfa89513664983a82340c11a289
   MXParallaxHeader: 858c403532ed933b381556a81ce333d7065ad182
   NVActivityIndicatorView: d3738df7e2e476aca0ba6bf32a8c9fbcfc33d64b
@@ -44,8 +43,9 @@ SPEC CHECKSUMS:
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   TwitterCore: 8ce250be1eb34633a0e6acc89520d4165ec52c10
   TwitterKit: 21d0b22d67cb9a568cd8053972d0da7df2e0e9a0
+  VisualEffectView: c6e2b281616b46262d1371aaee3735a58b7b2c7f
   Whisper: 051f25e704bf8992641ffd28b20d5682ddc5f5d3
 
-PODFILE CHECKSUM: 3d40e375f9c3a418a51b2d42dc3458c4ba7f4863
+PODFILE CHECKSUM: 55705f7b0f0e7bdde2f1071c6829215c6269601c
 
 COCOAPODS: 1.3.1

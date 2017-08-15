@@ -28,6 +28,9 @@ struct Constants {
     static let naturalReading = true
     
     static let profileImageRadius: CGFloat = 50
+    static let profilePanelHeight: CGFloat = 250
+    static let profilePanelDragOffset: CGFloat = 100
+    static let profileToolbarHeight: CGFloat = 50
 }
 
 enum ProfileRadius: CGFloat {
