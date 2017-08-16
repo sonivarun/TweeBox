@@ -8,6 +8,7 @@
 
 import UIKit
 import Kingfisher
+import DateToolsSwift
 
 protocol TweetTableViewCellProtocol: class {
     func profileImageTapped(section: Int, row: Int)
@@ -72,13 +73,7 @@ class TweetTableViewCell: UITableViewCell {
         }
         
         if let created = tweet?.createdTime {
-            let formatter = DateFormatter()
-            if Date().timeIntervalSince(created) > 24*60*60 {
-                formatter.dateStyle = .short
-            } else {
-                formatter.timeStyle = .short
-            }
-            tweetCreatedTime?.text = formatter.string(from: created)
+            self.tweetCreatedTime?.text = created.shortTimeAgoSinceNow
         } else {
             tweetCreatedTime?.text = nil
         }

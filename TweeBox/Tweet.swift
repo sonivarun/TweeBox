@@ -91,7 +91,7 @@ class Tweet {
     init(with tweetJSON: JSON
         ) {
         coordinates         = ((tweetJSON["coordinates"].null == nil) ? (Coordinates(with: tweetJSON["coordinates"])) : nil)
-        createdTime         = twitterDateFormatter.date(from: tweetJSON["created_at"].stringValue)  // tweetJSON["created_at"].stringValue
+        createdTime         = TwitterDate(string: tweetJSON["created_at"].stringValue).date  // tweetJSON["created_at"].stringValue
         currenUserRetweet   = tweetJSON["current_user_retweet"].string
         entities            = Entity(with: tweetJSON["entities"], and: tweetJSON["extended_entities"])  // ((tweetJSON["entities"].null == nil) ? (Entity(with: tweetJSON["entities"])) : nil)
         favoriteCount       = tweetJSON["favorite_count"].int
@@ -118,10 +118,5 @@ class Tweet {
         //        withheldScope: tweetJSON["withheld_scope"].string
     }
     
-    private let twitterDateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "EEE MMM dd HH:mm:ss Z yyyy"
-        formatter.locale = Locale(identifier: "en_US_POSIX")
-        return formatter
-    }()
+    
 }

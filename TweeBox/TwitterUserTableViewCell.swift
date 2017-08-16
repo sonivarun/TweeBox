@@ -8,6 +8,7 @@
 
 import UIKit
 import Kingfisher
+import DateToolsSwift
 
 class TwitterUserTableViewCell: UITableViewCell {
 
@@ -42,6 +43,6 @@ class TwitterUserTableViewCell: UITableViewCell {
         
         followersCountLabel.text = "Followers: \(user?.followersCount ?? 0)"
         
-        createdTimeLabel.text = "Created At: \(user?.createdAt ?? "Just now")"
+        createdTimeLabel.text = "Created At: \(TwitterDate(string: user?.createdAt).date?.timeAgoSinceNow ?? "")"
     }
 }

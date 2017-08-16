@@ -28,6 +28,7 @@ class UserListTableViewController: UITableViewController {
         super.viewDidLoad()
         
         refreshUserList()
+        tableView.rowHeight = 72
     }
     
     

@@ -17,7 +17,7 @@
   - [ ] Multiple Image viewer
   - [x] GIF / video viewer
 
-- [ ] Relative time
+- [x] Relative time
 - [ ] Content filter
 - [ ] User profile page: 
   - [x] Basic infomation

@@ -75,6 +75,10 @@ class TimelineTableViewController: UITableViewController
             showEmptyWarningMessage()
         }
         
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self] (timer) in
+            self?.updateTimeLabel()
+        })
+        
 //        hideBarsOnScrolling()
     }
     
@@ -110,6 +114,16 @@ class TimelineTableViewController: UITableViewController
 //        }
 //        
 //    }
+    
+    
+    private func updateTimeLabel() {
+        let cells = self.tableView.visibleCells
+        for cell in cells {
+            if let tweetCell = cell as? TweetTableViewCell {
+                tweetCell.tweetCreatedTime.text = tweetCell.tweet?.createdTime?.shortTimeAgoSinceNow
+            }
+        }
+    }
     
     
     func showEmptyWarningMessage() {

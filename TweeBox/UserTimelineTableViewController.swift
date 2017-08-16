@@ -374,7 +374,6 @@ class UserTimelineTableViewController: TimelineTableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        print(">>> sender >> \(sender)")
         if segue.identifier == "User List" {
             if let sender = sender as? UIButton, let userListTableViewController = segue.destination.content as? UserListTableViewController {
                 if (sender.titleLabel?.text?.hasSuffix("follower") ?? false) {
